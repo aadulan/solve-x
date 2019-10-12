@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import { Grid } from '@material-ui/core';
-import EqCard from './task'
+import EqCard from './EqCard'
 import { Droppable } from 'react-beautiful-dnd';
 import { displayExpression } from './index.js'
 //list of components transition : background colour 0.2 sease

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { equationGen } from './inital-data'
-import EquationSpace from './column'
+import EquationSpace from './EqSpace'
 import * as serviceWorker from './serviceWorker';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Typography } from '@material-ui/core';
