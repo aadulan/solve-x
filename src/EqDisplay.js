@@ -3,10 +3,10 @@ import './index.css';
 import { equationGen } from './inital-data'
 import EquationSpace from './EqSpace'
 import { DragDropContext } from 'react-beautiful-dnd';
-import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import algebra from 'algebra.js'
 import { displayExpression } from './DisplayExpression'
+import Equal from './Equal'
 
 export default function EqDisplay(props){
     const [equation, setEquation] = useState(algebra.parse(equationGen()));
@@ -68,9 +68,10 @@ export default function EqDisplay(props){
                       expression={equation.lhs}
                       side={'lhs'}
                       />
-                      <Typography style={{margin: 10}} variant='h1'>
+                      <Equal/>
+                      {/* <Typography style={{margin: 10}} variant='h1'>
                           =
-                      </Typography>
+                      </Typography> */}
                   <EquationSpace
                       dropId={'eqspace-rhs'}
                       expression={equation.rhs}

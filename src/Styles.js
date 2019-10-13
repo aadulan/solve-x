@@ -21,6 +21,10 @@ export const useStyles = makeStyles({
     drop: {
         display: 'flex',
         flexDirection: 'row',
+    },
+    equal: {
+        borderRadius: '50em',
+        
     }
 
 })
