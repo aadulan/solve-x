@@ -3,12 +3,14 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent'
 import { Typography } from '@material-ui/core';
 import { Draggable } from 'react-beautiful-dnd';
+import { useStyles } from './Styles'
 
 // props.isDragging ? 'lightgreen : 'white'
 
 //isDragDisabled to allow to conditionally move items 
 
 export default function EqCard(props) {
+    const classes = useStyles();
 
     return (
         <Draggable
@@ -19,14 +21,19 @@ export default function EqCard(props) {
             {(provided, snapshot) => (
 
 
-                <Card style={{ border: '1px', borderStyle: 'solid', padding: '10px', margin: 10, width: '300px' }}
+                <Card
+                    className={classes.card}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     innerRef={provided.innerRef}
                     // isDragging={snapshot.isDragging}
                 >
                     <CardContent>
-                        <Typography color='primary' align='center' variant='h1' style={{userSelect:'none'}} >
+                        <Typography 
+                            className={classes.userSelect} 
+                            color='primary' 
+                            align='center' 
+                            variant='h1'>
                             {props.task.content}
                         </Typography>
 

@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import EqCard from './EqCard'
 import { Droppable } from 'react-beautiful-dnd';
 import { displayExpression } from './DisplayExpression'
+import { useStyles } from './Styles'
 //list of components transition : background colour 0.2 sease
 // props.isDragging ? 'lightgreen : 'white'
 
@@ -11,12 +12,16 @@ export default function EquationSpace(props) {
 
     const [dragDisabled, setDragDisabled] = useState(false)
 
+    const classes = useStyles();
+
     useEffect(() => {
         setDragDisabled(displayExpression(props.expression, props.side).length === 1)
     }, [props.expression, props.side])
 
     return (
-        <Card style={{ padding: '20px', maxWidth: '1000px', borderStyle: 'solid', borderWidth: '1px', backgroundColor: '#e3f2fd'}}>
+        <Card 
+        className={classes.eqSpaceCard}
+        >
             <Droppable
                 droppableId={props.dropId}
                 direction="horizontal"
@@ -24,6 +29,7 @@ export default function EquationSpace(props) {
             >
                 {(provided, snapshot) => (
                     <Grid
+                        className={classes.drop}
                         direction="row"
                         container
                         item
@@ -32,13 +38,15 @@ export default function EquationSpace(props) {
                         innerRef={provided.innerRef}
                         {...provided.droppableProps}
                         // isDraggingOver={snapshot.isDraggingOver}
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                        }}
                     >
                         {displayExpression(props.expression, props.side).map((task, index) => (
-                            <EqCard key={task.id} task={task} index={index} {...props} isDragDisabled={dragDisabled} />
+                            <EqCard 
+                                key={task.id} 
+                                task={task} 
+                                index={index} 
+                                {...props} 
+                                isDragDisabled={dragDisabled} 
+                            />
                         ))}
                         {provided.placeholder}
                     </Grid>
