@@ -38,13 +38,15 @@ export default function EqDisplay(props){
 
       if(destination.droppableId !== source.droppableId){
           var movedTask = '';
+          const lhsOrigin = source.droppableId === 'eqspace-lhs';
+          const rhsOrigin = source.droppableId === 'eqspace-rhs';
           if(destination.droppableId === 'eqspace-rhs'){
               movedTask = newLhsCards[source.index]
           }else {
               movedTask = newRhsCards[source.index]
           }
-          const newLhs = equation.lhs.subtract(movedTask.exp)
-          const newRhs = equation.rhs.subtract(movedTask.exp)
+          const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin)
+          const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin)
           var newExp = new algebra.Equation(newLhs, newRhs) 
           setEquation(newExp)
       
