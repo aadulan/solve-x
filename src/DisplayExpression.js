@@ -9,9 +9,13 @@ export const displayExpression = (expression, side) => {
         });            
     }); 
         expression.constants.forEach(c => {
-            tasks.push({id: `${side}-num-${c.numer}`, content:c.numer, exp: c});            
+            tasks.push({
+                id: `${side}-num-${c.numer}`, 
+                content:c.numer, 
+                exp: c
+            });            
         }); 
-
+        // console.log(tasks)
         return tasks;
         
     }
