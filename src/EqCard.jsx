@@ -4,6 +4,8 @@ import CardContent from '@material-ui/core/CardContent'
 import { Typography } from '@material-ui/core';
 import { Draggable } from 'react-beautiful-dnd';
 import { useStyles } from './Styles'
+import 'katex/dist/katex.min.css';
+import TeX from '@matejmazur/react-katex';
 
 // props.isDragging ? 'lightgreen : 'white'
 
@@ -34,7 +36,7 @@ export default function EqCard(props) {
                             color='primary' 
                             align='center' 
                             variant='h1'>
-                            {props.task.content}
+                                <TeX math={`${props.task.content}`}/>
                         </Typography>
 
                     </CardContent>
