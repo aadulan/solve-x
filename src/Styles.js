@@ -29,6 +29,7 @@ export const useStyles = makeStyles({
         height: 100,
         fontFamily: '"Fira Code"',
         display: 'flex',
+        userSelect:'none'
     }
 
 })
