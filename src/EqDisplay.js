@@ -71,36 +71,39 @@ export default function EqDisplay(props) {
       setEquation(newExp);
   }
 
-
   return (
-      <Grid container
-          direction="row"
-          justify="center"
-          alignItems="center"
-      >
-          <DragDropContext
-              onDragEnd={onDragEnd}
+    <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container item direction="row" justify="center" alignItems="center">
+        <DragDropContext
+          onDragEnd={onDragEnd}
           // onDragStart={this.onDragStart}
           // onDragUpdate={this.onDragUpdate}
-          >
-                  <EquationSpace
-                      dropId={'eqspace-lhs'}
-                      expression={equation.lhs}
-                      side={'lhs'}
-                      />
-                      <Equal/>
-                      {/* <Typography style={{margin: 10}} variant='h1'>
-                          =
-                      </Typography> */}
-                  <EquationSpace
-                      dropId={'eqspace-rhs'}
-                      expression={equation.rhs}
-                      side={'rhs'}
-                      />
-          </DragDropContext>
+        >
+          <EquationSpace
+            dropId={"eqspace-lhs"}
+            expression={equation.lhs}
+            side={"lhs"}
+          />
+          <Equal />
+          <EquationSpace
+            dropId={"eqspace-rhs"}
+            expression={equation.rhs}
+            side={"rhs"}
+          />
+        </DragDropContext>
       </Grid>
-
-);
+      <Grid container item direction="row" justify="center" alignItems="flex-start">
+        <Grid container item xs={6} direction="row" justify="center" >
+          <Button disabled={displayExpression(equation.lhs, "lhs").length === 1} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
+            Combine
+          </Button>
+        </Grid>
+        <Grid container item direction="row"  xs={6} justify="center">
+          <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={displayExpression(equation.rhs, "rhs").length === 1}>
+            Combine
+          </Button>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 }
-
-
