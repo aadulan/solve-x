@@ -9,8 +9,8 @@ import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
 import { Button } from "@material-ui/core";
 
-export default function EqDisplay(props){
-    const [equation, setEquation] = useState(algebra.parse(equationGen()));
+export default function EqDisplay(props) {
+  const [equation, setEquation] = useState(algebra.parse(equationGen()));
 
   // onDragStart = () => {
   //     document.body.style.color = 'blue';
@@ -56,21 +56,19 @@ export default function EqDisplay(props){
     }
   };
 
-      if(destination.droppableId !== source.droppableId){
-          var movedTask = '';
-          const lhsOrigin = source.droppableId === 'eqspace-lhs';
-          const rhsOrigin = source.droppableId === 'eqspace-rhs';
-          if(destination.droppableId === 'eqspace-rhs'){
-              movedTask = newLhsCards[source.index]
-          }else {
-              movedTask = newRhsCards[source.index]
-          }
-          const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin)
-          const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin)
-          var newExp = new algebra.Equation(newLhs, newRhs) 
-          setEquation(newExp)
-      
+  const combineEquation = side =>{
+      var lhs = null;
+      var rhs = null;
+      if (side === "rhs"){
+          rhs = equation.rhs.simplify();
+          lhs = equation.lhs;
+            
+      } else {
+        rhs = equation.rhs
+        lhs = equation.lhs.simplify();
       }
+      var newExp = new algebra.Equation(lhs, rhs);
+      setEquation(newExp);
   }
 
 
