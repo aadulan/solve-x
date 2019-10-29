@@ -8,14 +8,15 @@ export const displayExpression = (expression, side) => {
             exp: t 
         });            
     }); 
-        expression.constants.forEach(c => {
+        expression.constants.forEach((c,index) => {
+            var isStart  = index === 0
             tasks.push({
                 id: `${side}-num-${c.numer}`, 
-                content:c.numer, 
+                content:isStart ? c.numer : "+" + c.numer, 
                 exp: c
             });            
+
         }); 
-        // console.log(tasks)
         return tasks;
         
     }
