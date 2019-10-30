@@ -1,15 +1,18 @@
 {
   "files": {
     "main.css": "/eq-solver-prototype/static/css/main.1465a8dc.chunk.css",
-    "main.js": "/eq-solver-prototype/static/js/main.b5443382.chunk.js",
-    "main.js.map": "/eq-solver-prototype/static/js/main.b5443382.chunk.js.map",
+    "main.js": "/eq-solver-prototype/static/js/main.3b0e912f.chunk.js",
+    "main.js.map": "/eq-solver-prototype/static/js/main.3b0e912f.chunk.js.map",
     "runtime~main.js": "/eq-solver-prototype/static/js/runtime~main.6fc1d6a3.js",
     "runtime~main.js.map": "/eq-solver-prototype/static/js/runtime~main.6fc1d6a3.js.map",
-    "static/js/2.7d19be22.chunk.js": "/eq-solver-prototype/static/js/2.7d19be22.chunk.js",
-    "static/js/2.7d19be22.chunk.js.map": "/eq-solver-prototype/static/js/2.7d19be22.chunk.js.map",
+    "static/css/2.332d05e1.chunk.css": "/eq-solver-prototype/static/css/2.332d05e1.chunk.css",
+    "static/js/2.d6a1ffdf.chunk.js": "/eq-solver-prototype/static/js/2.d6a1ffdf.chunk.js",
+    "static/js/2.d6a1ffdf.chunk.js.map": "/eq-solver-prototype/static/js/2.d6a1ffdf.chunk.js.map",
     "index.html": "/eq-solver-prototype/index.html",
-    "precache-manifest.67c92b4edc2ebb0aa6a023c180a51516.js": "/eq-solver-prototype/precache-manifest.67c92b4edc2ebb0aa6a023c180a51516.js",
+    "precache-manifest.b988bfc49bb133cc10e67ae3d146a388.js": "/eq-solver-prototype/precache-manifest.b988bfc49bb133cc10e67ae3d146a388.js",
     "service-worker.js": "/eq-solver-prototype/service-worker.js",
-    "static/css/main.1465a8dc.chunk.css.map": "/eq-solver-prototype/static/css/main.1465a8dc.chunk.css.map"
+    "static/css/2.332d05e1.chunk.css.map": "/eq-solver-prototype/static/css/2.332d05e1.chunk.css.map",
+    "static/css/main.1465a8dc.chunk.css.map": "/eq-solver-prototype/static/css/main.1465a8dc.chunk.css.map",
+    "static/media/katex.min.css": "/eq-solver-prototype/static/media/KaTeX_Typewriter-Regular.6cc31ea5.woff2"
   }
 }
