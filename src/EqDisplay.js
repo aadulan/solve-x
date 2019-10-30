@@ -23,6 +23,24 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   // }
 
+  const canCombine = equation => {
+    console.log(equation)
+    var hasOneTerm = null;
+    var hasOneConstant = null;
+    if(equation.constants.length === 1){
+      hasOneConstant = true;
+    } else {
+      hasOneConstant = false;
+    }
+    if (equation.terms.length === 1){
+      hasOneTerm = true;
+    }else {
+      hasOneTerm = false;
+    }
+
+    return hasOneTerm || hasOneConstant
+  }
+
   const onDragEnd = result => {
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
@@ -94,12 +112,12 @@ export default function EqDisplay(props) {
       </Grid>
       <Grid container item direction="row" justify="center" alignItems="flex-start">
         <Grid container item xs={6} direction="row" justify="center" >
-          <Button disabled={displayExpression(equation.lhs, "lhs").length === 1} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
+          <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
             Combine
           </Button>
         </Grid>
         <Grid container item direction="row"  xs={6} justify="center">
-          <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={displayExpression(equation.rhs, "rhs").length === 1}>
+          <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
             Combine
           </Button>
         </Grid>
