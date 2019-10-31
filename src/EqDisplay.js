@@ -8,9 +8,15 @@ import algebra from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
 import { Button } from "@material-ui/core";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+
+
 
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
+  const [helper, setHelper] = useState(false);
 
   // onDragStart = () => {
   //     document.body.style.color = 'blue';
@@ -39,6 +45,10 @@ export default function EqDisplay(props) {
     }
 
     return hasOneTerm || hasOneConstant
+  }
+
+  const handleChange = () => event => {
+    setHelper(event.target.checked)
   }
 
   const onDragEnd = result => {
@@ -90,8 +100,22 @@ export default function EqDisplay(props) {
   }
 
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Grid container direction="column" justify="center" alignItems="center">
       <Grid container item direction="row" justify="center" alignItems="center">
+      <FormGroup>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={helper}
+            onChange={handleChange()}
+            value="helper"
+            color="Helper Mode"
+          />
+        }
+        label="Primary"
+      />
+
+      </FormGroup>
         <DragDropContext
           onDragEnd={onDragEnd}
           // onDragStart={this.onDragStart}
@@ -110,13 +134,13 @@ export default function EqDisplay(props) {
           />
         </DragDropContext>
       </Grid>
-      <Grid container item direction="row" justify="center" alignItems="flex-start">
-        <Grid container item xs={6} direction="row" justify="center" >
+      <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
+        <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
             Combine
           </Button>
         </Grid>
-        <Grid container item direction="row"  xs={6} justify="center">
+        <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
           <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
             Combine
           </Button>
