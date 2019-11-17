@@ -48,7 +48,9 @@ export default function EqDisplay(props) {
   }
 
   const handleChange = () => event => {
-    setHelper(event.target.checked)
+    console.log(event);
+    setHelper(event.target.checked);
+
   }
 
   const onDragEnd = result => {
@@ -65,8 +67,8 @@ export default function EqDisplay(props) {
     ) {
       return;
     }
-    const newLhsCards = displayExpression(equation.lhs, "lhs");
-    const newRhsCards = displayExpression(equation.rhs, "rhs");
+    const newLhsCards = displayExpression(equation.lhs, "lhs", helper);
+    const newRhsCards = displayExpression(equation.rhs, "rhs", helper);
 
     if (destination.droppableId !== source.droppableId) {
       var movedTask = "";
@@ -109,10 +111,10 @@ export default function EqDisplay(props) {
             checked={helper}
             onChange={handleChange()}
             value="helper"
-            color="Helper Mode"
+            color="primary"
           />
         }
-        label="Primary"
+        label="Helper Mode"
       />
 
       </FormGroup>
@@ -125,12 +127,14 @@ export default function EqDisplay(props) {
             dropId={"eqspace-lhs"}
             expression={equation.lhs}
             side={"lhs"}
+            helper={helper}
           />
           <Equal />
           <EquationSpace
             dropId={"eqspace-rhs"}
             expression={equation.rhs}
             side={"rhs"}
+            helper={helper}
           />
         </DragDropContext>
       </Grid>
