@@ -3,9 +3,12 @@ export const displayExpression = (expression, side) => {
     expression.terms.forEach((t,index) => {
         var isStart  = index === 0
         var isPositive = t.coefficients[0] > 0
+        var isOne = t.coefficients[0].numer === 1
+        var coeff = isOne ? "" : t.coefficients[0].numer
         tasks.push({
             id: `${side}-variable-x${index}`, 
-            content:!isStart && isPositive ? "+" +  t.coefficients[0].numer + t.variables[0].variable : t.coefficients[0].numer + t.variables[0].variable, 
+            // content:!isStart && isPositive ? "+" +  t.coefficients[0].numer + t.variables[0].variable : t.coefficients[0].numer + t.variables[0].variable,
+            content:!isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff+ t.variables[0].variable,  
             exp: t 
         });  
     }); 
