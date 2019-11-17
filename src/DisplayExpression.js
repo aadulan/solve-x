@@ -6,7 +6,7 @@ export const displayExpression = (expression, side, isHelper) => {
         // var helper = isHelper ? coeff + t.variables[0].variable : coeff+ t.variables[0].variable :
         var isOne = t.coefficients[0].numer === 1
         var coeff = isOne ? "" : t.coefficients[0].numer
-        var contentHelper =  isPositive ? "+" + t.coefficients[0].numer   + t.variables[0].variable : t.coefficients[0].numer + t.variables[0].variable
+        var contentHelper =  isPositive ? "+" + t.coefficients[0].numer + "\\times "   + t.variables[0].variable : t.coefficients[0].numer + "\\times " +  t.variables[0].variable
         var content_NonHelper = !isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff+ t.variables[0].variable
         var helper = isHelper ? contentHelper : content_NonHelper
         tasks.push({

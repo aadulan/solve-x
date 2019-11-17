@@ -101,6 +101,21 @@ export default function EqDisplay(props) {
       setEquation(newExp);
   }
 
+//   const unpackEquation = side =>{
+//     var lhs = null;
+//     var rhs = null;
+//     if (side === "rhs"){
+//         rhs = equation.rhs.simplify();
+//         lhs = equation.lhs;
+          
+//     } else {
+//       rhs = equation.rhs
+//       lhs = equation.lhs.simplify();
+//     }
+//     var newExp = new algebra.Equation(lhs, rhs);
+//     setEquation(newExp);
+// }
+
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid container item direction="row" justify="center" alignItems="center">
@@ -150,6 +165,18 @@ export default function EqDisplay(props) {
           </Button>
         </Grid>
       </Grid>
+      {/* <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center"> */}
+        {/* <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
+          <Button disabled={!helper} onClick={() => unpackEquation('lhs')} variant="contained" color="primary">
+            Unpack
+          </Button>
+        </Grid>
+        <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
+          <Button  onClick={() => unpackEquation('rhs')} variant="contained" color="primary" disabled={!helper}>
+            Unpack
+          </Button>
+        </Grid>
+      </Grid> */}
     </Grid>
   );
 }
