@@ -49,7 +49,19 @@ export default function EqDisplay(props) {
     return hasOneTerm || hasOneConstant
   }
 
-  const handleChange = () => event => {
+  const handleSignChange = () => event => {
+    console.log(event);
+    setSigns(event.target.checked);
+
+  }
+
+  const handleUnpackChange = () => event => {
+    console.log(event);
+    setUnpack(event.target.checked);
+
+  }
+
+  const handleHelperChange = () => event => {
     console.log(event);
     setHelper(event.target.checked);
 
@@ -69,9 +81,8 @@ export default function EqDisplay(props) {
     ) {
       return;
     }
-    const newLhsCards = displayExpression(equation.lhs, "lhs", helper);
-    const newRhsCards = displayExpression(equation.rhs, "rhs", helper);
-
+    const newLhsCards = displayExpression(equation.lhs, "lhs", signs, unpack, helper);
+    const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper);
     if (destination.droppableId !== source.droppableId) {
       var movedTask = "";
       const lhsOrigin = source.droppableId === "eqspace-lhs";
@@ -126,12 +137,36 @@ export default function EqDisplay(props) {
         control={
           <Switch
             checked={helper}
-            onChange={handleChange()}
+            onChange={handleHelperChange()}
             value="helper"
             color="primary"
           />
         }
         label="Helper Mode"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+            checked={signs}
+            onChange={handleSignChange()}
+            value="signs"
+            color="primary"
+            disabled={!helper}
+          />
+        }
+        label="Show Signs"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+            checked={unpack}
+            onChange={handleUnpackChange()}
+            value="unpack"
+            color="primary"
+            disabled={!helper}
+          />
+        }
+        label="Unpack Variable"
       />
 
       </FormGroup>
@@ -145,6 +180,8 @@ export default function EqDisplay(props) {
             expression={equation.lhs}
             side={"lhs"}
             helper={helper}
+            showSigns={signs}
+            unpackEq={unpack}
           />
           <Equal />
           <EquationSpace
@@ -152,6 +189,8 @@ export default function EqDisplay(props) {
             expression={equation.rhs}
             side={"rhs"}
             helper={helper}
+            showSigns={signs}
+            unpackEq={unpack}
           />
         </DragDropContext>
       </Grid>
