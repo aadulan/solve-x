@@ -1,4 +1,4 @@
-export const displayExpression = (expression, side, isHelper) => {
+export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper) => {
     var tasks = []
     expression.terms.forEach((t,index) => {
         var isStart  = index === 0
@@ -6,7 +6,8 @@ export const displayExpression = (expression, side, isHelper) => {
         // var helper = isHelper ? coeff + t.variables[0].variable : coeff+ t.variables[0].variable :
         var isOne = t.coefficients[0].numer === 1
         var coeff = isOne ? "" : t.coefficients[0].numer
-        var contentHelper =  isPositive ? "+" + t.coefficients[0].numer + "\\times "   + t.variables[0].variable : t.coefficients[0].numer + "\\times " +  t.variables[0].variable
+        var unpack = isUnpack ?  t.coefficients[0].numer + "\\times "   +  t.variables[0].variable : t.coefficients[0].numer +  t.variables[0].variable
+        var contentHelper = isShowSign &&  isPositive ? "+" + unpack : unpack 
         var content_NonHelper = !isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff+ t.variables[0].variable
         var helper = isHelper ? contentHelper : content_NonHelper
         tasks.push({
