@@ -39,7 +39,7 @@ export default function EquationSpace(props) {
                         {...provided.droppableProps}
                         // isDraggingOver={snapshot.isDraggingOver}
                     >
-                        {displayExpression(props.expression, props.side).map((task, index) => (
+                        {displayExpression(props.expression, props.side, props.showSigns, props.unpackEq, props.helper).map((task, index) => (
                             <EqCard 
                                 key={task.id} 
                                 task={task} 

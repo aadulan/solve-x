@@ -8,9 +8,17 @@ import algebra from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
 import { Button } from "@material-ui/core";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+
+
 
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
+  const [helper, setHelper] = useState(false);
+  const [signs, setSigns] = useState(false);
+  const [unpack, setUnpack] = useState(false);
 
   // onDragStart = () => {
   //     document.body.style.color = 'blue';
@@ -41,6 +49,24 @@ export default function EqDisplay(props) {
     return hasOneTerm || hasOneConstant
   }
 
+  const handleSignChange = () => event => {
+    console.log(event);
+    setSigns(event.target.checked);
+
+  }
+
+  const handleUnpackChange = () => event => {
+    console.log(event);
+    setUnpack(event.target.checked);
+
+  }
+
+  const handleHelperChange = () => event => {
+    console.log(event);
+    setHelper(event.target.checked);
+
+  }
+
   const onDragEnd = result => {
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
@@ -55,9 +81,8 @@ export default function EqDisplay(props) {
     ) {
       return;
     }
-    const newLhsCards = displayExpression(equation.lhs, "lhs");
-    const newRhsCards = displayExpression(equation.rhs, "rhs");
-
+    const newLhsCards = displayExpression(equation.lhs, "lhs", signs, unpack, helper);
+    const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper);
     if (destination.droppableId !== source.droppableId) {
       var movedTask = "";
       const lhsOrigin = source.droppableId === "eqspace-lhs";
@@ -89,9 +114,65 @@ export default function EqDisplay(props) {
       setEquation(newExp);
   }
 
+//   const unpackEquation = side =>{
+//     var lhs = null;
+//     var rhs = null;
+//     if (side === "rhs"){
+//         rhs = equation.rhs.simplify();
+//         lhs = equation.lhs;
+          
+//     } else {
+//       rhs = equation.rhs
+//       lhs = equation.lhs.simplify();
+//     }
+//     var newExp = new algebra.Equation(lhs, rhs);
+//     setEquation(newExp);
+// }
+
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Grid container direction="column" justify="center" alignItems="center">
       <Grid container item direction="row" justify="center" alignItems="center">
+        <Grid container item direction="row" justify="center" alignItems="center">
+        <FormGroup>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={helper}
+            onChange={handleHelperChange()}
+            value="helper"
+            color="primary"
+          />
+        }
+        label="Helper Mode"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+            checked={signs}
+            onChange={handleSignChange()}
+            value="signs"
+            color="primary"
+            disabled={!helper}
+          />
+        }
+        label="Show Signs"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+            checked={unpack}
+            onChange={handleUnpackChange()}
+            value="unpack"
+            color="primary"
+            disabled={!helper}
+          />
+        }
+        label="Unpack Variable"
+      />
+
+      </FormGroup>
+        </Grid>
+      
         <DragDropContext
           onDragEnd={onDragEnd}
           // onDragStart={this.onDragStart}
@@ -101,27 +182,45 @@ export default function EqDisplay(props) {
             dropId={"eqspace-lhs"}
             expression={equation.lhs}
             side={"lhs"}
+            helper={helper}
+            showSigns={signs}
+            unpackEq={unpack}
           />
           <Equal />
           <EquationSpace
             dropId={"eqspace-rhs"}
             expression={equation.rhs}
             side={"rhs"}
+            helper={helper}
+            showSigns={signs}
+            unpackEq={unpack}
           />
         </DragDropContext>
       </Grid>
-      <Grid container item direction="row" justify="center" alignItems="flex-start">
-        <Grid container item xs={6} direction="row" justify="center" >
+      <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
+        <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
             Combine
           </Button>
         </Grid>
-        <Grid container item direction="row"  xs={6} justify="center">
+        <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
           <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
             Combine
           </Button>
         </Grid>
       </Grid>
+      {/* <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center"> */}
+        {/* <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
+          <Button disabled={!helper} onClick={() => unpackEquation('lhs')} variant="contained" color="primary">
+            Unpack
+          </Button>
+        </Grid>
+        <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
+          <Button  onClick={() => unpackEquation('rhs')} variant="contained" color="primary" disabled={!helper}>
+            Unpack
+          </Button>
+        </Grid>
+      </Grid> */}
     </Grid>
   );
 }
