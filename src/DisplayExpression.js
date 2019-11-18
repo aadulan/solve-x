@@ -25,7 +25,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
             var isPositive = c.numer > 0
             var contentHelper = isPositive ? "+" + c.numer : c.numer
             var content_NonHelper = isPositive && (!isStart || hasTerm) ? "+" + c.numer : c.numer
-            var helper = isHelper ? contentHelper : content_NonHelper
+            var helper = isShowSign && isHelper ? contentHelper : content_NonHelper
             tasks.push({
                 id: `${side}-num-${index}`, 
                 // content: (!isStart && isPositive) || (isStart && hasTerm && isPositive) ? "+" + c.numer : c.numer,
