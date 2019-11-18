@@ -17,6 +17,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
   const [helper, setHelper] = useState(false);
+  const [signs, setSigns] = useState(false);
+  const [unpack, setUnpack] = useState(false);
 
   // onDragStart = () => {
   //     document.body.style.color = 'blue';
