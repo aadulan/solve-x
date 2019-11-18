@@ -132,7 +132,8 @@ export default function EqDisplay(props) {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid container item direction="row" justify="center" alignItems="center">
-      <FormGroup>
+        <Grid container item direction="row" justify="center" alignItems="center">
+        <FormGroup>
       <FormControlLabel
         control={
           <Switch
@@ -170,6 +171,8 @@ export default function EqDisplay(props) {
       />
 
       </FormGroup>
+        </Grid>
+      
         <DragDropContext
           onDragEnd={onDragEnd}
           // onDragStart={this.onDragStart}
