@@ -18,9 +18,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import EqDisplay from './EqDisplay'
-import { Grid } from '@material-ui/core';
+import { Grid, CardContent, Card } from '@material-ui/core';
 import { Button, ButtonGroup } from "@material-ui/core"; 
 import TextField from "@material-ui/core/TextField";
+
 
 const drawerWidth = 350;
 
@@ -97,8 +98,11 @@ export default function PersistentDrawerRight() {
     setOpen(false);
   };
 
-  const handleFormChange = (e) => { 
-    setText(e.target.value); 
+
+const addText = (e) => {
+    setText(text.concat(e));
+}
+
 const emptyText = () => {
     setText("");
 }
@@ -151,20 +155,18 @@ const emptyText = () => {
           </IconButton>
         </div>
         <Divider />
-        <Grid container direction='column'>
+        <Grid container direction='column' justify='center' align='center'>
         <Grid container direction='row'>
-        <TextField
-                            id="text"
-                            // label="Password"
-                            type="text"
-                            // autoComplete="current-password"
-                            margin="normal"
-                            variant="filled"
-                            fullWidth={true}
-                            required={true}
-                            // className='field'
-                            onChange={handleFormChange}
-                        />
+            <Card style={{width:'100%'}}>
+                <CardContent>
+                    <Typography variant="h6">
+                        {text}
+                    </Typography>
+                </CardContent>
+            </Card>
+        {/* <Typography>
+            {text}
+        </Typography> */}
 
         </Grid>
 
@@ -174,10 +176,10 @@ const emptyText = () => {
               size="large"
               color='primary'
             >
-              <Button>7</Button>
-              <Button>8</Button>
-              <Button>9</Button>
-              <Button> ÷ </Button>
+              <Button onClick={() => addText("7")}>7</Button>
+              <Button onClick={() => addText("8")}>8</Button>
+              <Button onClick={() => addText("9")}>9</Button>
+              <Button onClick={() => addText("÷")}> ÷ </Button>
             </ButtonGroup>
         </Grid>
         <Grid container direction='row'>
@@ -186,10 +188,10 @@ const emptyText = () => {
               size="large"
               color='primary'
             >
-              <Button>4</Button>
-              <Button>5</Button>
-              <Button>6</Button>
-              <Button>×</Button>
+              <Button onClick={() => addText("4")}>4</Button>
+              <Button onClick={() => addText("5")}>5</Button>
+              <Button onClick={() => addText("6")}>6</Button>
+              <Button onClick={() => addText("×")}>×</Button>
             </ButtonGroup>
         </Grid>
         <Grid container direction='row'>
@@ -198,10 +200,10 @@ const emptyText = () => {
               size="large"
               color='primary'
             >
-              <Button>1</Button>
-              <Button>2</Button>
-              <Button>3</Button>
-              <Button>-</Button>
+              <Button onClick={() => addText("1")}>1</Button>
+              <Button onClick={() => addText("2")}>2</Button>
+              <Button onClick={() => addText("3")}>3</Button>
+              <Button onClick={() =>-")}>-</Button>
             </ButtonGroup>
         </Grid>
         <Grid container direction='row'>
@@ -212,9 +214,9 @@ const emptyText = () => {
                 color='primary'
                 // style={{ width:'75%' }}
             >
-                <Button>0</Button>
-                <Button>+</Button>
                 <Button onClick={() => emptyText()} >Clear</Button>
+                <Button onClick={() => addText("0")}>0</Button>
+                <Button onClick={() => addText("+")}>+</Button>
             </ButtonGroup>
            
         </Grid>
