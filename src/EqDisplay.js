@@ -11,7 +11,7 @@ import { Button } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-
+import Calculator from './Calculator'
 
 
 export default function EqDisplay(props) {
@@ -209,18 +209,6 @@ export default function EqDisplay(props) {
           </Button>
         </Grid>
       </Grid>
-      {/* <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center"> */}
-        {/* <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
-          <Button disabled={!helper} onClick={() => unpackEquation('lhs')} variant="contained" color="primary">
-            Unpack
-          </Button>
-        </Grid>
-        <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
-          <Button  onClick={() => unpackEquation('rhs')} variant="contained" color="primary" disabled={!helper}>
-            Unpack
-          </Button>
-        </Grid>
-      </Grid> */}
     </Grid>
   );
 }
