@@ -99,6 +99,8 @@ export default function PersistentDrawerRight() {
 
   const handleFormChange = (e) => { 
     setText(e.target.value); 
+const emptyText = () => {
+    setText("");
 }
 
 
@@ -212,6 +214,7 @@ export default function PersistentDrawerRight() {
             >
                 <Button>0</Button>
                 <Button>+</Button>
+                <Button onClick={() => emptyText()} >Clear</Button>
             </ButtonGroup>
            
         </Grid>
