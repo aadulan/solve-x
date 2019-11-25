@@ -5,22 +5,22 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import List from '@material-ui/core/List';
+// import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import MailIcon from '@material-ui/icons/Mail';
 import EqDisplay from './EqDisplay'
 import { Grid, CardContent, Card } from '@material-ui/core';
 import { Button, ButtonGroup } from "@material-ui/core"; 
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 
 
 const drawerWidth = 350;
@@ -84,11 +84,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PersistentDrawerRight() {
+export default function Calculator() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState("")
+  const [number, setNumber] = useState("")
+  const [sign, setSign] = useState("")
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -99,12 +101,17 @@ export default function PersistentDrawerRight() {
   };
 
 
-const addText = (e) => {
-    setText(text.concat(e));
+const addNumber = (e) => {
+    setNumber(number.concat(e));
+}
+
+const addSign = (e) => {
+    setSign(e);
 }
 
 const emptyText = () => {
-    setText("");
+    setNumber("");
+    setSign("");
 }
 
 
@@ -154,20 +161,16 @@ const emptyText = () => {
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
-        <Divider />
+        <Divider/>
         <Grid container direction='column' justify='center' align='center'>
         <Grid container direction='row'>
             <Card style={{width:'100%'}}>
                 <CardContent>
                     <Typography variant="h6">
-                        {text}
+                        {sign}{number}
                     </Typography>
                 </CardContent>
             </Card>
-        {/* <Typography>
-            {text}
-        </Typography> */}
-
         </Grid>
 
         <Grid container direction='row'>
@@ -176,10 +179,10 @@ const emptyText = () => {
               size="large"
               color='primary'
             >
-              <Button onClick={() => addText("7")}>7</Button>
-              <Button onClick={() => addText("8")}>8</Button>
-              <Button onClick={() => addText("9")}>9</Button>
-              <Button onClick={() => addText("÷")}> ÷ </Button>
+              <Button onClick={() => addNumber("7")}>7</Button>
+              <Button onClick={() => addNumber("8")}>8</Button>
+              <Button onClick={() => addNumber("9")}>9</Button>
+              <Button onClick={() => addSign("÷")}> ÷ </Button>
             </ButtonGroup>
         </Grid>
         <Grid container direction='row'>
@@ -188,10 +191,10 @@ const emptyText = () => {
               size="large"
               color='primary'
             >
-              <Button onClick={() => addText("4")}>4</Button>
-              <Button onClick={() => addText("5")}>5</Button>
-              <Button onClick={() => addText("6")}>6</Button>
-              <Button onClick={() => addText("×")}>×</Button>
+              <Button onClick={() => addNumber("4")}>4</Button>
+              <Button onClick={() => addNumber("5")}>5</Button>
+              <Button onClick={() => addNumber("6")}>6</Button>
+              <Button onClick={() => addSign("×")}>×</Button>
             </ButtonGroup>
         </Grid>
         <Grid container direction='row'>
@@ -200,10 +203,10 @@ const emptyText = () => {
               size="large"
               color='primary'
             >
-              <Button onClick={() => addText("1")}>1</Button>
-              <Button onClick={() => addText("2")}>2</Button>
-              <Button onClick={() => addText("3")}>3</Button>
-              <Button onClick={() =>-")}>-</Button>
+              <Button onClick={() => addNumber("1")}>1</Button>
+              <Button onClick={() => addNumber("2")}>2</Button>
+              <Button onClick={() => addNumber("3")}>3</Button>
+              <Button onClick={() => addSign("-")}>-</Button>
             </ButtonGroup>
         </Grid>
         <Grid container direction='row'>
@@ -215,8 +218,8 @@ const emptyText = () => {
                 // style={{ width:'75%' }}
             >
                 <Button onClick={() => emptyText()} >Clear</Button>
-                <Button onClick={() => addText("0")}>0</Button>
-                <Button onClick={() => addText("+")}>+</Button>
+                <Button value="0" onClick={() => addNumber("0")}>0</Button>
+                <Button value="+" onClick={() => addSign("+")}>+</Button>
             </ButtonGroup>
            
         </Grid>
