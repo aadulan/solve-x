@@ -48,25 +48,12 @@ export default function EqDisplay(props) {
       lhs = equation.lhs.subtract(Number(calculator[1])).simplify()
       rhs = equation.rhs.subtract(Number(calculator[1])).simplify()
     }
-    // lhs = equation.lhs.eval(calculator[0])(calculator[1])
-    // rhs = equation.rhs.eval(calculator[0])(calculator[1])
     var newExp = new algebra.Equation(lhs, rhs);
     setEquation(newExp);
     setCalculator([])
     setEnter(false);
-
-
   }
-  // if(props.eq !== []){
-  //   var sign = props.eq[0]
-  //   var number = props.eq[1]
-  //   var rhs = equation.rhs.sign(number)
-  //   var lhs = equation.lhs.sign(number)
-  //   var newExp = new algebra.Equation(lhs, rhs);
-  //   setEquation(newExp);
 
-  
-  // }
 
   // onDragStart = () => {
   //     document.body.style.color = 'blue';
@@ -80,7 +67,7 @@ export default function EqDisplay(props) {
   // }
 
   const canCombine = equation => {
-    console.log(equation)
+    // console.log(equation)
     var hasOneTerm = null;
     var hasOneConstant = null;
     if(equation.constants.length === 1){
@@ -98,19 +85,19 @@ export default function EqDisplay(props) {
   }
 
   const handleSignChange = () => event => {
-    console.log(event);
+    // console.log(event);
     setSigns(event.target.checked);
 
   }
 
   const handleUnpackChange = () => event => {
-    console.log(event);
+    // console.log(event);
     setUnpack(event.target.checked);
 
   }
 
   const handleHelperChange = () => event => {
-    console.log(event);
+    // console.log(event);
     setHelper(event.target.checked);
 
   }
@@ -161,21 +148,6 @@ export default function EqDisplay(props) {
       var newExp = new algebra.Equation(lhs, rhs);
       setEquation(newExp);
   }
-
-//   const unpackEquation = side =>{
-//     var lhs = null;
-//     var rhs = null;
-//     if (side === "rhs"){
-//         rhs = equation.rhs.simplify();
-//         lhs = equation.lhs;
-          
-//     } else {
-//       rhs = equation.rhs
-//       lhs = equation.lhs.simplify();
-//     }
-//     var newExp = new algebra.Equation(lhs, rhs);
-//     setEquation(newExp);
-// }
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
@@ -259,9 +231,6 @@ export default function EqDisplay(props) {
             Combine
           </Button>
         </Grid>
-        {/* <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
-          <div style={{width:'33%'}}></div>
-        </Grid> */}
       </Grid>
     </Grid>
   );
