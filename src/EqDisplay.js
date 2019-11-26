@@ -19,7 +19,44 @@ export default function EqDisplay(props) {
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
+  const [calculator, setCalculator] = useState([])
+  const [enter, setEnter] = useState(false);
 
+  function changeAnswer(a,b) {
+    setCalculator([a,b]);
+  }
+
+  function changeEnter(){
+    setEnter(!enter)
+  }
+
+  if(enter){
+    console.log(calculator[0])
+    var lhs = null
+    var rhs = null
+    if(calculator[0] === 'multiply'){
+      lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
+      rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
+    } else if (calculator[0] === 'divide'){
+      lhs = equation.lhs.divide(Number(calculator[1])).simplify()
+      rhs = equation.rhs.divide(Number(calculator[1])).simplify()
+    }
+    else if (calculator[0] === 'add'){
+      lhs = equation.lhs.add(Number(calculator[1])).simplify()
+      rhs = equation.rhs.add(Number(calculator[1])).simplify()
+    } else if (calculator[0] === 'subtract'){
+      lhs = equation.lhs.subtract(Number(calculator[1])).simplify()
+      rhs = equation.rhs.subtract(Number(calculator[1])).simplify()
+    }
+    // lhs = equation.lhs.eval(calculator[0])(calculator[1])
+    // rhs = equation.rhs.eval(calculator[0])(calculator[1])
+    var newExp = new algebra.Equation(lhs, rhs);
+    setEquation(newExp);
+    setCalculator([])
+    setEnter(false);
+
+
+  }
   // if(props.eq !== []){
   //   var sign = props.eq[0]
   //   var number = props.eq[1]
@@ -208,7 +245,7 @@ export default function EqDisplay(props) {
           />
         </DragDropContext>
         <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
-          <Calculator/>
+          <Calculator onCalChange={changeAnswer} answer={calculator} enter={enter} onEnterChange={changeEnter} />
         </Grid>
       </Grid>
       <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
