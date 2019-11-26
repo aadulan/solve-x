@@ -11,7 +11,7 @@ import { Button } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-import Calculator from './Calculator'
+import Calculator from './NewCalculator'
 
 
 export default function EqDisplay(props) {
@@ -19,6 +19,17 @@ export default function EqDisplay(props) {
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
+
+  // if(props.eq !== []){
+  //   var sign = props.eq[0]
+  //   var number = props.eq[1]
+  //   var rhs = equation.rhs.sign(number)
+  //   var lhs = equation.lhs.sign(number)
+  //   var newExp = new algebra.Equation(lhs, rhs);
+  //   setEquation(newExp);
+
+  
+  // }
 
   // onDragStart = () => {
   //     document.body.style.color = 'blue';
@@ -132,7 +143,7 @@ export default function EqDisplay(props) {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid container item direction="row" justify="center" alignItems="center">
-        <Grid container item direction="row" justify="center" alignItems="center">
+        <Grid container item direction="row" justify="center" alignItems="center" xs={9}>
         <FormGroup>
       <FormControlLabel
         control={
@@ -196,6 +207,9 @@ export default function EqDisplay(props) {
             unpackEq={unpack}
           />
         </DragDropContext>
+        <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
+          <Calculator/>
+        </Grid>
       </Grid>
       <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
         <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
@@ -208,6 +222,9 @@ export default function EqDisplay(props) {
             Combine
           </Button>
         </Grid>
+        {/* <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
+          <div style={{width:'33%'}}></div>
+        </Grid> */}
       </Grid>
     </Grid>
   );
