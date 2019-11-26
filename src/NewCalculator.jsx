@@ -5,7 +5,7 @@ import { Button, ButtonGroup } from "@material-ui/core";
 import { simplify} from 'mathjs'
 
 
-export default function Calculator() {
+export default function Calculator(props) {
     const [number, setNumber] = useState("")
     const [sign, setSign] = useState("")
 
@@ -32,12 +32,20 @@ export default function Calculator() {
     }
 
     const calculateExpression = () => {
-        // var exp = expression
-        // var newExp = exp.replace("÷", "/").replace("×", "*")
-        // console.log(newExp)
-        // var ans = simplify(newExp)
-        // console.log(ans)
-        // setAnswer(" = ".concat(ans.value))
+        var newSign = ""
+        if (sign === "÷") {
+            newSign = "divide"
+
+        } else if (sign === "×"){
+            newSign = "multiply"
+        } else if (sign === "+" ){
+            newSign = "add"
+        } else if (sign === "-"){
+            newSign = "subtract"
+        }
+
+        props.onCalChange(newSign, number)
+        props.onEnterChange(true);
     }
 
     return (
