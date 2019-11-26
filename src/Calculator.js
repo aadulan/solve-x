@@ -90,6 +90,7 @@ export default function Calculator() {
   const [open, setOpen] = useState(false);
   const [number, setNumber] = useState("")
   const [sign, setSign] = useState("")
+  const [eq, setEq] = useState([])
 
 
   const handleDrawerOpen = () => {
@@ -112,6 +113,21 @@ const addSign = (e) => {
 const emptyText = () => {
     setNumber("");
     setSign("");
+}
+
+const changeEquation = () => {
+    var newSign = ""
+    if (sign === "÷") {
+        newSign = "divide"
+
+    } else if (sign === "×"){
+        newSign = "multiply"
+    } else if (sign === "+" ){
+        newSign = "add"
+    } else if (sign === "-"){
+        newSign = "subtract"
+    }
+    setEq([newSign, number])
 }
 
 
@@ -145,7 +161,7 @@ const emptyText = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <EqDisplay/>
+        <EqDisplay calculator={eq}/>
       </main>
       <Drawer
         className={classes.drawer}
@@ -218,6 +234,7 @@ const emptyText = () => {
                 // style={{ width:'75%' }}
             >
                 <Button onClick={() => emptyText()} >Clear</Button>
+                {/* <Button onClick={() => changeEquation()} >Enter</Button> */}
                 <Button value="0" onClick={() => addNumber("0")}>0</Button>
                 <Button value="+" onClick={() => addSign("+")}>+</Button>
             </ButtonGroup>
