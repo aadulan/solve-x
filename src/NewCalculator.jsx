@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Grid, CardContent, Card } from '@material-ui/core';
+import { Grid, CardContent, Card, CardHeader } from '@material-ui/core';
 import { Button, ButtonGroup } from "@material-ui/core";
-import { simplify} from 'mathjs'
+
 
 
 export default function Calculator(props) {
@@ -50,6 +50,10 @@ export default function Calculator(props) {
 
     return (
         <Card>
+            <CardHeader
+            title="Equation Changer"
+            
+            />
             <CardContent>
 
                 <Grid container direction='column' justify='center' align='center'>
