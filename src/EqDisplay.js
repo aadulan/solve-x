@@ -152,7 +152,7 @@ export default function EqDisplay(props) {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid container item direction="row" justify="center" alignItems="center">
-        <Grid container item direction="row" justify="center" alignItems="center" xs={9}>
+        <Grid container item direction="row" justify="center" alignItems="center">
         <FormGroup>
       <FormControlLabel
         control={
@@ -192,7 +192,8 @@ export default function EqDisplay(props) {
 
       </FormGroup>
         </Grid>
-      
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid container direction="row" justify="center" alignItems="center" xs={9}>
         <DragDropContext
           onDragEnd={onDragEnd}
           // onDragStart={this.onDragStart}
@@ -216,9 +217,14 @@ export default function EqDisplay(props) {
             unpackEq={unpack}
           />
         </DragDropContext>
+
+          </Grid>
         <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
           <Calculator onCalChange={changeAnswer} answer={calculator} enter={enter} onEnterChange={changeEnter} />
         </Grid>
+
+        </Grid>
+      
       </Grid>
       <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
         <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
