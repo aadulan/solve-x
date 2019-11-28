@@ -25,7 +25,7 @@ export default function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  // const [finish, setFinish] = useState(false);
+  const [finish, setFinish] = useState(false);
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
@@ -39,10 +39,30 @@ export default function EqDisplay(props) {
     setOpen(!open)
   }
 
-    // var lhs = equation.lhs 
-    // var rhs = equation.rhs
-    // var finished = false 
-    
+  if(equation.rhs.constants.length === 1){
+    console.log(equation.rhs.constants[0].numer)
+    console.log(equation.solveFor("x").numer)
+    if(equation.rhs.constants[0].numer === equation.solveFor("x").numer){
+      // console.log('boo')
+      // // setFinish(true)
+      // setMessage("You solved the equation!")
+      // setVariant("sucess")
+      // setOpen(true)
+      // setEquation(algebra.parse(equationGen()))
+      // setFinish(false)
+    } 
+  } else if(equation.lhs.constants.length === 1){
+    if(equation.lhs.constants[0].numer === equation.solveFor("x").numer){
+      // setMessage("You solved the equation!")
+      // setVariant("sucess")
+      // setOpen(true)
+      // setEquation(algebra.parse(equationGen()))
+      // setFinish(true)
+    } 
+  }
+  // if( equation.rhs.constants[0].numer === equation.solveFor("x") || equation.lhs.constants[0].numer === equation.solveFor("x")){
+  //   setFinish(true)
+  // }
 
 
   //   if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
@@ -60,11 +80,12 @@ export default function EqDisplay(props) {
   //     }
   //   }
 
-  // if(finish){
-  //     setMessage("You solved the equation!")
-  //     setVariant("sucess")
-  //     setOpen(true)
-  // }
+  if(finish){
+      setMessage("You solved the equation!")
+      setVariant("sucess")
+      setOpen(true)
+      setFinish(false)
+  }
   
 
   if(enter){
@@ -96,6 +117,9 @@ export default function EqDisplay(props) {
         lhs = equation.lhs.divide(Number(calculator[1])).simplify()
         rhs = equation.rhs.divide(Number(calculator[1])).simplify()
       }
+      setMessage("".concat(calculator[0], " by " , calculator[1]))
+      setVariant("info")
+      setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
       setEquation(newExp);
       setCalculator([])
