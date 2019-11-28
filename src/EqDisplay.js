@@ -24,7 +24,8 @@ export default function EqDisplay(props) {
   const [enter, setEnter] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [variant, setVariant] = useState("");
+  const [variant, setVariant] = useState("info");
+  const [finish, setFinish] = useState(false);
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
@@ -37,22 +38,46 @@ export default function EqDisplay(props) {
   function changeOpen(){
     setOpen(!open)
   }
+
+    // var lhs = equation.lhs 
+    // var rhs = equation.rhs
+    // var finished = false 
+    
+
+
+  //   if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
+  //     if(equation.rhs.terms[0].coefficients[0].numer === 1){
+  //       setFinish(true)
+  //     } else {
+  //       setFinish(false)
+  //     }
+  //   } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
+  //     console.log(equation.lhs.terms[0])
+  //     if(equation.lhs.terms[0].coefficients[0].numer === 1){
+  //       setFinish(true)
+  //     } else {
+  //       setFinish(false)
+  //     }
+  //   }
+
+  // if(finish){
+  //     setMessage("You solved the equation!")
+  //     setVariant("sucess")
+  //     setOpen(true)
+  // }
   
 
   if(enter){
-    // console.log(calculator[0])
     var lhs = null
     var rhs = null
     var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
-    console.log("hiiii")
-    console.log(factors)
-
+    
     if((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0){
       setMessage("Cannot ".concat(calculator[0], " by " , "0"))
       setVariant("error")
       setOpen(true)
     }
-     else if (calculator[0] ==='divide' && !factors.includes(Number(calculator[1]))){
+    else if (calculator[0] ==='divide' && !factors.includes(Number(calculator[1]))){
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
@@ -74,9 +99,8 @@ export default function EqDisplay(props) {
       var newExp = new algebra.Equation(lhs, rhs);
       setEquation(newExp);
       setCalculator([])
-    
-    }
       
+    }
     
     setEnter(false);
 
@@ -223,7 +247,7 @@ export default function EqDisplay(props) {
       </FormGroup>
         </Grid>
         <Grid container direction="row" justify="center" alignItems="center">
-          <Grid container direction="row" justify="center" alignItems="center" xs={9}>
+          <Grid container item direction="row" justify="center" alignItems="center" xs={9}>
         <DragDropContext
           onDragEnd={onDragEnd}
           // onDragStart={this.onDragStart}
