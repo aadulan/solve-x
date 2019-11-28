@@ -15,7 +15,7 @@ export default function EquationSpace(props) {
     const classes = useStyles();
 
     useEffect(() => {
-        setDragDisabled(displayExpression(props.expression, props.side).length === 1)
+        setDragDisabled(displayExpression(props.expression, props.side)[0].length === 1)
     }, [props.expression, props.side])
 
     return (
@@ -39,7 +39,7 @@ export default function EquationSpace(props) {
                         {...provided.droppableProps}
                         // isDraggingOver={snapshot.isDraggingOver}
                     >
-                        {displayExpression(props.expression, props.side, props.showSigns, props.unpackEq, props.helper).map((task, index) => (
+                        {displayExpression(props.expression, props.side, props.showSigns, props.unpackEq, props.helper)[0].map((task, index) => (
                             <EqCard 
                                 key={task.id} 
                                 task={task} 

@@ -1,6 +1,12 @@
+var floor = require( 'math-floor' );
+var abs = require( 'math-abs' );
+
 export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper) => {
     var tasks = []
+    var factors = []
     expression.terms.forEach((t,index) => {
+        var fac = calculateFactors(t.coefficients[0].numer)
+        factors = factors.concat(fac)
         var isStart  = index === 0
         var isPositive = t.coefficients[0] > 0
         // var helper = isHelper ? coeff + t.variables[0].variable : coeff+ t.variables[0].variable :
@@ -32,6 +38,8 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
     }); 
 
         expression.constants.forEach((c,index) => {
+            var fac = calculateFactors(c.numer)
+            factors = factors.concat(fac)
             var hasTerm = tasks.length !== 0  && index === 0
             var isStart  = index === 0
             var isPositive = c.numer > 0
@@ -52,6 +60,27 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
             });         
 
         }); 
-        return tasks;
+
+
+        factors = Array.from(new Set(factors))
+        // console.log(factors)
+
+        return [tasks, factors];
         
     }
+
+function calculateFactors(integer) {
+    var inte = abs(integer)
+    var factors = [],
+    quotient = 0;
+  
+    for(var i = 1; i <= inte; i++){
+      quotient = inte/i;
+  
+      if(quotient === floor(quotient)){
+        factors.push(i); 
+      }
+    }
+    return factors;
+    
+}
