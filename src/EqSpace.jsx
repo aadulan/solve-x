@@ -15,7 +15,7 @@ export default function EquationSpace(props) {
     const classes = useStyles();
 
     useEffect(() => {
-        setDragDisabled(displayExpression(props.expression, props.side).length === 1)
+        setDragDisabled(displayExpression(props.expression, props.side)[0].length === 1)
     }, [props.expression, props.side])
 
     return (
