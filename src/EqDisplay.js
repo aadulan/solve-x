@@ -25,7 +25,7 @@ export default function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  const [finish, setFinish] = useState(false);
+  // const [finish, setFinish] = useState(false);
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
