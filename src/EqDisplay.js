@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import Calculator from './NewCalculator'
+import Snackbar from './Snackbar'
 
 
 export default function EqDisplay(props) {
@@ -21,6 +22,9 @@ export default function EqDisplay(props) {
   const [unpack, setUnpack] = useState(false);
   const [calculator, setCalculator] = useState([])
   const [enter, setEnter] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [variant, setVariant] = useState("");
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
@@ -30,28 +34,53 @@ export default function EqDisplay(props) {
     setEnter(!enter)
   }
 
+  function changeOpen(){
+    setOpen(!open)
+  }
+  
+
   if(enter){
-    console.log(calculator[0])
+    // console.log(calculator[0])
     var lhs = null
     var rhs = null
-    if(calculator[0] === 'multiply'){
-      lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
-      rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
-    } else if (calculator[0] === 'divide'){
-      lhs = equation.lhs.divide(Number(calculator[1])).simplify()
-      rhs = equation.rhs.divide(Number(calculator[1])).simplify()
+    var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
+    console.log("hiiii")
+    console.log(factors)
+
+    if((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0){
+      setMessage("Cannot ".concat(calculator[0], " by " , "0"))
+      setVariant("error")
+      setOpen(true)
     }
-    else if (calculator[0] === 'add'){
-      lhs = equation.lhs.add(Number(calculator[1])).simplify()
-      rhs = equation.rhs.add(Number(calculator[1])).simplify()
-    } else if (calculator[0] === 'subtract'){
-      lhs = equation.lhs.subtract(Number(calculator[1])).simplify()
-      rhs = equation.rhs.subtract(Number(calculator[1])).simplify()
+     else if (calculator[0] ==='divide' && !factors.includes(Number(calculator[1]))){
+      setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
+      setVariant("warning")
+      setOpen(true)
+    } else{
+      if(calculator[0] === 'multiply'){
+        lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
+        rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
+      } else if (calculator[0] === 'add'){
+        lhs = equation.lhs.add(Number(calculator[1]))
+        rhs = equation.rhs.add(Number(calculator[1]))
+      } else if (calculator[0] === 'subtract'){
+        lhs = equation.lhs.subtract(Number(calculator[1]))
+        rhs = equation.rhs.subtract(Number(calculator[1]))
+      }
+      else if (calculator[0] === 'divide'){
+        lhs = equation.lhs.divide(Number(calculator[1])).simplify()
+        rhs = equation.rhs.divide(Number(calculator[1])).simplify()
+      }
+      var newExp = new algebra.Equation(lhs, rhs);
+      setEquation(newExp);
+      setCalculator([])
+    
     }
-    var newExp = new algebra.Equation(lhs, rhs);
-    setEquation(newExp);
-    setCalculator([])
+      
+    
     setEnter(false);
+
+    
   }
 
 
@@ -116,8 +145,8 @@ export default function EqDisplay(props) {
     ) {
       return;
     }
-    const newLhsCards = displayExpression(equation.lhs, "lhs", signs, unpack, helper);
-    const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper);
+    const newLhsCards = displayExpression(equation.lhs, "lhs", signs, unpack, helper)[0];
+    const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper)[0];
     if (destination.droppableId !== source.droppableId) {
       var movedTask = "";
       const lhsOrigin = source.droppableId === "eqspace-lhs";
@@ -151,6 +180,7 @@ export default function EqDisplay(props) {
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
+      <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen}/>
       <Grid container item direction="row" justify="center" alignItems="center">
         <Grid container item direction="row" justify="center" alignItems="center">
         <FormGroup>
