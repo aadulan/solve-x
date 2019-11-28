@@ -1,4 +1,5 @@
 var floor = require( 'math-floor' );
+var abs = require( 'math-abs' );
 
 export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper) => {
     var tasks = []
@@ -69,11 +70,12 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
     }
 
 function calculateFactors(integer) {
+    var inte = abs(integer)
     var factors = [],
     quotient = 0;
   
-    for(var i = 1; i <= integer; i++){
-      quotient = integer/i;
+    for(var i = 1; i <= inte; i++){
+      quotient = inte/i;
   
       if(quotient === floor(quotient)){
         factors.push(i); 
