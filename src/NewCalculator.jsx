@@ -23,6 +23,14 @@ export default function Calculator(props) {
         setSign("")
     }
 
+    const addNumberSign = () => {
+        if (isPositive === "+"){
+            setPositive("-")
+        } else{
+            setPositive("+")
+        }
+    }
+
     const addNumber = (e) => {
         setNumber(number.concat(e));
     }
