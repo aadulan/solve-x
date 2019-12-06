@@ -14,7 +14,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Calculator from './NewCalculator'
 import Snackbar from './Snackbar'
 
-
+var abs = require( 'math-abs' );
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
   const [helper, setHelper] = useState(false);
@@ -98,7 +98,7 @@ export default function EqDisplay(props) {
       setVariant("error")
       setOpen(true)
     }
-    else if (calculator[0] ==='divide' && !factors.includes(Number(calculator[1]))){
+    else if (calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
