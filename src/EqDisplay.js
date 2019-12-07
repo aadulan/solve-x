@@ -107,11 +107,11 @@ export default function EqDisplay(props) {
         lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
         rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
       } else if (calculator[0] === 'add'){
-        lhs = equation.lhs.add(Number(calculator[1]))
-        rhs = equation.rhs.add(Number(calculator[1]))
+        lhs = equation.lhs.add(Number(calculator[1]),false)
+        rhs = equation.rhs.add(Number(calculator[1]),false)
       } else if (calculator[0] === 'subtract'){
-        lhs = equation.lhs.subtract(Number(calculator[1]))
-        rhs = equation.rhs.subtract(Number(calculator[1]))
+        lhs = equation.lhs.subtract(Number(calculator[1]),false)
+        rhs = equation.rhs.subtract(Number(calculator[1]),false)
       }
       else if (calculator[0] === 'divide'){
         lhs = equation.lhs.divide(Number(calculator[1])).simplify()
