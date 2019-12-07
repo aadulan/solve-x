@@ -143,23 +143,8 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   // }
 
-  const canCombine = equation => {
-    // console.log(equation)
-    var hasOneTerm = null;
-    var hasOneConstant = null;
-    if(equation.constants.length === 1){
-      hasOneConstant = true;
-    } else {
-      hasOneConstant = false;
-    }
-    if (equation.terms.length === 1){
-      hasOneTerm = true;
-    }else {
-      hasOneTerm = false;
-    }
-
-    return hasOneTerm || hasOneConstant
-  }
+  const canCombine = equation => 
+    !(equation.constants.length > 1 || equation.terms.length > 1)
 
   const handleSignChange = () => event => {
     // console.log(event);
