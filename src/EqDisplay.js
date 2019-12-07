@@ -39,6 +39,14 @@ export default function EqDisplay(props) {
     setOpen(!open)
   }
 
+  function changeMessage(a){
+    setMessage(a)
+  }
+
+  function changeVariant(a){
+    setVariant(a)
+  }
+
   if(equation.rhs.constants.length === 1){
     // console.log(equation.rhs.constants[0].numer)
     // console.log(equation.solveFor("x").numer)
@@ -284,7 +292,7 @@ export default function EqDisplay(props) {
 
           </Grid>
         <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
-          <Calculator onCalChange={changeAnswer} answer={calculator} enter={enter} onEnterChange={changeEnter} />
+          <Calculator onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
         </Grid>
 
         </Grid>

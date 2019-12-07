@@ -54,7 +54,14 @@ export default function Calculator(props) {
         }
 
         props.onCalChange(newSign, isPositive.concat(number))
-        props.onEnterChange(true);
+        if(newSign === '' || number === ''){
+            props.onMessage("Number or sign empty!")
+            props.onVariant("error")
+            props.onOpen(true)
+        } else{
+            props.onEnterChange(true);
+
+        }
     }
 
     return (
