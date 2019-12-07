@@ -293,12 +293,12 @@ export default function EqDisplay(props) {
       <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
         <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
-            Combine
+            Simplify
           </Button>
         </Grid>
         <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
           <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
-            Combine
+            Simplify
           </Button>
         </Grid>
       </Grid>
