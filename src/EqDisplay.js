@@ -40,8 +40,8 @@ export default function EqDisplay(props) {
   }
 
   if(equation.rhs.constants.length === 1){
-    console.log(equation.rhs.constants[0].numer)
-    console.log(equation.solveFor("x").numer)
+    // console.log(equation.rhs.constants[0].numer)
+    // console.log(equation.solveFor("x").numer)
     if(equation.rhs.constants[0].numer === equation.solveFor("x").numer){
       // console.log('boo')
       // // setFinish(true)
@@ -125,6 +125,7 @@ export default function EqDisplay(props) {
       setCalculator([])
       
     }
+    // console.log(equation)
     
     setEnter(false);
 
