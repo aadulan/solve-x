@@ -63,7 +63,6 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
 
 
         factors = Array.from(new Set(factors))
-        // console.log(factors)
 
         return [tasks, factors];
         
