@@ -40,8 +40,8 @@ export default function EqDisplay(props) {
   }
 
   if(equation.rhs.constants.length === 1){
-    console.log(equation.rhs.constants[0].numer)
-    console.log(equation.solveFor("x").numer)
+    // console.log(equation.rhs.constants[0].numer)
+    // console.log(equation.solveFor("x").numer)
     if(equation.rhs.constants[0].numer === equation.solveFor("x").numer){
       // console.log('boo')
       // // setFinish(true)
@@ -107,11 +107,11 @@ export default function EqDisplay(props) {
         lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
         rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
       } else if (calculator[0] === 'add'){
-        lhs = equation.lhs.add(Number(calculator[1]))
-        rhs = equation.rhs.add(Number(calculator[1]))
+        lhs = equation.lhs.add(Number(calculator[1]),false)
+        rhs = equation.rhs.add(Number(calculator[1]),false)
       } else if (calculator[0] === 'subtract'){
-        lhs = equation.lhs.subtract(Number(calculator[1]))
-        rhs = equation.rhs.subtract(Number(calculator[1]))
+        lhs = equation.lhs.subtract(Number(calculator[1]),false)
+        rhs = equation.rhs.subtract(Number(calculator[1]),false)
       }
       else if (calculator[0] === 'divide'){
         lhs = equation.lhs.divide(Number(calculator[1])).simplify()
@@ -125,6 +125,7 @@ export default function EqDisplay(props) {
       setCalculator([])
       
     }
+    // console.log(equation)
     
     setEnter(false);
 
@@ -143,23 +144,8 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   // }
 
-  const canCombine = equation => {
-    // console.log(equation)
-    var hasOneTerm = null;
-    var hasOneConstant = null;
-    if(equation.constants.length === 1){
-      hasOneConstant = true;
-    } else {
-      hasOneConstant = false;
-    }
-    if (equation.terms.length === 1){
-      hasOneTerm = true;
-    }else {
-      hasOneTerm = false;
-    }
-
-    return hasOneTerm || hasOneConstant
-  }
+  const canCombine = equation => 
+    !(equation.constants.length > 1 || equation.terms.length > 1)
 
   const handleSignChange = () => event => {
     // console.log(event);
@@ -307,12 +293,12 @@ export default function EqDisplay(props) {
       <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
         <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
-            Combine
+            Simplify
           </Button>
         </Grid>
         <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
           <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
-            Combine
+            Simplify
           </Button>
         </Grid>
       </Grid>
