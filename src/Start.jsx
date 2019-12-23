@@ -6,10 +6,10 @@ export default function Start(props){
     return(
         <Grid container direction='column' justify='center' alignItems='center' spacing={8}>
             <Grid container item direction='row' justify='center' alignItems='center'>
-                <LevelButton/>
+                <LevelButton title='Level 1' image='level-1.png'/>
             </Grid>
             <Grid container item direction='row' justify='center' alignItems='center'>
-                <LevelButton/>
+                <LevelButton title='Level 2'/>
 
             </Grid>
 
