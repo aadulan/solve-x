@@ -94,35 +94,37 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function LevelButton() {
+export default function LevelButton(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
         <ButtonBase
           focusRipple
-          key='hello'
+          key= {props.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
           style={{
-            width: '100%',
+            width: '40%',
           }}
         >
           <span
             className={classes.imageSrc}
             style={{
-            //   backgroundImage: `url(${})`,
+              backgroundImage: `url(${props.image})`,
+            //   backgroundImage: props.image,
+
             }}
           />
           <span className={classes.imageBackdrop} />
           <span className={classes.imageButton}>
             <Typography
               component="span"
-              variant="subtitle1"
+              variant="h3"
               color="inherit"
               className={classes.imageTitle}
             >
-              Hello
+              {props.title}
               <span className={classes.imageMarked} />
             </Typography>
           </span>
