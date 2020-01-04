@@ -3,10 +3,10 @@ var abs = require( 'math-abs' );
 
 export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper) => {
     var tasks = []
-    var factors = []
+    var factors_exp = []
     expression.terms.forEach((t,index) => {
         var fac = calculateFactors(t.coefficients[0].numer)
-        factors = factors.concat(fac)
+        factors_exp = factors_exp.concat(fac)
         var isStart  = index === 0
         var isPositive = t.coefficients[0] > 0
         // var helper = isHelper ? coeff + t.variables[0].variable : coeff+ t.variables[0].variable :
@@ -36,10 +36,11 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
             exp: t 
         });  
     }); 
-
+        
+        var factors_const = []
         expression.constants.forEach((c,index) => {
             var fac = calculateFactors(c.numer)
-            factors = factors.concat(fac)
+            factors_const = factors_const.concat(fac)
             var hasTerm = tasks.length !== 0  && index === 0
             var isStart  = index === 0
             var isPositive = c.numer > 0
@@ -61,8 +62,30 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
 
         }); 
 
+        var factors;
+        console.log(side)
+        console.log(factors_exp)
+        console.log(factors_const)
 
-        factors = Array.from(new Set(factors))
+        // console.log(expression.terms.length)
+
+        if(expression.terms.length === 0 ){
+            // console.log('hello')
+            factors = factors_const
+          
+        
+        } else if (expression.constants.length === 0 ){
+            factors = factors_exp
+        } else {
+            // factors = factors_exp
+            var factor_exp = new Set(factors_exp)
+            var factor_const = new Set(factors_const)
+            factors = new Set(
+                [...factor_exp].filter(x => factor_const.has(x)));
+        }
+
+
+        console.log(factors)
 
         return [tasks, factors];
         
@@ -80,6 +103,8 @@ function calculateFactors(integer) {
         factors.push(i); 
       }
     }
+    // console.log(integer)
+    // console.log(factors)
     return factors;
     
 }
