@@ -88,18 +88,30 @@ export default function EqDisplay(props) {
   //     }
   //   }
 
-  if(finish){
-      setMessage("You solved the equation!")
-      setVariant("sucess")
-      setOpen(true)
-      setFinish(false)
-  }
+  // if(finish){
+  //     setMessage("You solved the equation!")
+  //     setVariant("sucess")
+  //     setOpen(true)
+  //     setFinish(false)
+  // }
   
 
   if(enter){
     var lhs = null
     var rhs = null
-    var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
+    // var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
+    var factors_left = new Set(displayExpression(equation.lhs)[1])
+    console.log("left")
+    console.log(factors_left)
+
+    var factors_right = new Set (displayExpression(equation.rhs)[1])
+
+    console.log("right")
+    console.log(factors_right)
+
+    var factors = Array.from(new Set(
+      [...factors_left].filter(x => factors_right.has(x))))
+    // console.log(factors);
     
     if((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0){
       setMessage("Cannot ".concat(calculator[0], " by " , "0"))
@@ -107,6 +119,7 @@ export default function EqDisplay(props) {
       setOpen(true)
     }
     else if (calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
+      console.log('hello')
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
@@ -122,6 +135,7 @@ export default function EqDisplay(props) {
         rhs = equation.rhs.subtract(Number(calculator[1]),false)
       }
       else if (calculator[0] === 'divide'){
+        // console.log('boo')
         lhs = equation.lhs.divide(Number(calculator[1])).simplify()
         rhs = equation.rhs.divide(Number(calculator[1])).simplify()
       }
