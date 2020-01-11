@@ -1,16 +1,36 @@
 import React from 'react';
 import { Grid, Button, Typography, Fab } from "@material-ui/core";
 import LevelButton from './LevelButton'
+import { Link } from "react-router-dom";
 
 export default function Start(props){
-    return(
+    return (
         <Grid container direction='column' justify='center' alignItems='center' spacing={8}>
             <Grid container item direction='row' justify='center' alignItems='center'>
-                <LevelButton title='Level 1' image='level-1.png'/>
+                <Link 
+                    // level="easy"
+                    // to="/solve"
+                    to={{
+                        pathname: "/solve",
+                        state: { level: 'easy' }
+                      }}
+                    // replace
+                >
+                    <LevelButton   title='Level 1'/>
+                </Link>
             </Grid>
             <Grid container item direction='row' justify='center' alignItems='center'>
-                <LevelButton title='Level 2'/>
-
+            <Link 
+                    // level="easy"
+                    // to="/solve"
+                    to={{
+                        pathname: "/solve",
+                        state: { level: 'hard' }
+                      }}
+                    // replace
+                >
+                    <LevelButton  title='Level 2'/>
+                </Link>
             </Grid>
 
         </Grid>
