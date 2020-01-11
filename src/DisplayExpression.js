@@ -1,10 +1,13 @@
 var floor = require( 'math-floor' );
 var abs = require( 'math-abs' );
 
-export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper) => {
+export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper, level='easy') => {
     var tasks = []
     var factors_exp = []
+    // console.log(level)
+    var isFraction = level == 'easy' 
     expression.terms.forEach((t,index) => {
+        // console.log(t)
         var fac = calculateFactors(t.coefficients[0].numer)
         factors_exp = factors_exp.concat(fac)
         var isStart  = index === 0
@@ -15,7 +18,8 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         var isOne = t.coefficients[0].numer === 1
         // if coefficient is equal to one then don't show it in helper mode 
         var coeff = isOne ? "" : t.coefficients[0].numer
-       
+        var deom = t.coefficients[0].denom === 1
+
         // if unpack then add the \times to the equation so they can see constant being times
         var unpack = isUnpack ?  t.coefficients[0].numer + "\\times "   +  t.variables[0].variable : t.coefficients[0].numer +  t.variables[0].variable
 
@@ -28,22 +32,27 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         // sets what the content looks like 
         var helper = isHelper ? contentHelper : content_NonHelper
 
+        var number = isFraction || deom ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` 
+
         tasks.push({
             id: `${side}-variable-x${index}`, 
             // content:!isStart && isPositive ? "+" +  t.coefficients[0].numer + t.variables[0].variable : t.coefficients[0].numer + t.variables[0].variable,
             // content:!isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff+ t.variables[0].variable,  
-            content: helper,
+            // content: helper,
+            content: number,
             exp: t 
         });  
     }); 
         
         var factors_const = []
         expression.constants.forEach((c,index) => {
+            console.log(c)
             var fac = calculateFactors(c.numer)
             factors_const = factors_const.concat(fac)
             var hasTerm = tasks.length !== 0  && index === 0
             var isStart  = index === 0
             var isPositive = c.numer > 0
+            var deom = c.denom === 1
             // if helper mode add signs to everything 
             var contentHelper = isPositive ? "+" + c.numer : c.numer
 
@@ -52,20 +61,21 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
 
             // set content of what it should look like 
             var helper = isShowSign && isHelper ? contentHelper : content_NonHelper
+            var number = isFraction || deom ? helper : `\\frac{${helper}}{${c.denom}}`
             tasks.push({
                 id: `${side}-num-${index}`, 
                 // content: (!isStart && isPositive) || (isStart && hasTerm && isPositive) ? "+" + c.numer : c.numer,
                 // content: isPositive && (!isStart || hasTerm) ? "+" + c.numer : c.numer,  
-                content: helper,
+                content: number,
                 exp: c
             });         
 
         }); 
 
         var factors;
-        console.log(side)
-        console.log(factors_exp)
-        console.log(factors_const)
+        // console.log(side)
+        // console.log(factors_exp)
+        // console.log(factors_const)
 
         // console.log(expression.terms.length)
 
@@ -85,7 +95,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         }
 
 
-        console.log(factors)
+        // console.log(factors)
 
         return [tasks, factors];
         

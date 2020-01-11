@@ -100,34 +100,26 @@ export default function EqDisplay(props) {
   if(enter){
     var lhs = null
     var rhs = null
-    // var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
+    // var isHard = level == 'hard'
     var factors_left = new Set(displayExpression(equation.lhs)[1])
-    console.log("left")
-    console.log(factors_left)
-
     var factors_right = new Set (displayExpression(equation.rhs)[1])
-
-    console.log("right")
-    console.log(factors_right)
-
     var factors = Array.from(new Set(
       [...factors_left].filter(x => factors_right.has(x))))
-    // console.log(factors);
     
     if((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0){
       setMessage("Cannot ".concat(calculator[0], " by " , "0"))
       setVariant("error")
       setOpen(true)
     }
-    else if (calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
-      console.log('hello')
+    else if (level == 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
+      // console.log('hello')
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
     } else{
       if(calculator[0] === 'multiply'){
-        lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
-        rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
+        lhs = equation.lhs.multiply(Number(calculator[1]))
+        rhs = equation.rhs.multiply(Number(calculator[1]))
       } else if (calculator[0] === 'add'){
         lhs = equation.lhs.add(Number(calculator[1]),false)
         rhs = equation.rhs.add(Number(calculator[1]),false)
@@ -137,8 +129,8 @@ export default function EqDisplay(props) {
       }
       else if (calculator[0] === 'divide'){
         // console.log('boo')
-        lhs = equation.lhs.divide(Number(calculator[1])).simplify()
-        rhs = equation.rhs.divide(Number(calculator[1])).simplify()
+        lhs = equation.lhs.divide(Number(calculator[1]))
+        rhs = equation.rhs.divide(Number(calculator[1]))
       }
       setMessage("".concat(calculator[0], " by " , calculator[1]))
       setVariant("info")
@@ -148,7 +140,7 @@ export default function EqDisplay(props) {
       setCalculator([])
       
     }
-    console.log(level)
+    // console.log(level)
     
     setEnter(false);
 
@@ -291,6 +283,7 @@ export default function EqDisplay(props) {
             helper={helper}
             showSigns={signs}
             unpackEq={unpack}
+            level={level}
           />
           <Equal />
           <EquationSpace
@@ -300,6 +293,7 @@ export default function EqDisplay(props) {
             helper={helper}
             showSigns={signs}
             unpackEq={unpack}
+            level={level}
           />
         </DragDropContext>
 
