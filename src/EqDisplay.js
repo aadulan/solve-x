@@ -291,6 +291,7 @@ export default function EqDisplay(props) {
             helper={helper}
             showSigns={signs}
             unpackEq={unpack}
+            level={level}
           />
           <Equal />
           <EquationSpace
@@ -300,6 +301,7 @@ export default function EqDisplay(props) {
             helper={helper}
             showSigns={signs}
             unpackEq={unpack}
+            level={level}
           />
         </DragDropContext>
 
