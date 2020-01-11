@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Grid, CardContent, Card, CardHeader } from '@material-ui/core';
+import { Grid, CardContent, Card, CardHeader, Fab } from '@material-ui/core';
 import { Button, ButtonGroup } from "@material-ui/core";
 
 
@@ -8,6 +8,7 @@ import { Button, ButtonGroup } from "@material-ui/core";
 export default function Calculator(props) {
     const [number, setNumber] = useState("")
     const [sign, setSign] = useState("")
+    const [isPositive, setPositive] = useState("+")
 
     // const [expression, setExpression] = useState("")
     // const [answer, setAnswer] = useState("")
@@ -21,6 +22,14 @@ export default function Calculator(props) {
         // // setAnswer("")
         setNumber("")
         setSign("")
+    }
+
+    const addNumberSign = () => {
+        if (isPositive === "+"){
+            setPositive("-")
+        } else{
+            setPositive("+")
+        }
     }
 
     const addNumber = (e) => {
@@ -44,8 +53,15 @@ export default function Calculator(props) {
             newSign = "subtract"
         }
 
-        props.onCalChange(newSign, number)
-        props.onEnterChange(true);
+        props.onCalChange(newSign, isPositive.concat(number))
+        if(newSign === '' || number === ''){
+            props.onMessage("Number or sign empty!")
+            props.onVariant("error")
+            props.onOpen(true)
+        } else{
+            props.onEnterChange(true);
+
+        }
     }
 
     return (
@@ -60,9 +76,23 @@ export default function Calculator(props) {
                     <Grid container direction='row'>
                         <Card style={{ width: '100%' }}>
                             <CardContent>
-                                <Typography variant="h6">
-                                    {sign}{number}
-                                </Typography>
+                                <Grid container direction='column' justify='center' align='center'>
+                                    <Grid container direction='row' justify='flex-start' align='center'>
+                                    <Fab onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
+                                        ±
+                                    </Fab>
+                                    <Typography style={{marginLeft:10}} align='left' variant="h6">
+                                        {isPositive}
+                                    </Typography>
+                                    <Typography align='center' variant="h6">
+                                        {number}
+                                    </Typography>
+                                    </Grid>
+                                    <Typography align='right' variant="h6">
+                                        {sign}
+                                    </Typography>
+                                    
+                                </Grid>
                             </CardContent>
                         </Card>
                     </Grid>

@@ -14,7 +14,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Calculator from './NewCalculator'
 import Snackbar from './Snackbar'
 
-
+var abs = require( 'math-abs' );
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
   const [helper, setHelper] = useState(false);
@@ -38,6 +38,14 @@ export default function EqDisplay(props) {
 
   function changeOpen(){
     setOpen(!open)
+  }
+
+  function changeMessage(a){
+    setMessage(a)
+  }
+
+  function changeVariant(a){
+    setVariant(a)
   }
 
   if(equation.rhs.constants.length === 1){
@@ -81,25 +89,38 @@ export default function EqDisplay(props) {
   //     }
   //   }
 
-  if(finish){
-      setMessage("You solved the equation!")
-      setVariant("sucess")
-      setOpen(true)
-      setFinish(false)
-  }
+  // if(finish){
+  //     setMessage("You solved the equation!")
+  //     setVariant("sucess")
+  //     setOpen(true)
+  //     setFinish(false)
+  // }
   
 
   if(enter){
     var lhs = null
     var rhs = null
-    var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
+    // var factors = Array.from(new Set(displayExpression(equation.lhs)[1].concat(displayExpression(equation.rhs)[1])))
+    var factors_left = new Set(displayExpression(equation.lhs)[1])
+    console.log("left")
+    console.log(factors_left)
+
+    var factors_right = new Set (displayExpression(equation.rhs)[1])
+
+    console.log("right")
+    console.log(factors_right)
+
+    var factors = Array.from(new Set(
+      [...factors_left].filter(x => factors_right.has(x))))
+    // console.log(factors);
     
     if((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0){
       setMessage("Cannot ".concat(calculator[0], " by " , "0"))
       setVariant("error")
       setOpen(true)
     }
-    else if (calculator[0] ==='divide' && !factors.includes(Number(calculator[1]))){
+    else if (calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
+      console.log('hello')
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
@@ -108,13 +129,14 @@ export default function EqDisplay(props) {
         lhs = equation.lhs.multiply(Number(calculator[1])).simplify()
         rhs = equation.rhs.multiply(Number(calculator[1])).simplify()
       } else if (calculator[0] === 'add'){
-        lhs = equation.lhs.add(Number(calculator[1]))
-        rhs = equation.rhs.add(Number(calculator[1]))
+        lhs = equation.lhs.add(Number(calculator[1]),false)
+        rhs = equation.rhs.add(Number(calculator[1]),false)
       } else if (calculator[0] === 'subtract'){
-        lhs = equation.lhs.subtract(Number(calculator[1]))
-        rhs = equation.rhs.subtract(Number(calculator[1]))
+        lhs = equation.lhs.subtract(Number(calculator[1]),false)
+        rhs = equation.rhs.subtract(Number(calculator[1]),false)
       }
       else if (calculator[0] === 'divide'){
+        // console.log('boo')
         lhs = equation.lhs.divide(Number(calculator[1])).simplify()
         rhs = equation.rhs.divide(Number(calculator[1])).simplify()
       }
@@ -145,22 +167,9 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   // }
 
-  const canCombine = equation => {
-    var hasOneTerm = null;
-    var hasOneConstant = null;
-    if(equation.constants.length === 1){
-      hasOneConstant = true;
-    } else {
-      hasOneConstant = false;
-    }
-    if (equation.terms.length === 1){
-      hasOneTerm = true;
-    }else {
-      hasOneTerm = false;
-    }
+  const canCombine = equation => 
+    !(equation.constants.length > 1 || equation.terms.length > 1)
 
-    return hasOneTerm || hasOneConstant
-  }
 
   const handleSignChange = () => event => {
     setSigns(event.target.checked);
@@ -296,7 +305,7 @@ export default function EqDisplay(props) {
 
           </Grid>
         <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
-          <Calculator onCalChange={changeAnswer} answer={calculator} enter={enter} onEnterChange={changeEnter} />
+          <Calculator onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
         </Grid>
 
         </Grid>
@@ -305,12 +314,12 @@ export default function EqDisplay(props) {
       <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
         <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
-            Combine
+            Simplify
           </Button>
         </Grid>
         <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
           <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
-            Combine
+            Simplify
           </Button>
         </Grid>
       </Grid>
