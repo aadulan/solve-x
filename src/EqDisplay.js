@@ -26,6 +26,7 @@ export default function EqDisplay(props) {
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
   const [finish, setFinish] = useState(false);
+  const [level, setLevel] = useState(props.location.state.level);
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
@@ -147,7 +148,7 @@ export default function EqDisplay(props) {
       setCalculator([])
       
     }
-    // console.log(equation)
+    console.log(level)
     
     setEnter(false);
 
@@ -169,20 +170,18 @@ export default function EqDisplay(props) {
   const canCombine = equation => 
     !(equation.constants.length > 1 || equation.terms.length > 1)
 
+
   const handleSignChange = () => event => {
-    // console.log(event);
     setSigns(event.target.checked);
 
   }
 
   const handleUnpackChange = () => event => {
-    // console.log(event);
     setUnpack(event.target.checked);
 
   }
 
   const handleHelperChange = () => event => {
-    // console.log(event);
     setHelper(event.target.checked);
 
   }
