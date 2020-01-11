@@ -10,6 +10,7 @@ export default function App(props) {
     // <Router>
       <BrowserRouter basename={window.location.pathname || ''}>
         <Route exact path="/" component={Start} />
+        <Route exact path="/solve" component={EqDisplay}/>
       </BrowserRouter>
     // </Router>
   )
