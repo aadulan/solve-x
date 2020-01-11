@@ -18,7 +18,8 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         var isOne = t.coefficients[0].numer === 1
         // if coefficient is equal to one then don't show it in helper mode 
         var coeff = isOne ? "" : t.coefficients[0].numer
-       
+        var deom = t.coefficients[0].denom === 1
+
         // if unpack then add the \times to the equation so they can see constant being times
         var unpack = isUnpack ?  t.coefficients[0].numer + "\\times "   +  t.variables[0].variable : t.coefficients[0].numer +  t.variables[0].variable
 
@@ -31,7 +32,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         // sets what the content looks like 
         var helper = isHelper ? contentHelper : content_NonHelper
 
-        var number = isFraction ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` //"\\frac{$`helper`}{}"
+        var number = isFraction || deom ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` //"\\frac{$`helper`}{}"
 
         tasks.push({
             id: `${side}-variable-x${index}`, 
@@ -51,6 +52,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
             var hasTerm = tasks.length !== 0  && index === 0
             var isStart  = index === 0
             var isPositive = c.numer > 0
+            var deom = c.denom === 1
             // if helper mode add signs to everything 
             var contentHelper = isPositive ? "+" + c.numer : c.numer
 
@@ -59,7 +61,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
 
             // set content of what it should look like 
             var helper = isShowSign && isHelper ? contentHelper : content_NonHelper
-            var number = isFraction ? helper : `\\frac{${helper}}{${c.denom}}`
+            var number = isFraction || deom ? helper : `\\frac{${helper}}{${c.denom}}`
             tasks.push({
                 id: `${side}-num-${index}`, 
                 // content: (!isStart && isPositive) || (isStart && hasTerm && isPositive) ? "+" + c.numer : c.numer,
