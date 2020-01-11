@@ -1,10 +1,13 @@
 var floor = require( 'math-floor' );
 var abs = require( 'math-abs' );
 
-export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper) => {
+export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper, level='easy') => {
     var tasks = []
     var factors_exp = []
+    // console.log(level)
+    var isFraction = level == 'easy' 
     expression.terms.forEach((t,index) => {
+        // console.log(t)
         var fac = calculateFactors(t.coefficients[0].numer)
         factors_exp = factors_exp.concat(fac)
         var isStart  = index === 0
@@ -28,17 +31,21 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         // sets what the content looks like 
         var helper = isHelper ? contentHelper : content_NonHelper
 
+        var number = isFraction ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` //"\\frac{$`helper`}{}"
+
         tasks.push({
             id: `${side}-variable-x${index}`, 
             // content:!isStart && isPositive ? "+" +  t.coefficients[0].numer + t.variables[0].variable : t.coefficients[0].numer + t.variables[0].variable,
             // content:!isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff+ t.variables[0].variable,  
-            content: helper,
+            // content: helper,
+            content: number,
             exp: t 
         });  
     }); 
         
         var factors_const = []
         expression.constants.forEach((c,index) => {
+            console.log(c)
             var fac = calculateFactors(c.numer)
             factors_const = factors_const.concat(fac)
             var hasTerm = tasks.length !== 0  && index === 0
@@ -52,20 +59,21 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
 
             // set content of what it should look like 
             var helper = isShowSign && isHelper ? contentHelper : content_NonHelper
+            var number = isFraction ? helper : `\\frac{${helper}}{${c.denom}}`
             tasks.push({
                 id: `${side}-num-${index}`, 
                 // content: (!isStart && isPositive) || (isStart && hasTerm && isPositive) ? "+" + c.numer : c.numer,
                 // content: isPositive && (!isStart || hasTerm) ? "+" + c.numer : c.numer,  
-                content: helper,
+                content: number,
                 exp: c
             });         
 
         }); 
 
         var factors;
-        console.log(side)
-        console.log(factors_exp)
-        console.log(factors_const)
+        // console.log(side)
+        // console.log(factors_exp)
+        // console.log(factors_const)
 
         // console.log(expression.terms.length)
 
@@ -85,7 +93,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         }
 
 
-        console.log(factors)
+        // console.log(factors)
 
         return [tasks, factors];
         
