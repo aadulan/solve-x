@@ -32,7 +32,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         // sets what the content looks like 
         var helper = isHelper ? contentHelper : content_NonHelper
 
-        var number = isFraction || deom ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` //"\\frac{$`helper`}{}"
+        var number = isFraction || deom ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` 
 
         tasks.push({
             id: `${side}-variable-x${index}`, 
