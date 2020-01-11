@@ -101,11 +101,11 @@ export default function LevelButton(props) {
     <div className={classes.root}>
         <ButtonBase
           focusRipple
-          key= {props.title}
+          key={props.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
           style={{
-            width: '40%',
+            width: '60%',
           }}
         >
           <span
