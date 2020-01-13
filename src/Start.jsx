@@ -16,7 +16,7 @@ export default function Start(props){
                       }}
                     // replace
                 >
-                    <LevelButton   title='Level 1'/>
+                    <LevelButton image='level-1.jpg'   title='Level 1'/>
                 </Link>
             </Grid>
             <Grid container item direction='row' justify='center' alignItems='center'>
@@ -29,7 +29,7 @@ export default function Start(props){
                       }}
                     // replace
                 >
-                    <LevelButton  title='Level 2'/>
+                    <LevelButton image='level-2.jpg'  title='Level 2'/>
                 </Link>
             </Grid>
 
