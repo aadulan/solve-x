@@ -27,6 +27,7 @@ export default function EqDisplay(props) {
   const [variant, setVariant] = useState("info");
   const [finish, setFinish] = useState(false);
   const [level, setLevel] = useState(props.location.state.level);
+  // const [finish, setFinish] = useState(false)
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
@@ -48,54 +49,24 @@ export default function EqDisplay(props) {
     setVariant(a)
   }
 
-  if(equation.rhs.constants.length === 1){
-    // console.log(equation.rhs.constants[0].numer)
-    // console.log(equation.solveFor("x").numer)
-    if(equation.rhs.constants[0].numer === equation.solveFor("x").numer){
-      // console.log('boo')
-      // // setFinish(true)
-      // setMessage("You solved the equation!")
-      // setVariant("sucess")
-      // setOpen(true)
-      // setEquation(algebra.parse(equationGen()))
-      // setFinish(false)
-    } 
-  } else if(equation.lhs.constants.length === 1){
-    if(equation.lhs.constants[0].numer === equation.solveFor("x").numer){
-      // setMessage("You solved the equation!")
-      // setVariant("sucess")
-      // setOpen(true)
-      // setEquation(algebra.parse(equationGen()))
-      // setFinish(true)
-    } 
-  }
-  // if( equation.rhs.constants[0].numer === equation.solveFor("x") || equation.lhs.constants[0].numer === equation.solveFor("x")){
-  //   setFinish(true)
-  // }
 
+    if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
+      if(equation.rhs.terms[0].coefficients[0].numer === 1){
+        console.log('finish')
+        setMessage("You solved the equation!")
+        setVariant("success")
+        setOpen(true)
+        setEquation(algebra.parse(equationGen()))
+      }
+    } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
+      if(equation.lhs.terms[0].coefficients[0].numer === 1){
+        setMessage("You solved the equation!")
+        setVariant("success")
+        setOpen(true)
+        setEquation(algebra.parse(equationGen()))
+      }
+    }
 
-  //   if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
-  //     if(equation.rhs.terms[0].coefficients[0].numer === 1){
-  //       setFinish(true)
-  //     } else {
-  //       setFinish(false)
-  //     }
-  //   } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
-  //     console.log(equation.lhs.terms[0])
-  //     if(equation.lhs.terms[0].coefficients[0].numer === 1){
-  //       setFinish(true)
-  //     } else {
-  //       setFinish(false)
-  //     }
-  //   }
-
-  // if(finish){
-  //     setMessage("You solved the equation!")
-  //     setVariant("sucess")
-  //     setOpen(true)
-  //     setFinish(false)
-  // }
-  
 
   if(enter){
     var lhs = null
