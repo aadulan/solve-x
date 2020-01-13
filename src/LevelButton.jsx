@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover, &$focusVisible': {
       zIndex: 1,
       '& $imageBackdrop': {
-        opacity: 0.15,
+        opacity: 0.1,
       },
       '& $imageMarked': {
         opacity: 0,
@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     bottom: 0,
     backgroundColor: theme.palette.common.black,
-    opacity: 0.4,
+    opacity: 0.3,
     transition: theme.transitions.create('opacity'),
   },
   imageTitle: {
@@ -105,7 +105,7 @@ export default function LevelButton(props) {
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
           style={{
-            width: '60%',
+            width: '100%',
           }}
         >
           <span
