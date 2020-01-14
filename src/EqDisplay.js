@@ -25,7 +25,7 @@ export default function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  const [level, setLevel] = useState(props.location.state.level);
+  const [level] = useState(props.location.state.level);
   // const [finish, setFinish] = useState(false)
 
   function changeAnswer(a,b) {
@@ -86,7 +86,7 @@ export default function EqDisplay(props) {
       setVariant("error")
       setOpen(true)
     }
-    else if (level == 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
+    else if (level === 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
