@@ -25,7 +25,6 @@ export default function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  const [finish, setFinish] = useState(false);
   const [level, setLevel] = useState(props.location.state.level);
   // const [finish, setFinish] = useState(false)
 
@@ -49,29 +48,34 @@ export default function EqDisplay(props) {
     setVariant(a)
   }
 
+  // function clickNext(){
+  //   setEquation(algebra.parse(equationGen()))
+  //   setFinish(false)
+  // }
 
-    if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
-      if(equation.rhs.terms[0].coefficients[0].numer === 1){
-        console.log('finish')
-        setMessage("You solved the equation!")
-        setVariant("success")
-        setOpen(true)
-        setEquation(algebra.parse(equationGen()))
-      }
-    } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
-      if(equation.lhs.terms[0].coefficients[0].numer === 1){
-        setMessage("You solved the equation!")
-        setVariant("success")
-        setOpen(true)
-        setEquation(algebra.parse(equationGen()))
-      }
-    }
+
+    // if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
+    //   if(equation.rhs.terms[0].coefficients[0].numer === 1){
+    //     console.log('finish')
+    //     setMessage("You solved the equation!")
+    //     setVariant("success")
+    //     setOpen(true)
+    //       setEquation(algebra.parse(equationGen()))
+    //   }
+      
+    // } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
+    //   if(equation.lhs.terms[0].coefficients[0].numer === 1){
+    //     setMessage("You solved the equation!")
+    //     setVariant("success")
+    //     setOpen(true)
+    //     setEquation(algebra.parse(equationGen()))
+    //   }
+    // }
 
 
   if(enter){
     var lhs = null
     var rhs = null
-    // var isHard = level == 'hard'
     var factors_left = new Set(displayExpression(equation.lhs)[1])
     var factors_right = new Set (displayExpression(equation.rhs)[1])
     var factors = Array.from(new Set(
@@ -83,7 +87,6 @@ export default function EqDisplay(props) {
       setOpen(true)
     }
     else if (level == 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
-      // console.log('hello')
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
@@ -99,7 +102,6 @@ export default function EqDisplay(props) {
         rhs = equation.rhs.subtract(Number(calculator[1]),false)
       }
       else if (calculator[0] === 'divide'){
-        // console.log('boo')
         lhs = equation.lhs.divide(Number(calculator[1]))
         rhs = equation.rhs.divide(Number(calculator[1]))
       }
@@ -111,7 +113,6 @@ export default function EqDisplay(props) {
       setCalculator([])
       
     }
-    // console.log(level)
     
     setEnter(false);
 
