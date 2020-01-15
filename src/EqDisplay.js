@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import { equationGen } from "./inital-data";
 import EquationSpace from "./EqSpace";
@@ -48,29 +48,39 @@ export default function EqDisplay(props) {
     setVariant(a)
   }
 
-  // function clickNext(){
-  //   setEquation(algebra.parse(equationGen()))
-  //   setFinish(false)
-  // }
-
-
-    // if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
-    //   if(equation.rhs.terms[0].coefficients[0].numer === 1){
-    //     console.log('finish')
-    //     setMessage("You solved the equation!")
-    //     setVariant("success")
-    //     setOpen(true)
-    //       setEquation(algebra.parse(equationGen()))
-    //   }
+  
+  
+  
+  useEffect(() => {
+    if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
+      if(equation.rhs.terms[0].coefficients[0].numer === 1){
+        // setFinish(true)
+        console.log('finish')
+        setMessage("You solved the equation!")
+        setVariant("success")
+        setOpen(true)
+        // setEquation(algebra.parse(equationGen()))
+      }
       
-    // } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
-    //   if(equation.lhs.terms[0].coefficients[0].numer === 1){
-    //     setMessage("You solved the equation!")
-    //     setVariant("success")
-    //     setOpen(true)
-    //     setEquation(algebra.parse(equationGen()))
-    //   }
-    // }
+    } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
+      if(equation.lhs.terms[0].coefficients[0].numer === 1){
+        // setFinish(true)
+        console.log('finish')
+        setMessage("You solved the equation!")
+        setVariant("success")
+        setOpen(true)
+        // setEquation(algebra.parse(equationGen()))
+      }
+    }
+    
+  });
+  
+  function clickNext(){
+    setEquation(algebra.parse(equationGen()))
+    setOpen(false)
+    // setFinish(false)
+  }
+
 
 
   if(enter){
@@ -200,6 +210,9 @@ export default function EqDisplay(props) {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen}/>
+      <Button onClick={() => clickNext()} variant="contained" color="primary">
+            Next
+          </Button>
       <Grid container item direction="row" justify="center" alignItems="center">
         <Grid container item direction="row" justify="center" alignItems="center">
         <FormGroup>
