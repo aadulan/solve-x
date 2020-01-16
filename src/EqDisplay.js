@@ -15,8 +15,6 @@ import Calculator from './NewCalculator'
 import Snackbar from './Snackbar'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
@@ -33,9 +31,6 @@ export default function EqDisplay(props) {
   const [variant, setVariant] = useState("info");
   const [level] = useState(props.location.state.level);
   const [value, setValue] = useState('change')
-  // const [balance, setBalance] = useState(false);
-  // const [change, setChange] = useState(true);
-  // const [finish, setFinish] = useState(false)
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
