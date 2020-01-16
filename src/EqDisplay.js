@@ -13,6 +13,10 @@ import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import Calculator from './NewCalculator'
 import Snackbar from './Snackbar'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 var abs = require( 'math-abs' );
 export default function EqDisplay(props) {
@@ -25,8 +29,8 @@ export default function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  const [level, setLevel] = useState(props.location.state.level);
-  // const [finish, setFinish] = useState(false)
+  const [level] = useState(props.location.state.level);
+  const [value, setValue] = useState('change')
 
   function changeAnswer(a,b) {
     setCalculator([a,b]);
@@ -96,7 +100,7 @@ export default function EqDisplay(props) {
       setVariant("error")
       setOpen(true)
     }
-    else if (level == 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
+    else if (level === 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
       setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
       setVariant("warning")
       setOpen(true)
@@ -141,6 +145,10 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   // }
 
+  const changeMethod = event => {
+    setValue(event.target.value);
+  };
+
   const canCombine = equation => 
     !(equation.constants.length > 1 || equation.terms.length > 1)
 
@@ -160,6 +168,17 @@ export default function EqDisplay(props) {
 
   }
 
+  // const changeMethod = (a) => event => {
+  //     if (a === "balance"){
+  //       setBalance(event.target.checked);
+  //       setChange(!event.target.checked);
+  //     } else{
+  //       setChange(event.target.checked);
+  //       setBalance(!event.target.checked);
+
+  //     }
+  // }
+
   const onDragEnd = result => {
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
@@ -178,13 +197,18 @@ export default function EqDisplay(props) {
     const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper)[0];
     if (destination.droppableId !== source.droppableId) {
       var movedTask = "";
-      const lhsOrigin = source.droppableId === "eqspace-lhs";
-      const rhsOrigin = source.droppableId === "eqspace-rhs";
+      var lhsOrigin = false;
+      var rhsOrigin =  false;
+      if(value === 'change'){
+        lhsOrigin = source.droppableId === "eqspace-lhs";
+        rhsOrigin = source.droppableId === "eqspace-rhs";
+      } 
       if (destination.droppableId === "eqspace-rhs") {
         movedTask = newLhsCards[source.index];
       } else {
         movedTask = newRhsCards[source.index];
       }
+
       const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
       const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
       var newExp = new algebra.Equation(newLhs, newRhs);
@@ -209,6 +233,13 @@ export default function EqDisplay(props) {
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
+       <FormControl component="fieldset">
+       <FormLabel component="legend">Methods</FormLabel>
+        <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
+          <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
+          <FormControlLabel value='balance' control={<Radio color="primary" />} label="balance" />
+        </RadioGroup>
+      </FormControl>
       <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen}/>
       <Button onClick={() => clickNext()} variant="contained" color="primary">
             Next

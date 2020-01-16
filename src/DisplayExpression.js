@@ -5,7 +5,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
     var tasks = []
     var factors_exp = []
     // console.log(level)
-    var isFraction = level == 'easy' 
+    var isFraction = level === 'easy' 
     expression.terms.forEach((t,index) => {
         // console.log(t)
         var fac = calculateFactors(t.coefficients[0].numer)
