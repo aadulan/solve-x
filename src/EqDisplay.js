@@ -18,7 +18,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-var abs = require( 'math-abs' );
+var abs = require('math-abs');
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
   const [helper, setHelper] = useState(false);
@@ -32,32 +32,32 @@ export default function EqDisplay(props) {
   const [level] = useState(props.location.state.level);
   const [value, setValue] = useState('change')
 
-  function changeAnswer(a,b) {
-    setCalculator([a,b]);
+  function changeAnswer(a, b) {
+    setCalculator([a, b]);
   }
 
-  function changeEnter(){
+  function changeEnter() {
     setEnter(!enter)
   }
 
-  function changeOpen(){
+  function changeOpen() {
     setOpen(!open)
   }
 
-  function changeMessage(a){
+  function changeMessage(a) {
     setMessage(a)
   }
 
-  function changeVariant(a){
+  function changeVariant(a) {
     setVariant(a)
   }
 
-  
-  
-  
+
+
+
   useEffect(() => {
-    if(equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length ===0){
-      if(equation.rhs.terms[0].coefficients[0].numer === 1){
+    if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
+      if (equation.rhs.terms[0].coefficients[0].numer === 1) {
         // setFinish(true)
         console.log('finish')
         setMessage("You solved the equation!")
@@ -65,9 +65,9 @@ export default function EqDisplay(props) {
         setOpen(true)
         // setEquation(algebra.parse(equationGen()))
       }
-      
-    } else if(equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1){
-      if(equation.lhs.terms[0].coefficients[0].numer === 1){
+
+    } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
+      if (equation.lhs.terms[0].coefficients[0].numer === 1) {
         // setFinish(true)
         console.log('finish')
         setMessage("You solved the equation!")
@@ -76,10 +76,10 @@ export default function EqDisplay(props) {
         // setEquation(algebra.parse(equationGen()))
       }
     }
-    
+
   });
-  
-  function clickNext(){
+
+  function clickNext() {
     setEquation(algebra.parse(equationGen()))
     setOpen(false)
     // setFinish(false)
@@ -87,50 +87,50 @@ export default function EqDisplay(props) {
 
 
 
-  if(enter){
+  if (enter) {
     var lhs = null
     var rhs = null
     var factors_left = new Set(displayExpression(equation.lhs)[1])
-    var factors_right = new Set (displayExpression(equation.rhs)[1])
+    var factors_right = new Set(displayExpression(equation.rhs)[1])
     var factors = Array.from(new Set(
       [...factors_left].filter(x => factors_right.has(x))))
-    
-    if((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0){
-      setMessage("Cannot ".concat(calculator[0], " by " , "0"))
+
+    if ((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0) {
+      setMessage("Cannot ".concat(calculator[0], " by ", "0"))
       setVariant("error")
       setOpen(true)
     }
-    else if (level === 'easy' && calculator[0] ==='divide' && !factors.includes(abs(Number(calculator[1])))){
-      setMessage("Cannot ".concat(calculator[0], " by " , calculator[1]))
+    else if (level === 'easy' && calculator[0] === 'divide' && !factors.includes(abs(Number(calculator[1])))) {
+      setMessage("Cannot ".concat(calculator[0], " by ", calculator[1]))
       setVariant("warning")
       setOpen(true)
-    } else{
-      if(calculator[0] === 'multiply'){
+    } else {
+      if (calculator[0] === 'multiply') {
         lhs = equation.lhs.multiply(Number(calculator[1]))
         rhs = equation.rhs.multiply(Number(calculator[1]))
-      } else if (calculator[0] === 'add'){
-        lhs = equation.lhs.add(Number(calculator[1]),false)
-        rhs = equation.rhs.add(Number(calculator[1]),false)
-      } else if (calculator[0] === 'subtract'){
-        lhs = equation.lhs.subtract(Number(calculator[1]),false)
-        rhs = equation.rhs.subtract(Number(calculator[1]),false)
+      } else if (calculator[0] === 'add') {
+        lhs = equation.lhs.add(Number(calculator[1]), false)
+        rhs = equation.rhs.add(Number(calculator[1]), false)
+      } else if (calculator[0] === 'subtract') {
+        lhs = equation.lhs.subtract(Number(calculator[1]), false)
+        rhs = equation.rhs.subtract(Number(calculator[1]), false)
       }
-      else if (calculator[0] === 'divide'){
+      else if (calculator[0] === 'divide') {
         lhs = equation.lhs.divide(Number(calculator[1]))
         rhs = equation.rhs.divide(Number(calculator[1]))
       }
-      setMessage("".concat(calculator[0], " by " , calculator[1]))
+      setMessage("".concat(calculator[0], " by ", calculator[1]))
       setVariant("info")
       setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
       setEquation(newExp);
       setCalculator([])
-      
+
     }
-    
+
     setEnter(false);
 
-    
+
   }
 
 
@@ -149,7 +149,7 @@ export default function EqDisplay(props) {
     setValue(event.target.value);
   };
 
-  const canCombine = equation => 
+  const canCombine = equation =>
     !(equation.constants.length > 1 || equation.terms.length > 1)
 
 
@@ -198,11 +198,11 @@ export default function EqDisplay(props) {
     if (destination.droppableId !== source.droppableId) {
       var movedTask = "";
       var lhsOrigin = false;
-      var rhsOrigin =  false;
-      if(value === 'change'){
+      var rhsOrigin = false;
+      if (value === 'change') {
         lhsOrigin = source.droppableId === "eqspace-lhs";
         rhsOrigin = source.droppableId === "eqspace-rhs";
-      } 
+      }
       if (destination.droppableId === "eqspace-rhs") {
         movedTask = newLhsCards[source.index];
       } else {
@@ -216,119 +216,147 @@ export default function EqDisplay(props) {
     }
   };
 
-  const combineEquation = side =>{
-      var lhs = null;
-      var rhs = null;
-      if (side === "rhs"){
-          rhs = equation.rhs.simplify();
-          lhs = equation.lhs;
-            
-      } else {
-        rhs = equation.rhs
-        lhs = equation.lhs.simplify();
-      }
-      var newExp = new algebra.Equation(lhs, rhs);
-      setEquation(newExp);
+  const combineEquation = side => {
+    var lhs = null;
+    var rhs = null;
+    if (side === "rhs") {
+      rhs = equation.rhs.simplify();
+      lhs = equation.lhs;
+
+    } else {
+      rhs = equation.rhs
+      lhs = equation.lhs.simplify();
+    }
+    var newExp = new algebra.Equation(lhs, rhs);
+    setEquation(newExp);
   }
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
-       <FormControl component="fieldset">
-       <FormLabel component="legend">Methods</FormLabel>
-        <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
-          <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
-          <FormControlLabel value='balance' control={<Radio color="primary" />} label="balance" />
-        </RadioGroup>
-      </FormControl>
-      <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen}/>
-      <Button onClick={() => clickNext()} variant="contained" color="primary">
-            Next
-          </Button>
-      <Grid container item direction="row" justify="center" alignItems="center">
-        <Grid container item direction="row" justify="center" alignItems="center">
-        <FormGroup>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={helper}
-            onChange={handleHelperChange()}
-            value="helper"
-            color="primary"
-          />
-        }
-        label="Helper Mode"
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={signs}
-            onChange={handleSignChange()}
-            value="signs"
-            color="primary"
-            disabled={!helper}
-          />
-        }
-        label="Show Signs"
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={unpack}
-            onChange={handleUnpackChange()}
-            value="unpack"
-            color="primary"
-            disabled={!helper}
-          />
-        }
-        label="Unpack Variable"
-      />
+      <Grid
+      style={{margin:20}}
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="flex-start"
+      >
+         {/* <Grid
+        container
+        alignItems
+        direction="row"
+        justify="flex-start"
+        alignItems="flex-start"
+      > */}
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Methods</FormLabel>
+          <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
+            <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
+            <FormControlLabel value='balance' control={<Radio color="primary" />} label="balance" />
+          </RadioGroup>
+        </FormControl>
 
-      </FormGroup>
+      {/* </Grid> */}
+      {/* <Grid
+      style={{marginRight:40}}
+        container
+        alignItems
+        direction="row"
+        justify="flex-end"
+        alignItems="center"
+      > */}
+      <Button onClick={() => clickNext()} variant="contained" color="primary">
+        Next
+      </Button>
+
+      {/* </Grid> */}
+
+      </Grid>
+      <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
+        <Grid container  direction="row" justify="space-around" alignItems="flex-start">
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={helper}
+                  onChange={handleHelperChange()}
+                  value="helper"
+                  color="primary"
+                />
+              }
+              label="Helper Mode"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={signs}
+                  onChange={handleSignChange()}
+                  value="signs"
+                  color="primary"
+                  disabled={!helper}
+                />
+              }
+              label="Show Signs"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={unpack}
+                  onChange={handleUnpackChange()}
+                  value="unpack"
+                  color="primary"
+                  disabled={!helper}
+                />
+              }
+              label="Unpack Variable"
+            />
+
+          </FormGroup>
         </Grid>
+      <Grid container item direction="row" justify="center" alignItems="center">
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid container item direction="row" justify="center" alignItems="center" xs={9}>
-        <DragDropContext
-          onDragEnd={onDragEnd}
-          // onDragStart={this.onDragStart}
-          // onDragUpdate={this.onDragUpdate}
-        >
-          <EquationSpace
-            dropId={"eqspace-lhs"}
-            expression={equation.lhs}
-            side={"lhs"}
-            helper={helper}
-            showSigns={signs}
-            unpackEq={unpack}
-            level={level}
-          />
-          <Equal />
-          <EquationSpace
-            dropId={"eqspace-rhs"}
-            expression={equation.rhs}
-            side={"rhs"}
-            helper={helper}
-            showSigns={signs}
-            unpackEq={unpack}
-            level={level}
-          />
-        </DragDropContext>
+            <DragDropContext
+              onDragEnd={onDragEnd}
+            // onDragStart={this.onDragStart}
+            // onDragUpdate={this.onDragUpdate}
+            >
+              <EquationSpace
+                dropId={"eqspace-lhs"}
+                expression={equation.lhs}
+                side={"lhs"}
+                helper={helper}
+                showSigns={signs}
+                unpackEq={unpack}
+                level={level}
+              />
+              <Equal />
+              <EquationSpace
+                dropId={"eqspace-rhs"}
+                expression={equation.rhs}
+                side={"rhs"}
+                helper={helper}
+                showSigns={signs}
+                unpackEq={unpack}
+                level={level}
+              />
+            </DragDropContext>
 
           </Grid>
-        <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
-          <Calculator onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
-        </Grid>
+          <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
+            <Calculator onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
+          </Grid>
 
         </Grid>
-      
+
       </Grid>
-      <Grid style={{padding:20}} container item direction="row" justify="center" alignItems="center">
+      <Grid style={{ padding: 20 }} container item direction="row" justify="center" alignItems="center">
         <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
             Simplify
           </Button>
         </Grid>
-        <Grid container item direction="row"  xs={6} justify="center" alignItems="center">
-          <Button  onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
+        <Grid container item direction="row" xs={6} justify="center" alignItems="center">
+          <Button onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
             Simplify
           </Button>
         </Grid>
