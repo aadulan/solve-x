@@ -46,7 +46,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         
         var factors_const = []
         expression.constants.forEach((c,index) => {
-            console.log(c)
+            // console.log(c)
             var fac = calculateFactors(c.numer)
             factors_const = factors_const.concat(fac)
             var hasTerm = tasks.length !== 0  && index === 0
