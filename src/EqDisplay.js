@@ -74,12 +74,13 @@ export default function EqDisplay(props) {
       }
     }
     
+  },[equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length]);
   
   function clickNext() {
     console.log(equation)
     setEquation(algebra.parse(equationGen()))
     setOpen(false)
-    // setFinish(false)
+
   }
   
   
