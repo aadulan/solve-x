@@ -23,9 +23,9 @@ export const equationGen = () => {
     const splitTerm = randRange(2,randomNumber);
 
     if (Math.random() >= 0.5){
-        return `${randomNumber + splitTerm} * x -${splitConstant} = ${splitTerm} * x + ${constant-splitConstant}`
+        return `${randomNumber + splitTerm} * x +${splitConstant} = ${splitTerm} * x + ${constant+splitConstant}`
     }else{
-        return `${randomNumber} * x -${splitConstant} = ${constant-splitConstant}`
+        return `${randomNumber} * x +${splitConstant} = ${constant+splitConstant}`
     }
         
     // const square = randomNumber * randomNumber
@@ -35,6 +35,5 @@ export const equationGen = () => {
 
 }
 
-// get a random number between 1 and 10 
-// 
+
 
