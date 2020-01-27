@@ -31,30 +31,30 @@ export default function EqDisplay(props) {
   const [variant, setVariant] = useState("info");
   const [level] = useState(props.location.state.level);
   const [value, setValue] = useState('change')
-
+  
   function changeAnswer(a, b) {
     setCalculator([a, b]);
   }
-
+  
   function changeEnter() {
     setEnter(!enter)
   }
-
+  
   function changeOpen() {
     setOpen(!open)
   }
-
+  
   function changeMessage(a) {
     setMessage(a)
   }
-
+  
   function changeVariant(a) {
     setVariant(a)
   }
-
-
-
-
+  
+  
+  
+  
   useEffect(() => {
     if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
       if (equation.rhs.terms[0].coefficients[0].numer === 1) {
@@ -65,7 +65,7 @@ export default function EqDisplay(props) {
         setOpen(true)
         // setEquation(algebra.parse(equationGen()))
       }
-
+      
     } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
       if (equation.lhs.terms[0].coefficients[0].numer === 1) {
         // setFinish(true)
@@ -76,17 +76,18 @@ export default function EqDisplay(props) {
         // setEquation(algebra.parse(equationGen()))
       }
     }
-
+    
   });
-
+  
   function clickNext() {
+    console.log(equation)
     setEquation(algebra.parse(equationGen()))
     setOpen(false)
     // setFinish(false)
   }
-
-
-
+  
+  
+  
   if (enter) {
     var lhs = null
     var rhs = null
@@ -94,16 +95,16 @@ export default function EqDisplay(props) {
     var factors_right = new Set(displayExpression(equation.rhs)[1])
     var factors = Array.from(new Set(
       [...factors_left].filter(x => factors_right.has(x))))
-
-    if ((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0) {
-      setMessage("Cannot ".concat(calculator[0], " by ", "0"))
-      setVariant("error")
-      setOpen(true)
-    }
-    else if (level === 'easy' && calculator[0] === 'divide' && !factors.includes(abs(Number(calculator[1])))) {
-      setMessage("Cannot ".concat(calculator[0], " by ", calculator[1]))
-      setVariant("warning")
-      setOpen(true)
+      
+      if ((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0) {
+        setMessage("Cannot ".concat(calculator[0], " by ", "0"))
+        setVariant("error")
+        setOpen(true)
+      }
+      else if (level === 'easy' && calculator[0] === 'divide' && !factors.includes(abs(Number(calculator[1])))) {
+        setMessage("Cannot ".concat(calculator[0], " by ", calculator[1]))
+        setVariant("warning")
+        setOpen(true)
     } else {
       if (calculator[0] === 'multiply') {
         lhs = equation.lhs.multiply(Number(calculator[1]))
