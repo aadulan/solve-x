@@ -63,21 +63,17 @@ export default function EqDisplay(props) {
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
-        // setEquation(algebra.parse(equationGen()))
       }
       
     } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
       if (equation.lhs.terms[0].coefficients[0].numer === 1) {
-        // setFinish(true)
         console.log('finish')
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
-        // setEquation(algebra.parse(equationGen()))
       }
     }
     
-  });
   
   function clickNext() {
     console.log(equation)
