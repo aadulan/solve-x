@@ -11,7 +11,7 @@ import { Button } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-import Calculator from './NewCalculator'
+import Calculator from './Calculator'
 import Snackbar from './Snackbar'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';

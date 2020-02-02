@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i&display=swap');
+
 html {
   width: 100%;
   height: 100%;
@@ -41,4 +43,15 @@ code {
 
 .card:hover {
   box-shadow: 5px 25px 25px -20px rgba(0, 0, 0, 0.6);
+}
+
+.MuiTypography-h3, .MuiTypography-h5, .MuiTypography-body2 {
+  font-family: 'Fira Sans', sans-serif !important;
+}
+
+
+
+hr{
+  background-color: #888;
+  width: 75%
 }

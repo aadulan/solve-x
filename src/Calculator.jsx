@@ -10,24 +10,17 @@ export default function Calculator(props) {
     const [sign, setSign] = useState("")
     const [isPositive, setPositive] = useState("+")
 
-    // const [expression, setExpression] = useState("")
-    // const [answer, setAnswer] = useState("")
 
-    // const addElement = (e) => {
-    //     setExpression(expression.concat(e));
-    // }
 
     const emptyText = () => {
-        // setExpression("")
-        // // setAnswer("")
         setNumber("")
         setSign("")
     }
 
     const addNumberSign = () => {
-        if (isPositive === "+"){
+        if (isPositive === "+") {
             setPositive("-")
-        } else{
+        } else {
             setPositive("+")
         }
     }
@@ -36,6 +29,7 @@ export default function Calculator(props) {
         setNumber(number.concat(e));
     }
     
+
     const addSign = (e) => {
         setSign(e);
     }
@@ -45,20 +39,20 @@ export default function Calculator(props) {
         if (sign === "÷") {
             newSign = "divide"
 
-        } else if (sign === "×"){
+        } else if (sign === "×") {
             newSign = "multiply"
-        } else if (sign === "+" ){
+        } else if (sign === "+") {
             newSign = "add"
-        } else if (sign === "-"){
+        } else if (sign === "-") {
             newSign = "subtract"
         }
 
         props.onCalChange(newSign, isPositive.concat(number))
-        if(newSign === '' || number === ''){
+        if (newSign === '' || number === '') {
             props.onMessage("Number or sign empty!")
             props.onVariant("error")
             props.onOpen(true)
-        } else{
+        } else {
             props.onEnterChange(true);
 
         }
@@ -67,8 +61,8 @@ export default function Calculator(props) {
     return (
         <Card>
             <CardHeader
-            title="Equation Changer"
-            
+                title="Equation Changer"
+
             />
             <CardContent>
 
@@ -76,23 +70,23 @@ export default function Calculator(props) {
                     <Grid container direction='row'>
                         <Card style={{ width: '100%' }}>
                             <CardContent>
-                                <Grid container direction='column' justify='center' align='center'>
-                                    <Grid container direction='row' justify='flex-start' align='center'>
-                                    <Fab onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
+                                {/* <Grid container direction='column' justify='center' align='center'> */}
+                                <Grid container direction='row' justify='flex-start' align='center'>
+                                    <Fab style={{marginRight:20}} onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
                                         ±
-                                    </Fab>
-                                    <Typography style={{marginLeft:10}} align='left' variant="h6">
-                                        {isPositive}
-                                    </Typography>
-                                    <Typography align='center' variant="h6">
-                                        {number}
-                                    </Typography>
-                                    </Grid>
-                                    <Typography align='right' variant="h6">
+                                        </Fab>
+                                    {/* <Grid item> */}
+                                        <Typography style={{marginRight:"auto"}} align="left" variant="h6">
+                                            {isPositive}
+                                            {number}
+                                        </Typography>
+                                    {/* </Grid> */}
+                                    <Typography align="right" variant="h6">
                                         {sign}
                                     </Typography>
-                                    
                                 </Grid>
+
+                                {/* </Grid> */}
                             </CardContent>
                         </Card>
                     </Grid>
@@ -134,12 +128,10 @@ export default function Calculator(props) {
                         </ButtonGroup>
                     </Grid>
                     <Grid container direction='row'>
-                        {/* <div style={{ width:'25%' }}> </div> */}
                         <ButtonGroup
                             fullWidth={true}
                             size="large"
                             color='primary'
-                        // style={{ width:'75%' }}
                         >
                             <Button onClick={() => emptyText()} >Clear</Button>
                             <Button value="0" onClick={() => addNumber("0")}>0</Button>
@@ -153,7 +145,6 @@ export default function Calculator(props) {
                             size="large"
                             color='primary'
                         >
-
                             <Button onClick={() => calculateExpression()}>Enter</Button>
                         </ButtonGroup>
 
