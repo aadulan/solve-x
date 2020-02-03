@@ -1,8 +1,8 @@
 {
-  "name": "eq-solver-prototype",
+  "name": "solve-x",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aadulan.github.io/eq-solver-prototype/",
+  "homepage": "https://aadulan.github.io/solve-x/",
   "dependencies": {
     "@matejmazur/react-katex": "^3.0.2",
     "@material-ui/core": "^4.4.3",
