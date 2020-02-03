@@ -132,15 +132,15 @@ export default function EqDisplay(props) {
   }
 
 
-  // onDragStart = () => {
+  // const onDragStart = () => {
   //     document.body.style.color = 'blue';
   //     document.body.style.transition = 'background-color 0.2s ease'
   // }
 
-  // onDragUpdate = update => {
-  //     const { destination } = update;
-  //     const opacity = destination ? destination.index / Object.keys(this.state.tasks).length : 0 ;
-  //     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
+  // const onDragUpdate = update => {
+  //     // const { destination } = update;
+  //     // const opacity = destination ? destination.index / Object.keys(this.state.tasks).length : 0 ;
+  //     document.body.style.backgroundColor = `rgba(153, 141, 217, 1)`;
   // }
 
   const changeMethod = event => {
@@ -232,45 +232,14 @@ export default function EqDisplay(props) {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid
-      style={{margin:20}}
         container
+        item
         direction="row"
-        justify="space-around"
+        justify="space-between"
         alignItems="flex-start"
-      >
-         {/* <Grid
-        container
-        alignItems
-        direction="row"
-        justify="flex-start"
-        alignItems="flex-start"
-      > */}
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Methods</FormLabel>
-          <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
-            <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
-            <FormControlLabel value='balance' control={<Radio color="primary" />} label="balance" />
-          </RadioGroup>
-        </FormControl>
-
-      {/* </Grid> */}
-      {/* <Grid
-      style={{marginRight:40}}
-        container
-        alignItems
-        direction="row"
-        justify="flex-end"
-        alignItems="center"
-      > */}
-      <Button onClick={() => clickNext()} variant="contained" color="primary">
-        Next
-      </Button>
-
-      {/* </Grid> */}
-
-      </Grid>
-      <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
-        <Grid container  direction="row" justify="space-around" alignItems="flex-start">
+        
+      >  
+        <Grid container justify="center" item xs={9}>
           <FormGroup>
             <FormControlLabel
               control={
@@ -310,13 +279,23 @@ export default function EqDisplay(props) {
 
           </FormGroup>
         </Grid>
-      <Grid container item direction="row" justify="center" alignItems="center">
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid container justify="center"  item xs={3} >
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Methods</FormLabel>
+          <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
+            <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
+            <FormControlLabel value='balance' control={<Radio color="primary" />} label="Balance" />
+          </RadioGroup>
+        </FormControl>
+        </Grid>
+      </Grid>
+      <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
+        <Grid container direction="row" justify="space-evenly" alignItems="center">
           <Grid container item direction="row" justify="center" alignItems="center" xs={9}>
             <DragDropContext
               onDragEnd={onDragEnd}
-            // onDragStart={this.onDragStart}
-            // onDragUpdate={this.onDragUpdate}
+            // onDragStart={onDragStart}
+            // onDragUpdate={onDragUpdate}
             >
               <EquationSpace
                 dropId={"eqspace-lhs"}
@@ -340,23 +319,27 @@ export default function EqDisplay(props) {
             </DragDropContext>
 
           </Grid>
-          <Grid container item direction="row" justify="center" alignItems="center" xs={3}>
+          <Grid  container direction="row" justify="space-around" alignItems="center" item xs={3}>
             <Calculator onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
           </Grid>
-
         </Grid>
 
-      </Grid>
-      <Grid style={{ padding: 20 }} container item direction="row" justify="center" alignItems="center">
-        <Grid container item xs={6} direction="row" justify="center" alignItems="center" >
+      <Grid style={{marginTop:50}} container item direction="row" justify="space-around" alignItems="flex-end">
+        <Grid item>
           <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
             Simplify
           </Button>
         </Grid>
-        <Grid container item direction="row" xs={6} justify="center" alignItems="center">
+        <Grid  item>
           <Button onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
             Simplify
           </Button>
+        </Grid>
+        <Grid  item>
+        <Button onClick={() => clickNext()} variant="contained" color="primary">
+          Next
+        </Button>
+
         </Grid>
       </Grid>
     </Grid>
