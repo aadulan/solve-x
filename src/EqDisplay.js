@@ -8,17 +8,12 @@ import algebra from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
 import { Button, Typography } from "@material-ui/core";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
-import Calculator from './Calculator'
 import Snackbar from './Snackbar'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import AppBar from './Drawer'
+import Calculator from './Calculator'
 
 var abs = require('math-abs');
+
 export default function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen()));
   const [helper, setHelper] = useState(false);
@@ -32,62 +27,58 @@ export default function EqDisplay(props) {
   const [level] = useState(props.location.state.level);
   const [value, setValue] = useState('change')
   const [ogEquation, setogEquation] = useState(equation)
-  
-  
+
+
   function changeAnswer(a, b) {
     setCalculator([a, b]);
   }
-  
+
   function changeEnter() {
     setEnter(!enter)
   }
-  
+
   function changeOpen() {
     setOpen(!open)
   }
-  
+
   function changeMessage(a) {
     setMessage(a)
   }
-  
+
   function changeVariant(a) {
     setVariant(a)
   }
-  
-  
-  
-  
+
+
+
+
   useEffect(() => {
     if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
       if (equation.rhs.terms[0].coefficients[0].numer === 1) {
-        // setFinish(true)
-        console.log('finish')
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
       }
-      
+
     } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
       if (equation.lhs.terms[0].coefficients[0].numer === 1) {
-        console.log('finish')
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
       }
     }
-    
-  },[equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length]);
-  
+
+  }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length]);
+
   function clickNext() {
-    console.log(equation)
     setEquation(algebra.parse(equationGen()))
     setogEquation(equation)
     setOpen(false)
 
   }
-  
-  
-  
+
+
+
   if (enter) {
     var lhs = null
     var rhs = null
@@ -95,16 +86,16 @@ export default function EqDisplay(props) {
     var factors_right = new Set(displayExpression(equation.rhs)[1])
     var factors = Array.from(new Set(
       [...factors_left].filter(x => factors_right.has(x))))
-      
-      if ((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0) {
-        setMessage("Cannot ".concat(calculator[0], " by ", "0"))
-        setVariant("error")
-        setOpen(true)
-      }
-      else if (level === 'easy' && calculator[0] === 'divide' && !factors.includes(abs(Number(calculator[1])))) {
-        setMessage("Cannot ".concat(calculator[0], " by ", calculator[1]))
-        setVariant("warning")
-        setOpen(true)
+
+    if ((calculator[0] === 'divide' || calculator[0] === 'multiply') && Number(calculator[1]) === 0) {
+      setMessage("Cannot ".concat(calculator[0], " by ", "0"))
+      setVariant("error")
+      setOpen(true)
+    }
+    else if (level === 'easy' && calculator[0] === 'divide' && !factors.includes(abs(Number(calculator[1])))) {
+      setMessage("Cannot ".concat(calculator[0], " by ", calculator[1]))
+      setVariant("warning")
+      setOpen(true)
     } else {
       if (calculator[0] === 'multiply') {
         lhs = equation.lhs.multiply(Number(calculator[1]))
@@ -125,9 +116,9 @@ export default function EqDisplay(props) {
       setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
       setEquation(newExp);
-      
+
     }
-    
+
     setCalculator([])
     setEnter(false);
 
@@ -154,17 +145,18 @@ export default function EqDisplay(props) {
     !(equation.constants.length > 1 || equation.terms.length > 1)
 
 
-  const handleSignChange = () => event => {
+  const handleSignChange = event => {
     setSigns(event.target.checked);
+    console.log(signs)
 
   }
 
-  const handleUnpackChange = () => event => {
+  const handleUnpackChange = event => {
     setUnpack(event.target.checked);
 
   }
 
-  const handleHelperChange = () => event => {
+  const handleHelperChange = event => {
     setHelper(event.target.checked);
 
   }
@@ -223,71 +215,27 @@ export default function EqDisplay(props) {
   }
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
-      <Grid
-        container
-        item
-        direction="row"
-        justify="space-between"
-        alignItems="flex-start"
-        
-      >   
-      <Typography>
-      {ogEquation.toString()}
-    </Typography>
-        <Grid container justify="center" item xs={9}>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={helper}
-                  onChange={handleHelperChange()}
-                  value="helper"
-                  color="primary"
-                />
-              }
-              label="Helper Mode"
-            />
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={signs}
-                  onChange={handleSignChange()}
-                  value="signs"
-                  color="primary"
-                  disabled={!helper}
-                />
-              }
-              label="Show Signs"
-            />
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={unpack}
-                  onChange={handleUnpackChange()}
-                  value="unpack"
-                  color="primary"
-                  disabled={!helper}
-                />
-              }
-              label="Unpack Variable"
-            />
+    <React.Fragment>
+      <Grid style={{ height: '100%' }} container direction="column" justify="flex-start">
+        <Grid item container>
+          <AppBar
+            onCalMessage={changeMessage}
+            onCalVariant={changeVariant}
+            onCalOpen={changeOpen}
+            onCalChange={changeAnswer}
+            onCalEnterChange={changeEnter}
 
-          </FormGroup>
+            onChangeUnpack={handleUnpackChange}
+            onChangeSigns={handleSignChange}
+            onChangeHelper={handleHelperChange}
+            onChangeMethod={changeMethod}
+          // style={{ display: 'inline-block' }}
+          />
+          <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
         </Grid>
-        <Grid container justify="center"  item xs={3} >
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Methods</FormLabel>
-          <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
-            <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
-            <FormControlLabel value='balance' control={<Radio color="primary" />} label="Bjalance" />
-          </RadioGroup>
-        </FormControl>
-        </Grid>
-      </Grid>
-      <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
-        <Grid container direction="row" justify="space-evenly" alignItems="center">
-          <Grid container item direction="row" justify="center" alignItems="center" xs={9}>
+        {/* <Grid container direction="column" justify="center" alignItems="center"> */}
+        <Grid item container xs>
+          <Grid item container direction="row" justify="center" alignItems="center">
             <DragDropContext
               onDragEnd={onDragEnd}
             // onDragStart={onDragStart}
@@ -315,29 +263,37 @@ export default function EqDisplay(props) {
             </DragDropContext>
 
           </Grid>
-          <Grid  container direction="row" justify="space-around" alignItems="center" item xs={3}>
-            <Calculator  onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
+          <Grid container item direction="row" justify="space-around" alignItems="center" >
+            <Grid item>
+              <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
+                Simplify
+            </Button>
+            </Grid>
+            <Grid item>
+              <Button onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
+                Simplify
+            </Button>
+            </Grid>
           </Grid>
-        </Grid>
-
-      <Grid style={{marginTop:50}} container item direction="row" justify="space-around" alignItems="flex-end">
-        <Grid item>
-          <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
-            Simplify
+          <Grid direction="row" container item justify="center" alignItems="center" >
+            <Button onClick={() => clickNext()} variant="contained" color="primary">
+              Next
           </Button>
-        </Grid>
-        <Grid  item>
-          <Button onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
-            Simplify
-          </Button>
-        </Grid>
-        <Grid  item>
-        <Button onClick={() => clickNext()} variant="contained" color="primary">
-          Next
-        </Button>
+          </Grid>
 
         </Grid>
+        {/* </Grid> */}
       </Grid>
-    </Grid>
+      <div style={{display:'block', position:'fixed', top: 200, right: 50, height:0, cursor:'move'}}>
+
+        <Calculator
+          onMessage={changeMessage}
+          onVariant={changeVariant}
+          onOpen={changeOpen}
+          onCalChange={changeAnswer}
+          onEnterChange={changeEnter}
+        />
+      </div>
+    </React.Fragment>
   );
 }
