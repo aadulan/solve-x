@@ -12,6 +12,7 @@ export default function Calculator(props) {
 
 
 
+
     const emptyText = () => {
         setNumber("")
         setSign("")
@@ -54,6 +55,8 @@ export default function Calculator(props) {
             props.onOpen(true)
         } else {
             props.onEnterChange(true);
+            setNumber("")
+            setSign("")
 
         }
     }

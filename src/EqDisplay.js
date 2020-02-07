@@ -122,10 +122,10 @@ export default function EqDisplay(props) {
       setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
       setEquation(newExp);
-      setCalculator([])
-
+      
     }
-
+    
+    setCalculator([])
     setEnter(false);
 
 
@@ -284,7 +284,7 @@ export default function EqDisplay(props) {
           <FormLabel component="legend">Methods</FormLabel>
           <RadioGroup aria-label="methods" name="methods" value={value} onChange={changeMethod}>
             <FormControlLabel value='change' control={<Radio color="primary" />} label="Change side, change sign" />
-            <FormControlLabel value='balance' control={<Radio color="primary" />} label="Balance" />
+            <FormControlLabel value='balance' control={<Radio color="primary" />} label="Bjalance" />
           </RadioGroup>
         </FormControl>
         </Grid>
@@ -320,7 +320,7 @@ export default function EqDisplay(props) {
 
           </Grid>
           <Grid  container direction="row" justify="space-around" alignItems="center" item xs={3}>
-            <Calculator onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
+            <Calculator  onMessage={changeMessage} onVariant={changeVariant} onOpen={changeOpen} onCalChange={changeAnswer} onEnterChange={changeEnter} />
           </Grid>
         </Grid>
 
