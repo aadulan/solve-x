@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import algebra from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -31,6 +31,8 @@ export default function EqDisplay(props) {
   const [variant, setVariant] = useState("info");
   const [level] = useState(props.location.state.level);
   const [value, setValue] = useState('change')
+  const [ogEquation, setogEquation] = useState(equation)
+  
   
   function changeAnswer(a, b) {
     setCalculator([a, b]);
@@ -79,6 +81,7 @@ export default function EqDisplay(props) {
   function clickNext() {
     console.log(equation)
     setEquation(algebra.parse(equationGen()))
+    setogEquation(equation)
     setOpen(false)
 
   }
@@ -166,16 +169,6 @@ export default function EqDisplay(props) {
 
   }
 
-  // const changeMethod = (a) => event => {
-  //     if (a === "balance"){
-  //       setBalance(event.target.checked);
-  //       setChange(!event.target.checked);
-  //     } else{
-  //       setChange(event.target.checked);
-  //       setBalance(!event.target.checked);
-
-  //     }
-  // }
 
   const onDragEnd = result => {
     document.body.style.color = "inherit";
@@ -238,7 +231,10 @@ export default function EqDisplay(props) {
         justify="space-between"
         alignItems="flex-start"
         
-      >  
+      >   
+      <Typography>
+      {ogEquation.toString()}
+    </Typography>
         <Grid container justify="center" item xs={9}>
           <FormGroup>
             <FormControlLabel
