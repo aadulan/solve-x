@@ -137,8 +137,12 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, 1)`;
   // }
 
-  const changeMethod = event => {
-    setValue(event.target.value);
+  // const changeMethod = event => {
+  //   setValue(event.target.value);
+  // };
+
+  const changeMethod = s => {
+    setValue(s);
   };
 
   const canCombine = equation =>
