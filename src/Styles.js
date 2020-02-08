@@ -6,7 +6,7 @@ export const useStyles = makeStyles({
         borderStyle: 'solid', 
         padding: 10, 
         margin: 10, 
-        minwidth: 200,
+        // minwidth: 400,
     },
     userSelect: {
         userSelect:'none'

@@ -126,9 +126,10 @@ export default function EqDisplay(props) {
   }
 
 
-  // const onDragStart = () => {
-  //     document.body.style.color = 'blue';
-  //     document.body.style.transition = 'background-color 0.2s ease'
+  // const onDragStart = event => {
+  //   event.preventDefault()
+  //     // document.body.style.color = 'blue';
+  //     // document.body.style.transition = 'background-color 0.2s ease'
   // }
 
   // const onDragUpdate = update => {
