@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
+
 // import ListItemText from '@material-ui/core/ListItemText';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import WorkingOutCard from './WorkingOutCard'
@@ -39,11 +39,12 @@ export default function PinnedSubheaderList(props) {
   })
 
   return (
-    <List className={classes.root} ref={list} >
+    <List dense={true} className={classes.root} ref={list} >
         {props.workingOut.map((step, index) => (
             <WorkingOutCard
                 key={index}
                 step={step}
+                i={index+1}
             />
       
         ))}
