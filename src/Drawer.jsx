@@ -1,13 +1,10 @@
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
+// import List from '@material-ui/core/List';
+// import Divider from '@material-ui/core/Divider';
+// import ListItem from '@material-ui/core/ListItem';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-// import Helper from './Helper'
 import MethodMenu from './MethodMenu'
 import HelperPop from './HelperPop'
 
@@ -33,60 +30,60 @@ const useStyles = makeStyles({
 
 export default function TemporaryDrawer(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    left: false,
-  });
+  // const [state, setState] = React.useState({
+  //   left: false,
+  // });
 
-  const toggleDrawer = (side, open) => event => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+  // const toggleDrawer = (side, open) => event => {
+  //   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  //     return;
+  //   }
 
-    setState({ ...state, [side]: open });
-  };
+  //   setState({ ...state, [side]: open });
+  // };
 
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-    >
-      <List>
-        {/* <ListItem>
-          <Method onChangeMethod={props.onChangeMethod}/>
-        </ListItem> */}
-        <Divider />
-        <ListItem>
-          {/* <Helper 
-          onChangeUnpack={props.onChangeUnpack}
-          onChangeSigns={props.onChangeSigns}
-          onChangeHelper={props.onChangeHelper}/> */}
+  // const sideList = side => (
+  //   <div
+  //     className={classes.list}
+  //     role="presentation"
+  //   >
+  //     <List>
+  //       {/* <ListItem>
+  //         <Method onChangeMethod={props.onChangeMethod}/>
+  //       </ListItem> */}
+  //       <Divider />
+  //       <ListItem>
+  //         {/* <Helper 
+  //         onChangeUnpack={props.onChangeUnpack}
+  //         onChangeSigns={props.onChangeSigns}
+  //         onChangeHelper={props.onChangeHelper}/> */}
 
-        </ListItem>
-        <Divider />
+  //       </ListItem>
+  //       <Divider />
 
-        {/* <ListItem>
+  //       {/* <ListItem>
          
-        </ListItem> */}
+  //       </ListItem> */}
 
 
-        {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
-      </List>
-    </div>
-  );
+  //       {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+  //         <ListItem button key={text}>
+  //           <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+  //           <ListItemText primary={text} />
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //     <Divider />
+  //     <List>
+  //       {['All mail', 'Trash', 'Spam'].map((text, index) => (
+  //         <ListItem button key={text}>
+  //           <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+  //           <ListItemText primary={text} />
+  //         </ListItem>
+  //       ))} */}
+  //     </List>
+  //   </div>
+  // );
 
   return (
     <React.Fragment>
