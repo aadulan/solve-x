@@ -20,7 +20,8 @@
     "react-draggable": "^4.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
-    "react-spring": "^8.0.27"
+    "react-spring": "^8.0.27",
+    "react-window": "^1.8.5"
   },
   "scripts": {
     "start": "react-scripts start",
