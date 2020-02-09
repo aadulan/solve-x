@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Typography, CardContent, CardActionArea, Grid } from "@material-ui/core";
+import { Card, Typography, CardContent, CardActionArea } from "@material-ui/core";
 import TeX from '@matejmazur/react-katex';
 import ListItem from '@material-ui/core/ListItem';
 
