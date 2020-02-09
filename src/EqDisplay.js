@@ -7,10 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import algebra from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import Snackbar from './Snackbar'
 import AppBar from './Drawer'
 import Calculator from './Calculator'
+
+import WorkingOut from './WorkingOut'
 
 var abs = require('math-abs');
 
@@ -26,7 +28,8 @@ export default function EqDisplay(props) {
   const [variant, setVariant] = useState("info");
   const [level] = useState(props.location.state.level);
   const [value, setValue] = useState('change')
-  const [ogEquation, setogEquation] = useState(equation)
+  // const [ogEquation, setogEquation] = useState(equation)
+  const [workingOut, setWorkingOut] = useState([])
 
 
   function changeAnswer(a, b) {
@@ -72,7 +75,7 @@ export default function EqDisplay(props) {
 
   function clickNext() {
     setEquation(algebra.parse(equationGen()))
-    setogEquation(equation)
+    setWorkingOut([])
     setOpen(false)
 
   }
@@ -115,6 +118,7 @@ export default function EqDisplay(props) {
       setVariant("info")
       setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
+      setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
 
     }
@@ -171,6 +175,8 @@ export default function EqDisplay(props) {
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
     const { destination, source } = result;
+    
+    setWorkingOut([...workingOut, equation.toString()])
 
     if (!destination) {
       return;
@@ -216,6 +222,7 @@ export default function EqDisplay(props) {
       lhs = equation.lhs.simplify();
     }
     var newExp = new algebra.Equation(lhs, rhs);
+    setWorkingOut([...workingOut, equation.toString()])
     setEquation(newExp);
   }
 
@@ -234,12 +241,27 @@ export default function EqDisplay(props) {
             onChangeSigns={handleSignChange}
             onChangeHelper={handleHelperChange}
             onChangeMethod={changeMethod}
-          // style={{ display: 'inline-block' }}
           />
           <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
         </Grid>
-        {/* <Grid container direction="column" justify="center" alignItems="center"> */}
-        <Grid item container xs>
+     
+        <Grid item container justify="center"  alignItems="center" style={{marginTop:20, marginBottom:20}} >
+              <WorkingOut workingOut={workingOut}/>
+        
+              {/* <Card variant="outlined" >
+                <CardActionArea >
+                  <CardContent>
+                <Typography variant="h4">
+                <TeX math={`${prevEquation.toString()}`}/>
+                  
+                </Typography>
+
+                  </CardContent>
+
+                </CardActionArea>
+              </Card> */}
+        </Grid>
+        <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} >
           <Grid item container direction="row" justify="center" alignItems="center">
             <DragDropContext
               onDragEnd={onDragEnd}
