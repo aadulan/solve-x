@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Typography } from '@material-ui/core';
+// import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
