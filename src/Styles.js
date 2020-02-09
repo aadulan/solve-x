@@ -7,6 +7,9 @@ export const useStyles = makeStyles({
         padding: 10, 
         margin: 10, 
         // minwidth: 400,
+        "&:hover": {
+            boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.25)"
+          },
     },
     userSelect: {
         userSelect:'none'
