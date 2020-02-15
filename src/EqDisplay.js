@@ -18,7 +18,7 @@ import WorkingOut from './WorkingOut'
 var abs = require('math-abs');
 
 export default function EqDisplay(props) {
-  const [equation, setEquation] = useState(algebra.parse(equationGen()));
+  const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
@@ -30,7 +30,8 @@ export default function EqDisplay(props) {
   const [level] = useState(props.location.state.level);
   const [freeStyle] = useState(props.location.state.freeStyle)
   const [value, setValue] = useState('change')
-  // const [ogEquation, setogEquation] = useState(equation)
+  const [divideLeft, setDivideLeft] = useState(false);
+  const [divideRight, setDivideRight] = useState(false);
   const [workingOut, setWorkingOut] = useState([])
 
 
@@ -121,8 +122,8 @@ export default function EqDisplay(props) {
         rhs = equation.rhs.subtract(Number(calculator[1]), false)
       }
       else if (calculator[0] === 'divide') {
-        lhs = equation.lhs.divide(Number(calculator[1]))
-        rhs = equation.rhs.divide(Number(calculator[1]))
+        lhs = equation.lhs.divide(Number(calculator[1]), false)
+        rhs = equation.rhs.divide(Number(calculator[1]), false)
       }
       setMessage("".concat(calculator[0], " by ", calculator[1]))
       setVariant("info")
@@ -130,6 +131,9 @@ export default function EqDisplay(props) {
       var newExp = new algebra.Equation(lhs, rhs);
       setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
+      setDivideLeft(true)
+      setDivideRight(true)
+      // console.log(newExp)
 
     }
 
@@ -155,8 +159,24 @@ export default function EqDisplay(props) {
     setValue(s);
   };
 
-  const canCombine = equation =>
-    !(equation.constants.length > 1 || equation.terms.length > 1)
+  // const canCombine = equation =>  !(equation.constants.length > 1 || equation.terms.length > 1) 
+
+                                // (equation.constants.length === 1 && equation.constants[0].denom !== 1) || 
+                                // (equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
+
+const canCombine = (equation, divide) => 
+// console.log(equation)
+  !(
+    equation.constants.length > 1 
+    || equation.terms.length > 1 ||(equation.constants.length === 1 && divide) || (equation.terms.length === 1 && divide) 
+    // || (equation.constants.length === 1 && equation.constants[0].denom !== 1) 
+    // || (equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
+    )
+  // || !(equation.constants.length === 1 && equation.constants[0].denom !== 1)
+  // || !(equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
+
+
+
 
 
   const handleSignChange = event => {
@@ -223,8 +243,10 @@ const createEquation = canCreate ? textBox() : ''
         const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
         const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
         var newExp = new algebra.Equation(newLhs, newRhs);
+        // console.log(newExp)
         setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
+      
     }
   };
 
@@ -234,14 +256,26 @@ const createEquation = canCreate ? textBox() : ''
     if (side === "rhs") {
       rhs = equation.rhs.simplify();
       lhs = equation.lhs;
+      if (rhs.terms.length === 0 && rhs.constants.length === 0){
+        rhs = new algebra.Expression("0")
+      }
+      setDivideRight(false)
 
     } else {
-      rhs = equation.rhs
+      rhs = equation.rhs;
       lhs = equation.lhs.simplify();
+
+      if (lhs.terms.length === 0 && lhs.constants.length === 0){
+        lhs = new algebra.Expression("0")
+      }
+      setDivideLeft(false)
     }
+    
     var newExp = new algebra.Equation(lhs, rhs);
     setWorkingOut([...workingOut, equation.toString()])
     setEquation(newExp);
+    // console.log(newExp)
+    // console.log(newExp.toString())
   }
 
   return (
@@ -301,12 +335,12 @@ const createEquation = canCreate ? textBox() : ''
           </Grid>
           <Grid container item direction="row" justify="space-around" alignItems="center" >
             <Grid item>
-              <Button disabled={canCombine(equation.lhs)} onClick={() => combineEquation('lhs')} variant="contained" color="primary">
+              <Button disabled={canCombine(equation.lhs, divideLeft)}  onClick={() => combineEquation('lhs')} variant="contained" color="primary">
                 Simplify
             </Button>
             </Grid>
             <Grid item>
-              <Button onClick={() => combineEquation('rhs')} variant="contained" color="primary" disabled={canCombine(equation.rhs)}>
+              <Button disabled={canCombine(equation.rhs, divideRight)} onClick={() => combineEquation('rhs')} variant="contained" color="primary" >
                 Simplify
             </Button>
             </Grid>

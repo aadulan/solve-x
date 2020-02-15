@@ -19,13 +19,17 @@ export default function TextBox(props){
                 throw new Error("Not an Equation")
             }
             var term = ""
+            if (!(e.lhs.terms.length < 1 || e.rhs.terms.length < 1)){
+                throw new Error("No terms")
+            }
+
             e.lhs.terms.forEach((t,index) => {
                 if(t.variables[0].degree > 1){
                     throw new Error("Not a Linear Equation")
                 }
                 if (term === ""){
                     term = t.variables[0].variable
-                    console.log(term)
+                    // console.log(term)
                 }
                 if (t.variables[0].variable !== term){
                     throw new Error("Cannot have more than one Variable")
@@ -41,7 +45,7 @@ export default function TextBox(props){
                 }
                 if (term === ""){
                     term = t.variables[0].variable
-                    console.log(term)
+                    // console.log(term)
                 }
                 if (t.variables[0].variable !== term){
                     throw new Error("Cannot have more than one Variable")
@@ -51,12 +55,13 @@ export default function TextBox(props){
 
             props.onChangeEquation(e)
             setEq("")
+            console.log(e)
             props.onChangeMessage("Equation Changed")
             props.onChangeVariant("success")
             props.onChangeOpen(true)
           } catch(err) {
-              console.log(err)
-              props.onChangeMessage("Wrong part of equation")
+            //   console.log(err)
+              props.onChangeMessage("Wrong input")
             props.onChangeVariant("error")
             props.onChangeOpen(true)
           }

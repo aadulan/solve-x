@@ -10,7 +10,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
 const useStyles = makeStyles(theme => ({
     root: {
         maxWidth: 350,
@@ -45,8 +45,6 @@ export default function Calculator(props) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
-
 
 
     const emptyText = () => {
@@ -104,6 +102,7 @@ export default function Calculator(props) {
                 Equation Changer
                 </Typography> */}
                 <CardActions disableSpacing>
+                <DragIndicatorIcon/>
                 <CardHeader
                     title="Equation Changer"
                 />

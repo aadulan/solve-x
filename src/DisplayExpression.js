@@ -4,10 +4,8 @@ var abs = require( 'math-abs' );
 export const displayExpression = (expression, side, isShowSign, isUnpack, isHelper, level='easy') => {
     var tasks = []
     var factors_exp = []
-    // console.log(level)
-    var isFraction = level === 'easy' 
+    // var isFraction = level === 'easy' 
     expression.terms.forEach((t,index) => {
-        // console.log(t)
         var fac = calculateFactors(t.coefficients[0].numer)
         factors_exp = factors_exp.concat(fac)
         var isStart  = index === 0
@@ -17,22 +15,30 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
         // checkss if coefficient is equal to one
         var isOne = t.coefficients[0].numer === 1
         // if coefficient is equal to one then don't show it in helper mode 
-        var coeff = isOne ? "" : t.coefficients[0].numer
+        var coeff;
+        if(isOne){
+            coeff = ""
+        } else if(t.coefficients[0].numer === -1){
+            coeff = "-"
+        } else {
+            coeff = t.coefficients[0].numer
+        }
+        // var coeff = isOne ? "" : t.coefficients[0].numer
         var deom = t.coefficients[0].denom === 1
 
         // if unpack then add the \times to the equation so they can see constant being times
-        var unpack = isUnpack ?  t.coefficients[0].numer + "\\times "   +  t.variables[0].variable : t.coefficients[0].numer +  t.variables[0].variable
+        var unpack = isUnpack ?  t.coefficients[0].numer + "\\times "   +  t.variables[0].variable : coeff +  t.variables[0].variable
 
         // if show sign add the signs 
         var contentHelper = isShowSign &&  isPositive ? "+" + unpack : unpack 
 
         // if no helper mode then just add signs to second 
-        var content_NonHelper = !isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff+ t.variables[0].variable
+        var content_NonHelper = !isStart && isPositive ? "+" +  coeff + t.variables[0].variable : coeff + t.variables[0].variable
 
         // sets what the content looks like 
         var helper = isHelper ? contentHelper : content_NonHelper
 
-        var number = isFraction || deom ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` 
+        var number = deom ? helper : `\\frac{${helper}}{${t.coefficients[0].denom}}` 
 
         tasks.push({
             id: `${side}-variable-x${index}`, 
@@ -61,7 +67,7 @@ export const displayExpression = (expression, side, isShowSign, isUnpack, isHelp
 
             // set content of what it should look like 
             var helper = isShowSign && isHelper ? contentHelper : content_NonHelper
-            var number = isFraction || deom ? helper : `\\frac{${helper}}{${c.denom}}`
+            var number = deom  ? helper : `\\frac{${helper}}{${c.denom}}`
             tasks.push({
                 id: `${side}-num-${index}`, 
                 // content: (!isStart && isPositive) || (isStart && hasTerm && isPositive) ? "+" + c.numer : c.numer,
