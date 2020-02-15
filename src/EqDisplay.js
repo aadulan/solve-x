@@ -11,6 +11,7 @@ import { Button } from "@material-ui/core";
 import Snackbar from './Snackbar'
 import AppBar from './Drawer'
 import Calculator from './Calculator'
+import TextBox from './textBox'
 
 import WorkingOut from './WorkingOut'
 
@@ -27,6 +28,7 @@ export default function EqDisplay(props) {
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
   const [level] = useState(props.location.state.level);
+  const [freeStyle] = useState(props.location.state.freeStyle)
   const [value, setValue] = useState('change')
   // const [ogEquation, setogEquation] = useState(equation)
   const [workingOut, setWorkingOut] = useState([])
@@ -50,6 +52,11 @@ export default function EqDisplay(props) {
 
   function changeVariant(a) {
     setVariant(a)
+  }
+
+  function changeEquation(a){
+    setEquation(a)
+    setWorkingOut([])
   }
 
 
@@ -79,6 +86,9 @@ export default function EqDisplay(props) {
     setOpen(false)
 
   }
+
+  
+  
 
 
 
@@ -125,8 +135,6 @@ export default function EqDisplay(props) {
 
     setCalculator([])
     setEnter(false);
-
-
   }
 
 
@@ -142,9 +150,6 @@ export default function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, 1)`;
   // }
 
-  // const changeMethod = event => {
-  //   setValue(event.target.value);
-  // };
 
   const changeMethod = s => {
     setValue(s);
@@ -170,42 +175,55 @@ export default function EqDisplay(props) {
 
   }
 
+  const textBox = () => (
+    <TextBox
+      onChangeEquation={changeEquation}
+      onChangeMessage={changeMessage}
+      onChangeVariant={changeVariant}
+      onChangeOpen={changeOpen}
+
+    />
+)
+
+const canCreate = freeStyle === 'true'
+const createEquation = canCreate ? textBox() : ''
+
 
   const onDragEnd = result => {
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
     const { destination, source } = result;
     
-    setWorkingOut([...workingOut, equation.toString()])
-
+    
     if (!destination) {
       return;
     }
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
-    ) {
-      return;
-    }
-    const newLhsCards = displayExpression(equation.lhs, "lhs", signs, unpack, helper)[0];
-    const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper)[0];
-    if (destination.droppableId !== source.droppableId) {
-      var movedTask = "";
-      var lhsOrigin = false;
-      var rhsOrigin = false;
-      if (value === 'change') {
-        lhsOrigin = source.droppableId === "eqspace-lhs";
-        rhsOrigin = source.droppableId === "eqspace-rhs";
+      ) {
+        return;
       }
-      if (destination.droppableId === "eqspace-rhs") {
-        movedTask = newLhsCards[source.index];
-      } else {
-        movedTask = newRhsCards[source.index];
-      }
-
-      const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
-      const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
-      var newExp = new algebra.Equation(newLhs, newRhs);
+      const newLhsCards = displayExpression(equation.lhs, "lhs", signs, unpack, helper)[0];
+      const newRhsCards = displayExpression(equation.rhs, "rhs", signs, unpack, helper)[0];
+      if (destination.droppableId !== source.droppableId) {
+        var movedTask = "";
+        var lhsOrigin = false;
+        var rhsOrigin = false;
+        if (value === 'change') {
+          lhsOrigin = source.droppableId === "eqspace-lhs";
+          rhsOrigin = source.droppableId === "eqspace-rhs";
+        }
+        if (destination.droppableId === "eqspace-rhs") {
+          movedTask = newLhsCards[source.index];
+        } else {
+          movedTask = newRhsCards[source.index];
+        }
+        
+        const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
+        const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
+        var newExp = new algebra.Equation(newLhs, newRhs);
+        setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
     }
   };
@@ -244,22 +262,13 @@ export default function EqDisplay(props) {
           />
           <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
         </Grid>
+        <Grid item container justify="flex-start" alignItems="flex-start" style={{marginTop:10, marginLeft:10}}>
+          {createEquation}
+        </Grid>
      
         <Grid item container justify="center"  alignItems="center" style={{marginTop:20, marginBottom:20}} >
+          
               <WorkingOut workingOut={workingOut}/>
-        
-              {/* <Card variant="outlined" >
-                <CardActionArea >
-                  <CardContent>
-                <Typography variant="h4">
-                <TeX math={`${prevEquation.toString()}`}/>
-                  
-                </Typography>
-
-                  </CardContent>
-
-                </CardActionArea>
-              </Card> */}
         </Grid>
         <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} >
           <Grid item container direction="row" justify="center" alignItems="center" style={{overflow:'hidden'}}>
