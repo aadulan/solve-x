@@ -14,7 +14,7 @@ const randRange = (min, max) => (
     Math.floor(Math.random() * (max - min + 1)) + min
 )
 
-export const equationGen = () => {
+export const equationGen = name => {
     const answer = Math.ceil(Math.random() * 10);
     // const randomNumber = Math.ceil(Math.random() * 10) + 1 // between 2 and 11
     const randomNumber = randRange(2, 11);
@@ -22,10 +22,19 @@ export const equationGen = () => {
     const splitConstant = randRange(2,constant);
     const splitTerm = randRange(2,randomNumber);
 
-    if (Math.random() >= 0.5){
-        return `${randomNumber + splitTerm} * x +${splitConstant} = ${splitTerm} * x + ${constant+splitConstant}`
-    }else{
-        return `${randomNumber} * x +${splitConstant} = ${constant+splitConstant}`
+    if( name === "positive" ){
+        if (Math.random() >= 0.5){
+            return `${randomNumber + splitTerm} * x +${splitConstant} = ${splitTerm} * x + ${constant+splitConstant}`
+        }else{
+            return `${randomNumber} * x +${splitConstant} = ${constant+splitConstant}`
+        }
+    } else{
+        if (Math.random() >= 0.5){
+            return `-${randomNumber + splitTerm} * x +${splitConstant} = -${splitTerm} * x + ${constant+splitConstant}`
+        }else{
+            return `${-randomNumber} * x -${splitConstant} = ${constant-splitConstant}`
+        }
+
     }
         
     // const square = randomNumber * randomNumber
