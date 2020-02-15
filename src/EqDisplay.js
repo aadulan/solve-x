@@ -223,6 +223,7 @@ const createEquation = canCreate ? textBox() : ''
         const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
         const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
         var newExp = new algebra.Equation(newLhs, newRhs);
+        // console.log(newExp)
         setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
     }
@@ -234,14 +235,23 @@ const createEquation = canCreate ? textBox() : ''
     if (side === "rhs") {
       rhs = equation.rhs.simplify();
       lhs = equation.lhs;
+      if (rhs.terms.length === 0 && rhs.constants.length === 0){
+        rhs = new algebra.Expression("0")
+      }
 
     } else {
-      rhs = equation.rhs
+      rhs = equation.rhs;
       lhs = equation.lhs.simplify();
+
+      if (lhs.terms.length === 0 && lhs.constants.length === 0){
+        lhs = new algebra.Expression("0")
+      }
     }
     var newExp = new algebra.Equation(lhs, rhs);
     setWorkingOut([...workingOut, equation.toString()])
     setEquation(newExp);
+    // console.log(newExp)
+    // console.log(newExp.toString())
   }
 
   return (
