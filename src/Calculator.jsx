@@ -47,8 +47,6 @@ export default function Calculator(props) {
     };
 
 
-
-
     const emptyText = () => {
         setNumber("")
         setSign("")
