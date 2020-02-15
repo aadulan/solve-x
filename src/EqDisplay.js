@@ -262,7 +262,7 @@ export default function EqDisplay(props) {
               </Card> */}
         </Grid>
         <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} >
-          <Grid item container direction="row" justify="center" alignItems="center">
+          <Grid item container direction="row" justify="center" alignItems="center" style={{overflow:'hidden'}}>
             <DragDropContext
               onDragEnd={onDragEnd}
             // onDragStart={onDragStart}
