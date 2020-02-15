@@ -19,6 +19,10 @@ export default function TextBox(props){
                 throw new Error("Not an Equation")
             }
             var term = ""
+            if (!(e.lhs.terms.length < 1 || e.rhs.terms.length < 1)){
+                throw new Error("No terms")
+            }
+
             e.lhs.terms.forEach((t,index) => {
                 if(t.variables[0].degree > 1){
                     throw new Error("Not a Linear Equation")
@@ -56,7 +60,7 @@ export default function TextBox(props){
             props.onChangeOpen(true)
           } catch(err) {
               console.log(err)
-              props.onChangeMessage("Wrong part of equation")
+              props.onChangeMessage("Wrong input")
             props.onChangeVariant("error")
             props.onChangeOpen(true)
           }
