@@ -17,7 +17,9 @@ export default function Start(props){
                 <Link 
                     to={{
                         pathname: "/solve",
-                        state: { level: 'easy' }
+                        state: { level: 'easy' ,
+                                freeStyle:'false'
+                            }
                       }}
                 >
                     <LevelButton image='level-1.jpg'   title='Level 1' />
@@ -27,14 +29,31 @@ export default function Start(props){
             <Link 
                     to={{
                         pathname: "/solve",
-                        state: { level: 'hard' }
+                        state: { level: 'hard',
+                                freeStyle:'false'
+                    }
                       }}
                 >
                     <LevelButton image='level-2.jpg'  title='Level 2'/>
                 </Link>
             </Grid>
+            <Grid  item>
+            <Link 
+                    to={{
+                        pathname: "/solve",
+                        state: { level: 'hard',
+                                freeStyle:'true'
+                                                }
+
+                      }}
+                >
+                    <LevelButton image='level-2.jpg'  title='Free Style'/>
+                </Link>
+            </Grid>
+
                 </Grid>
 
+                      
         </Grid>
     )
 }
