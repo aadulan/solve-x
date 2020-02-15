@@ -121,8 +121,8 @@ export default function EqDisplay(props) {
         rhs = equation.rhs.subtract(Number(calculator[1]), false)
       }
       else if (calculator[0] === 'divide') {
-        lhs = equation.lhs.divide(Number(calculator[1]))
-        rhs = equation.rhs.divide(Number(calculator[1]))
+        lhs = equation.lhs.divide(Number(calculator[1]), false)
+        rhs = equation.rhs.divide(Number(calculator[1]), false)
       }
       setMessage("".concat(calculator[0], " by ", calculator[1]))
       setVariant("info")
