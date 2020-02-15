@@ -1,0 +1,85 @@
+import React, { useState } from "react";
+import { TextField, Button, Grid } from "@material-ui/core";
+import algebra from "algebra.js";
+
+
+
+
+export default function TextBox(props){
+    const [eq, setEq] = useState("")
+
+    const handleChange = event => {
+        setEq(event.target.value);
+    }
+
+    const submitEquation = () => {
+        try {
+            const e = algebra.parse(eq)
+            if (e.rhs == null) {
+                throw new Error("Not an Equation")
+            }
+            var term = ""
+            e.lhs.terms.forEach((t,index) => {
+                if(t.variables[0].degree > 1){
+                    throw new Error("Not a Linear Equation")
+                }
+                if (term === ""){
+                    term = t.variables[0].variable
+                    console.log(term)
+                }
+                if (t.variables[0].variable !== term){
+                    throw new Error("Cannot have more than one Variable")
+                }
+
+                // console.log(t.variables[0].degree)
+                
+            })
+
+            e.rhs.terms.forEach((t,index) => {
+                if(t.variables[0].degree > 1){
+                    throw new Error("Not a Linear Equation")
+                }
+                if (term === ""){
+                    term = t.variables[0].variable
+                    console.log(term)
+                }
+                if (t.variables[0].variable !== term){
+                    throw new Error("Cannot have more than one Variable")
+                }
+
+            })
+
+            props.onChangeEquation(e)
+            // console.log(e)
+            setEq("")
+            props.onChangeMessage("Equation Changed")
+            props.onChangeVariant("success")
+            props.onChangeOpen(true)
+          } catch(err) {
+              console.log(err)
+              props.onChangeMessage("Wrong part of equation")
+            props.onChangeVariant("error")
+            props.onChangeOpen(true)
+          }
+    }
+
+    return(
+        <Grid container alignItems="center" spacing={2}>
+            <Grid item>
+                <TextField 
+                    id="eq" 
+                    label="Enter Equation Here" 
+                    variant="filled" 
+                    value={eq}
+                    onChange={handleChange}
+        
+                />
+            </Grid>
+            <Grid item>
+                <Button onClick={() => submitEquation()} variant="outlined" color="primary">
+                    Enter
+                </Button>
+            </Grid>
+        </Grid>
+    )
+}
