@@ -35,7 +35,7 @@ export default function EqCard(props) {
                             className={classes.userSelect} 
                             color='primary' 
                             align='center' 
-                            variant='h2'>
+                            variant='h3'>
                                 <TeX math={`${props.task.content}`}/>
                         </Typography>
 
