@@ -18,7 +18,7 @@ import WorkingOut from './WorkingOut'
 var abs = require('math-abs');
 
 export default function EqDisplay(props) {
-  const [equation, setEquation] = useState(algebra.parse(equationGen()));
+  const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
