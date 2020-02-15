@@ -25,15 +25,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    minWidth: 300,
+    minWidth: 250,
     width: '100%',
   },
   image: {
     position: 'relative',
-    height: 200,
+    height: 150,
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
-      height: 150,
+      height: 100,
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
         opacity: 0,
       },
       '& $imageTitle': {
-        border: '4px solid currentColor',
+        border: '3px solid currentColor',
       },
     },
   },
@@ -81,14 +81,14 @@ const useStyles = makeStyles(theme => ({
   },
   imageTitle: {
     position: 'relative',
-    padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(1) + 4}px`,
   },
   imageMarked: {
     height: 3,
     width: 18,
     backgroundColor: theme.palette.common.white,
     position: 'absolute',
-    bottom: -2,
+    bottom: 5,
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
@@ -120,7 +120,7 @@ export default function LevelButton(props) {
           <span className={classes.imageButton}>
             <Typography
               component="span"
-              variant="h3"
+              variant="h5"
               color="inherit"
               className={classes.imageTitle}
             >
