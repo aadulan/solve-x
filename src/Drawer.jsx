@@ -1,12 +1,10 @@
-// import List from '@material-ui/core/List';
-// import Divider from '@material-ui/core/Divider';
-// import ListItem from '@material-ui/core/ListItem';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MethodMenu from './MethodMenu'
 import HelperPop from './HelperPop'
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -90,7 +88,15 @@ export default function TemporaryDrawer(props) {
         <div className={classes.root}>
         <AppBar position="static">
         <Toolbar>
-          <img  src="operations.svg" alt="logo" style={{width:50, height:50 ,marginRight:"auto"}} ></img>
+          <Link
+          to={{
+            pathname: "/",
+          }}
+          style={{marginRight:"auto"}}
+          >
+            <img  src="operations.svg" alt="logo" style={{width:50, height:50 ,marginRight:"auto"}} ></img>
+          </Link>
+          
             {/* <IconButton  onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
             </IconButton> */}
