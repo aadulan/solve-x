@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid } from "@material-ui/core";
 import LevelButton from './LevelButton'
 import { Link } from "react-router-dom";
+import {withRouter} from 'react-router';
+// import EqDisplay from "./EqDisplay"
 
 const levels = [{
         title: "Positive", 
@@ -41,7 +43,7 @@ const levels = [{
     }
 ]
 
-export default function Start(props){
+function Start(props){
     return (
         <Grid style={{height:"100%"}} direction='column' container justify='center' alignItems='flex-start'>
             <Grid direction='column' container item alignItems='center'>
@@ -50,7 +52,7 @@ export default function Start(props){
             <hr/>
             <Grid style={{marginTop:5}} direction='row' container item justify='center' alignItems='center' spacing={8}> 
                 {levels.map((e, index) => (
-                    <Grid  item>
+                    <Grid  key={index}  item>
                     <Link 
                         to={{
                             pathname: "/solve",
@@ -58,7 +60,7 @@ export default function Start(props){
                                 level: e.level,
                                 freeStyle:e.freeStyle,
                                 name: e.name,
-                                key:index
+                                
                             }
                           }}
                     >
@@ -70,3 +72,5 @@ export default function Start(props){
         </Grid>
     )
 }
+
+export default withRouter(Start)

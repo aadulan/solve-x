@@ -12,12 +12,13 @@ import Snackbar from './Snackbar'
 import AppBar from './Drawer'
 import Calculator from './Calculator'
 import TextBox from './textBox'
+import {withRouter} from 'react-router';
 
 import WorkingOut from './WorkingOut'
 
 var abs = require('math-abs');
 
-export default function EqDisplay(props) {
+function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
@@ -367,3 +368,4 @@ const createEquation = canCreate ? textBox() : ''
     </React.Fragment>
   );
 }
+export default withRouter(EqDisplay)
