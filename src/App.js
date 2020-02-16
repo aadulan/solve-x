@@ -12,7 +12,7 @@ export default function App(props) {
         <div>
           <Route exact path="/" component={withRouter(Start)} />
           <Route path="/solve" component={withRouter(EqDisplay)}/>
-          <Route component={withRouter(Start)}></Route>
+          {/* <Route component={withRouter(Start)}></Route> */}
         </div>
      </BrowserRouter>
   )
