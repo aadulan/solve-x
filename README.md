@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[![CircleCI](https://circleci.com/gh/aadulan/solve-x/tree/master.svg?style=svg&circle-token=4e80ab99d5ef737896f6d840388b166f954dc6f1)](https://circleci.com/gh/aadulan/solve-x/tree/master)
+
 ## Available Scripts
 
 In the project directory, you can run:
