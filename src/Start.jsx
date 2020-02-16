@@ -57,7 +57,8 @@ export default function Start(props){
                             state: { 
                                 level: e.level,
                                 freeStyle:e.freeStyle,
-                                name: e.name
+                                name: e.name,
+                                key:index
                             }
                           }}
                     >
