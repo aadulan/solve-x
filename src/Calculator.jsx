@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Grid, CardContent, Card, CardHeader, Fab } from '@material-ui/core';
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Grid, CardContent, Card, Fab } from '@material-ui/core';
 import Draggable from 'react-draggable';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -11,9 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
+import CalculatorButton from './CalculatorButton';
+
 const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: 350,
+        width:250
+        // maxWidth: 300,
     },
     media: {
         height: 0,
@@ -34,6 +36,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+let buttons = ["7","8","9","÷","4","5","6","×","1","2","3","-","empty","0","cal","+"]
+
 
 export default function Calculator(props) {
     const classes = useStyles();
@@ -45,7 +49,6 @@ export default function Calculator(props) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
 
     const emptyText = () => {
         setNumber("")
@@ -95,17 +98,33 @@ export default function Calculator(props) {
         }
     }
 
+    const funcs = {
+        number: n => addNumber(n),
+        sign: s => addSign(s),
+        calc: () => calculateExpression(),
+        empty: () => emptyText(),
+    }
+
+    const buttonToFunc = val => {
+        if ("0123456789".indexOf(val) !== -1) {
+            return funcs.number;
+        } else if ("+-×÷".indexOf(val) !== -1) {
+            return funcs.sign
+        } else if (val === "empty"){
+            return funcs.empty
+        } else {
+            return funcs.calc
+        }
+    }
+
     return (
         <Draggable>
             <Card className={classes.root}>
-                {/* <Typography>
-                Equation Changer
-                </Typography> */}
                 <CardActions disableSpacing>
-                <DragIndicatorIcon/>
-                <CardHeader
-                    title="Equation Changer"
-                />
+                    <DragIndicatorIcon />
+                    <Typography variant="subtitle1">
+                        Equation Changer
+                </Typography>
                     <IconButton
                         className={clsx(classes.expand, {
                             [classes.expandOpen]: expanded,
@@ -118,93 +137,31 @@ export default function Calculator(props) {
                     </IconButton>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
-
-
                     <CardContent>
-
                         <Grid container direction='column' justify='center' align='center'>
                             <Grid container direction='row'>
                                 <Card style={{ width: '100%' }}>
                                     <CardContent>
-                                        {/* <Grid container direction='column' justify='center' align='center'> */}
                                         <Grid container direction='row' justify='flex-start' align='center'>
                                             <Fab style={{ marginRight: 20 }} onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
-                                                ±
-                                        </Fab>
-                                            {/* <Grid item> */}
+                                                <img src="plus-minus.svg" alt="sign" style={{ maxWidth: 20 }} ></img>
+                                            </Fab>
                                             <Typography style={{ marginRight: "auto" }} align="left" variant="h6">
                                                 {isPositive}
                                                 {number}
                                             </Typography>
-                                            {/* </Grid> */}
                                             <Typography align="right" variant="h6">
                                                 {sign}
                                             </Typography>
                                         </Grid>
-
-                                        {/* </Grid> */}
                                     </CardContent>
                                 </Card>
                             </Grid>
-
-                            <Grid container direction='row'>
-                                <ButtonGroup
-                                    fullWidth={true}
-                                    size="large"
-                                    color='primary'
-                                >
-                                    <Button onClick={() => addNumber("7")}>7</Button>
-                                    <Button onClick={() => addNumber("8")}>8</Button>
-                                    <Button onClick={() => addNumber("9")}>9</Button>
-                                    <Button onClick={() => addSign("÷")}> ÷ </Button>
-                                </ButtonGroup>
-                            </Grid>
-                            <Grid container direction='row'>
-                                <ButtonGroup
-                                    fullWidth={true}
-                                    size="large"
-                                    color='primary'
-                                >
-                                    <Button onClick={() => addNumber("4")}>4</Button>
-                                    <Button onClick={() => addNumber("5")}>5</Button>
-                                    <Button onClick={() => addNumber("6")}>6</Button>
-                                    <Button onClick={() => addSign("×")}>×</Button>
-                                </ButtonGroup>
-                            </Grid>
-                            <Grid container direction='row'>
-                                <ButtonGroup
-                                    fullWidth={true}
-                                    size="large"
-                                    color='primary'
-                                >
-                                    <Button onClick={() => addNumber("1")}>1</Button>
-                                    <Button onClick={() => addNumber("2")}>2</Button>
-                                    <Button onClick={() => addNumber("3")}>3</Button>
-                                    <Button onClick={() => addSign("-")}>-</Button>
-                                </ButtonGroup>
-                            </Grid>
-                            <Grid container direction='row'>
-                                <ButtonGroup
-                                    fullWidth={true}
-                                    size="large"
-                                    color='primary'
-                                >
-                                    <Button onClick={() => emptyText()} >Clear</Button>
-                                    <Button value="0" onClick={() => addNumber("0")}>0</Button>
-                                    <Button value="+" onClick={() => addSign("+")}>+</Button>
-                                </ButtonGroup>
-
-                            </Grid>
-                            <Grid container direction='row'>
-                                <ButtonGroup
-                                    fullWidth={true}
-                                    size="large"
-                                    color='primary'
-                                >
-                                    <Button onClick={() => calculateExpression()}>Enter</Button>
-                                </ButtonGroup>
-
-                            </Grid>
+                            <Grid style={{marginTop:4}} container direction='row'>
+                                {buttons.map((val) => (
+                                    <CalculatorButton val={val} cb={buttonToFunc(val)} />
+                                ))}
+                                </Grid>
                         </Grid>
                     </CardContent>
                 </Collapse>
