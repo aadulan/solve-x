@@ -83,7 +83,7 @@ function EqDisplay(props) {
   }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length]);
 
   function clickNext() {
-    setEquation(algebra.parse(equationGen()))
+    setEquation(algebra.parse(equationGen(props.location.state.name)))
     setWorkingOut([])
     setOpen(false)
 
@@ -159,11 +159,6 @@ function EqDisplay(props) {
   const changeMethod = s => {
     setValue(s);
   };
-
-  // const canCombine = equation =>  !(equation.constants.length > 1 || equation.terms.length > 1) 
-
-                                // (equation.constants.length === 1 && equation.constants[0].denom !== 1) || 
-                                // (equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
 
 const canCombine = (equation, divide) => 
 // console.log(equation)
@@ -337,12 +332,12 @@ const createEquation = canCreate ? textBox() : ''
           <Grid container item direction="row" justify="space-around" alignItems="center" >
             <Grid item>
               <Button disabled={canCombine(equation.lhs, divideLeft)}  onClick={() => combineEquation('lhs')} variant="contained" color="primary">
-                Simplify
+                Simplify Left
             </Button>
             </Grid>
             <Grid item>
               <Button disabled={canCombine(equation.rhs, divideRight)} onClick={() => combineEquation('rhs')} variant="contained" color="primary" >
-                Simplify
+                Simplify Right
             </Button>
             </Grid>
           </Grid>
