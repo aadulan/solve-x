@@ -32,8 +32,9 @@ export default function EqCard(props) {
                 >
                     <CardContent>
                         <Typography 
+                        style={{color:"#424242"}}
                             className={classes.userSelect} 
-                            color='primary' 
+                            // color='primary' 
                             align='center' 
                             variant='h3'>
                                 <TeX math={`${props.task.content}`}/>
