@@ -6,6 +6,7 @@ import MethodMenu from './MethodMenu'
 import HelperPop from './HelperPop'
 import { Link } from "react-router-dom";
 import Modal from "./Modal"
+import { Divider } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -14,7 +15,6 @@ const useStyles = makeStyles({
       },
       menuButton: {
           marginRight: 5
-        // marginRight: theme.spacing(2),
       },
       title: {
         flexGrow: 1,
@@ -46,11 +46,17 @@ export default function TemporaryDrawer(props) {
           </Link>
              <MethodMenu 
              onChangeMethod={props.onChangeMethod}/>
+             <div style={{height:"auto", width:20, alignSelf:"stretch", display:"flex"}}>
+              <Divider style={{height:"60%", margin:"auto", backgroundColor:"white"}}  orientation="vertical"/>
+             </div>
              <HelperPop 
              onChangeUnpack={props.onChangeUnpack}
             onChangeSigns={props.onChangeSigns}
             onChangeHelper={props.onChangeHelper}
             />
+             <div style={{height:"auto", width:20, alignSelf:"stretch", display:"flex"}}>
+              <Divider style={{height:"60%", margin:"auto", backgroundColor:"white"}}  orientation="vertical"/>
+             </div>
             <Modal/>
         </Toolbar>
         </AppBar>
