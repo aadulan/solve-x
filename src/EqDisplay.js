@@ -311,7 +311,7 @@ const createEquation = canCreate ? textBox() : ''
             </DragDropContext>
 
           </Grid>
-          <Grid container item direction="row" justify="space-around" alignItems="center" >
+          <Grid container item direction="row" justify="space-evenly" alignItems="center" >
             <Grid item>
               <Button disabled={canCombine(equation.lhs, divideLeft)}  onClick={() => combineEquation('lhs')} variant="contained" color="primary">
                 Simplify Left
