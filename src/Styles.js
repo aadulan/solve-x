@@ -27,7 +27,7 @@ export const useStyles = makeStyles({
     },
     equal: {
         borderRadius: '50em',
-        margin: '0.25em',
+        margin: '0.2em',
         width: 100, 
         height: 100,
         fontFamily: '"Fira Code"',
