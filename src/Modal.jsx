@@ -5,10 +5,10 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 import { IconButton, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import ModalSection from './ModalSection';
 import TeX from '@matejmazur/react-katex';
 import Table from './Table'
+import InfoIcon from '@material-ui/icons/Info';
 
 const info = [
   {
@@ -103,7 +103,7 @@ export default function SpringModal() {
   return (
     <div>
       <IconButton style={{color:"white"}} onClick={handleOpen}>
-        <HelpOutlineIcon />
+        <InfoIcon/>
       </IconButton>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -121,8 +121,11 @@ export default function SpringModal() {
             <Card style={{maxWidth:400, }}>
             <CardActionArea >
               <Typography variant="h4" align="center"  style={{paddingBottom:0, paddingTop:15}}>
-                Tutorial
+                Info
               </Typography>
+              {/* <IconButton onClick={handleClose}>
+                <CloseIcon/>
+              </IconButton> */}
             <CardContent style={{padding:"2em", paddingTop:0}}>
              {info.map((e, index) => (
                <ModalSection 
