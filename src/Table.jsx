@@ -1,16 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DoneIcon from '@material-ui/icons/Done';
 import { Grid, Divider, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles({
-    table: {
-        maxWidth: 400,
-    },
-});
 
 const symbols = [
     {
@@ -38,7 +32,6 @@ const symbols = [
 
 
 export default function SimpleTable() {
-    const classes = useStyles();
     return (
         <Grid container>
             {symbols.map((row, index) => (
