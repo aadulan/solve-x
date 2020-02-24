@@ -111,18 +111,22 @@ function EqDisplay(props) {
       if (calculator[0] === 'multiply') {
         lhs = equation.lhs.multiply(Number(calculator[1]))
         rhs = equation.rhs.multiply(Number(calculator[1]))
+        setMessage("".concat(calculator[0], " by ", calculator[1]))
       } else if (calculator[0] === 'add') {
         lhs = equation.lhs.add(Number(calculator[1]), false)
         rhs = equation.rhs.add(Number(calculator[1]), false)
+        setMessage("".concat(calculator[0], " ", calculator[1]))
+
       } else if (calculator[0] === 'subtract') {
         lhs = equation.lhs.subtract(Number(calculator[1]), false)
         rhs = equation.rhs.subtract(Number(calculator[1]), false)
+        setMessage("".concat(calculator[0], " ", calculator[1]))
       }
       else if (calculator[0] === 'divide') {
         lhs = equation.lhs.divide(Number(calculator[1]), false)
         rhs = equation.rhs.divide(Number(calculator[1]), false)
+        setMessage("".concat(calculator[0], " by ", calculator[1]))
       }
-      setMessage("".concat(calculator[0], " by ", calculator[1]))
       setVariant("info")
       setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
@@ -279,10 +283,9 @@ const createEquation = canCreate ? textBox() : ''
         </Grid>
      
         <Grid item container justify="center"  alignItems="center" style={{marginTop:20, marginBottom:20}} >
-          
               <WorkingOut workingOut={workingOut}/>
         </Grid>
-        <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} >
+        {/* <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} > */}
           <Grid item container direction="row" justify="center" alignItems="center" style={{overflow:'hidden'}}>
             <DragDropContext
               onDragEnd={onDragEnd}
@@ -311,7 +314,7 @@ const createEquation = canCreate ? textBox() : ''
             </DragDropContext>
 
           </Grid>
-          <Grid container item direction="row" justify="space-evenly" alignItems="center" >
+          <Grid style={{ margin:20}} container item direction="row" justify="space-evenly" alignItems="center" >
             <Grid item>
               <Button disabled={canCombine(equation.lhs, divideLeft)}  onClick={() => combineEquation('lhs')} variant="contained" color="primary">
                 Simplify Left
@@ -323,14 +326,14 @@ const createEquation = canCreate ? textBox() : ''
             </Button>
             </Grid>
           </Grid>
-          <Grid direction="row" container item justify="center" alignItems="center" >
+          <Grid style={{ margin:20}} direction="row" container item justify="center" alignItems="center" >
             <Button onClick={() => clickNext()} variant="contained" color="primary">
               Next
           </Button>
           </Grid>
 
         </Grid>
-      </Grid>
+      {/* </Grid> */}
       <div style={{display:'block', position:'fixed', top: 200, right: 50, height:0, cursor:'move'}}>
 
         <Calculator
