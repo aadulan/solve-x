@@ -7,14 +7,14 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    minWidth: 250,
-    width: '100%',
+    // minWidth: 250,
+    // width: '100%',
   },
   image: {
     position: 'relative',
     height: 150,
     [theme.breakpoints.down('xs')]: {
-      width: '100% !important', // Overrides inline-style
+      // width: '100% !important', // Overrides inline-style
       height: 100,
     },
     '&:hover, &$focusVisible': {
