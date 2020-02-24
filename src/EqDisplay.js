@@ -62,8 +62,6 @@ function EqDisplay(props) {
   }
 
 
-
-
   useEffect(() => {
     if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
       if (equation.rhs.terms[0].coefficients[0].numer === 1) {
@@ -88,11 +86,6 @@ function EqDisplay(props) {
     setOpen(false)
 
   }
-
-  
-  
-
-
 
   if (enter) {
     var lhs = null
@@ -134,14 +127,12 @@ function EqDisplay(props) {
       setEquation(newExp);
       setDivideLeft(true)
       setDivideRight(true)
-      // console.log(newExp)
 
     }
 
     setCalculator([])
     setEnter(false);
   }
-
 
   // const onDragStart = event => {
   //   event.preventDefault()
@@ -161,19 +152,10 @@ function EqDisplay(props) {
   };
 
 const canCombine = (equation, divide) => 
-// console.log(equation)
   !(
     equation.constants.length > 1 
     || equation.terms.length > 1 ||(equation.constants.length === 1 && divide) || (equation.terms.length === 1 && divide) 
-    // || (equation.constants.length === 1 && equation.constants[0].denom !== 1) 
-    // || (equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
     )
-  // || !(equation.constants.length === 1 && equation.constants[0].denom !== 1)
-  // || !(equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
-
-
-
-
 
   const handleSignChange = event => {
     setSigns(event.target.checked);
@@ -239,7 +221,6 @@ const createEquation = canCreate ? textBox() : ''
         const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
         const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
         var newExp = new algebra.Equation(newLhs, newRhs);
-        // console.log(newExp)
         setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
       
@@ -270,8 +251,6 @@ const createEquation = canCreate ? textBox() : ''
     var newExp = new algebra.Equation(lhs, rhs);
     setWorkingOut([...workingOut, equation.toString()])
     setEquation(newExp);
-    // console.log(newExp)
-    // console.log(newExp.toString())
   }
 
   return (
@@ -348,7 +327,6 @@ const createEquation = canCreate ? textBox() : ''
           </Grid>
 
         </Grid>
-        {/* </Grid> */}
       </Grid>
       <div style={{display:'block', position:'fixed', top: 200, right: 50, height:0, cursor:'move'}}>
 
