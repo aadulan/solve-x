@@ -1,15 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: 150,
+    maxWidth: 150 ,
+    textOverflow:"ellipsis", 
+    overflow: "hidden", 
+    whiteSpace: "nowrap"
   },
 }));
 
@@ -39,22 +40,19 @@ export default function SimpleListMenu(props) {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="Device settings">
-        <ListItem
-          button
-          aria-haspopup="true"
-          onClick={handleClickListItem}
-        >
-          <ListItemText align="center" style={{textOverflow:"ellipsis", overflow: "hidden", whiteSpace: "nowrap"}} 
-          primary={options[selectedIndex][0]} />
-        </ListItem>
-      </List>
+      <Button 
+        endIcon={<ExpandMoreIcon/>} 
+        onClick={handleClickListItem} 
+        style={{justifyContent:"left",maxWidth:150, textOverflow:"ellipsis", overflow: "hidden", whiteSpace: "nowrap", color:"white"}}>
+          Method
+      </Button>
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        style={{paddingTop:0, paddingBottom:0}}
       >
         {options.map((option, index) => (
           <MenuItem
@@ -62,7 +60,7 @@ export default function SimpleListMenu(props) {
             selected={index === selectedIndex}
             onClick={event => handleMenuItemClick(event, index)}
           >
-               {option[0]}
+               {option[0]} 
           </MenuItem>
         ))}
       </Menu>
