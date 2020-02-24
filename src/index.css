@@ -19,8 +19,10 @@ body {
 
 div#root {
   width: 100%;
-  height: 100%;
-  /* display: flex; */
+  /* height: 100%; */
+  display: flex;
+  overflow-y: scroll;
+  overflow-x: hidden;
   margin: auto;
 }
 
@@ -51,7 +53,32 @@ code {
 } */
 
 
+#equal{
+  border-radius: 50em;
+  margin: 0.2em;
+  width: 100px;
+  height: 100px;
+  font-family: "Fira Code";
+  display: flex;
+  user-select: none
+}
+
 
 hr{
   background-color: #888;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 1024px) {
+  .katex {
+    font-size: 0.8em !important;
+  }
+
+  #equal{
+    margin:0;
+  }
+
+
+
+}
+
