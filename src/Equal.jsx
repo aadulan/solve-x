@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { useStyles } from './Styles'
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
 
