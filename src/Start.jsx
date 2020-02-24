@@ -1,9 +1,8 @@
 import React from 'react';
-import { Grid } from "@material-ui/core";
+import { Grid, Divider } from "@material-ui/core";
 import LevelButton from './LevelButton'
 import { Link } from "react-router-dom";
 import {withRouter} from 'react-router';
-// import EqDisplay from "./EqDisplay"
 
 const levels = [{
         title: "Positive", 
@@ -13,7 +12,7 @@ const levels = [{
         name: "positive"
     }, {
         title: "Negative", 
-        image: "level-1.jpg", 
+        image: "level-3.jpg", 
         level:"easy", 
         freeStyle:"false",
         name: "negative"
@@ -27,7 +26,7 @@ const levels = [{
 
     },{
         title: "Negative and Fractions", 
-        image: "level-1.jpg", 
+        image: "level-4.jpg", 
         level:"hard", 
         freeStyle:"false",
         name: "negative"
@@ -35,7 +34,7 @@ const levels = [{
     },
     {
         title: "Free Style", 
-        image: "level-1.jpg", 
+        image: "level-5.jpg", 
         level:"hard", 
         freeStyle:"true",
         name: "negative"
@@ -45,14 +44,16 @@ const levels = [{
 
 function Start(props){
     return (
-        <Grid style={{height:"100%"}} direction='column' container justify='center' alignItems='flex-start'>
+        <Grid style={{maxWidth: 800, margin:"auto"}} direction='column' container justify='center'>
             <Grid direction='column' container item alignItems='center'>
                 <img src="logo.svg" alt="logo" style={{width:250}} ></img>
             </Grid>
-            <hr/>
-            <Grid style={{marginTop:5}} direction='row' container item justify='center' alignItems='center' spacing={8}> 
+            <Grid item>
+                <Divider />
+            </Grid>
+            <Grid item container style={{marginTop:20}} direction='row' justify='center' alignItems='center' > 
                 {levels.map((e, index) => (
-                    <Grid  key={index}  item>
+                    <Grid  key={index} item xs={12} sm={6} md={4} style={{padding:8, paddingTop:0}}>
                     <Link 
                         to={{
                             pathname: "/solve",
@@ -60,7 +61,6 @@ function Start(props){
                                 level: e.level,
                                 freeStyle:e.freeStyle,
                                 name: e.name,
-                                
                             }
                           }}
                     >

@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { TextField, Button, Grid } from "@material-ui/core";
 import algebra from "algebra.js";
 
-
-
-
 export default function TextBox(props){
     const [eq, setEq] = useState("")
 
@@ -29,14 +26,10 @@ export default function TextBox(props){
                 }
                 if (term === ""){
                     term = t.variables[0].variable
-                    // console.log(term)
                 }
                 if (t.variables[0].variable !== term){
                     throw new Error("Cannot have more than one Variable")
                 }
-
-                // console.log(t.variables[0].degree)
-                
             })
 
             e.rhs.terms.forEach((t,index) => {
@@ -45,7 +38,6 @@ export default function TextBox(props){
                 }
                 if (term === ""){
                     term = t.variables[0].variable
-                    // console.log(term)
                 }
                 if (t.variables[0].variable !== term){
                     throw new Error("Cannot have more than one Variable")
@@ -60,7 +52,6 @@ export default function TextBox(props){
             props.onChangeVariant("success")
             props.onChangeOpen(true)
           } catch(err) {
-            //   console.log(err)
               props.onChangeMessage("Wrong input")
             props.onChangeVariant("error")
             props.onChangeOpen(true)
@@ -76,7 +67,6 @@ export default function TextBox(props){
                     variant="filled" 
                     value={eq}
                     onChange={handleChange}
-        
                 />
             </Grid>
             <Grid item>

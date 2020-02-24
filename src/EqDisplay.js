@@ -62,37 +62,33 @@ function EqDisplay(props) {
   }
 
 
-
-
   useEffect(() => {
     if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
-      if (equation.rhs.terms[0].coefficients[0].numer === 1) {
-        setMessage("You solved the equation!")
-        setVariant("success")
-        setOpen(true)
+      if (equation.rhs.terms[0].coefficients[0].numer === 1 && equation.lhs.constants[0].numer ===  equation.solveFor("x").numer) {
+        // console.log(equation.lhs.constants[0].numer ===  equation.solveFor("x").numer)
+        // if(equation.lhs.constants[0].subtract(equation.solveFor("x")).numer === 0){
+          setMessage("You solved the equation!")
+          setVariant("success")
+          setOpen(true)
+        // }
       }
 
     } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
-      if (equation.lhs.terms[0].coefficients[0].numer === 1) {
+      if (equation.lhs.terms[0].coefficients[0].numer === 1 && equation.rhs.constants[0].numer ===  equation.solveFor("x").numer) {
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
       }
     }
 
-  }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length]);
+  }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length, equation]);
 
   function clickNext() {
-    setEquation(algebra.parse(equationGen()))
+    setEquation(algebra.parse(equationGen(props.location.state.name)))
     setWorkingOut([])
     setOpen(false)
 
   }
-
-  
-  
-
-
 
   if (enter) {
     var lhs = null
@@ -115,18 +111,22 @@ function EqDisplay(props) {
       if (calculator[0] === 'multiply') {
         lhs = equation.lhs.multiply(Number(calculator[1]))
         rhs = equation.rhs.multiply(Number(calculator[1]))
+        setMessage("".concat(calculator[0], " by ", calculator[1]))
       } else if (calculator[0] === 'add') {
         lhs = equation.lhs.add(Number(calculator[1]), false)
         rhs = equation.rhs.add(Number(calculator[1]), false)
+        setMessage("".concat(calculator[0], " ", calculator[1]))
+
       } else if (calculator[0] === 'subtract') {
         lhs = equation.lhs.subtract(Number(calculator[1]), false)
         rhs = equation.rhs.subtract(Number(calculator[1]), false)
+        setMessage("".concat(calculator[0], " ", calculator[1]))
       }
       else if (calculator[0] === 'divide') {
         lhs = equation.lhs.divide(Number(calculator[1]), false)
         rhs = equation.rhs.divide(Number(calculator[1]), false)
+        setMessage("".concat(calculator[0], " by ", calculator[1]))
       }
-      setMessage("".concat(calculator[0], " by ", calculator[1]))
       setVariant("info")
       setOpen(true)
       var newExp = new algebra.Equation(lhs, rhs);
@@ -134,14 +134,12 @@ function EqDisplay(props) {
       setEquation(newExp);
       setDivideLeft(true)
       setDivideRight(true)
-      // console.log(newExp)
 
     }
 
     setCalculator([])
     setEnter(false);
   }
-
 
   // const onDragStart = event => {
   //   event.preventDefault()
@@ -160,25 +158,11 @@ function EqDisplay(props) {
     setValue(s);
   };
 
-  // const canCombine = equation =>  !(equation.constants.length > 1 || equation.terms.length > 1) 
-
-                                // (equation.constants.length === 1 && equation.constants[0].denom !== 1) || 
-                                // (equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
-
 const canCombine = (equation, divide) => 
-// console.log(equation)
   !(
     equation.constants.length > 1 
     || equation.terms.length > 1 ||(equation.constants.length === 1 && divide) || (equation.terms.length === 1 && divide) 
-    // || (equation.constants.length === 1 && equation.constants[0].denom !== 1) 
-    // || (equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
     )
-  // || !(equation.constants.length === 1 && equation.constants[0].denom !== 1)
-  // || !(equation.terms.length === 1 && equation.terms[0].coefficients.denom !== 1)
-
-
-
-
 
   const handleSignChange = event => {
     setSigns(event.target.checked);
@@ -244,7 +228,6 @@ const createEquation = canCreate ? textBox() : ''
         const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
         const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
         var newExp = new algebra.Equation(newLhs, newRhs);
-        // console.log(newExp)
         setWorkingOut([...workingOut, equation.toString()])
       setEquation(newExp);
       
@@ -275,8 +258,6 @@ const createEquation = canCreate ? textBox() : ''
     var newExp = new algebra.Equation(lhs, rhs);
     setWorkingOut([...workingOut, equation.toString()])
     setEquation(newExp);
-    // console.log(newExp)
-    // console.log(newExp.toString())
   }
 
   return (
@@ -302,10 +283,9 @@ const createEquation = canCreate ? textBox() : ''
         </Grid>
      
         <Grid item container justify="center"  alignItems="center" style={{marginTop:20, marginBottom:20}} >
-          
               <WorkingOut workingOut={workingOut}/>
         </Grid>
-        <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} >
+        {/* <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} > */}
           <Grid item container direction="row" justify="center" alignItems="center" style={{overflow:'hidden'}}>
             <DragDropContext
               onDragEnd={onDragEnd}
@@ -334,27 +314,26 @@ const createEquation = canCreate ? textBox() : ''
             </DragDropContext>
 
           </Grid>
-          <Grid container item direction="row" justify="space-around" alignItems="center" >
+          <Grid style={{ margin:20}} container item direction="row" justify="space-evenly" alignItems="center" >
             <Grid item>
               <Button disabled={canCombine(equation.lhs, divideLeft)}  onClick={() => combineEquation('lhs')} variant="contained" color="primary">
-                Simplify
+                Simplify Left
             </Button>
             </Grid>
             <Grid item>
               <Button disabled={canCombine(equation.rhs, divideRight)} onClick={() => combineEquation('rhs')} variant="contained" color="primary" >
-                Simplify
+                Simplify Right
             </Button>
             </Grid>
           </Grid>
-          <Grid direction="row" container item justify="center" alignItems="center" >
+          <Grid style={{ margin:20}} direction="row" container item justify="center" alignItems="center" >
             <Button onClick={() => clickNext()} variant="contained" color="primary">
               Next
           </Button>
           </Grid>
 
         </Grid>
-        {/* </Grid> */}
-      </Grid>
+      {/* </Grid> */}
       <div style={{display:'block', position:'fixed', top: 200, right: 50, height:0, cursor:'move'}}>
 
         <Calculator

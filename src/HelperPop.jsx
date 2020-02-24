@@ -6,12 +6,9 @@ import "./index.css";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles(theme => ({
-//   typography: {
-//     padding: theme.spacing(2),
-//   },
   group:{
     padding: theme.spacing(2),
   }
@@ -55,11 +52,10 @@ export default function SimplePopover(props) {
 
   return (
     <div >
-      <Button style={{color:"white"}} startIcon={<HelpOutlineIcon/>} aria-describedby={id}  color="default" onClick={handleClick} >
-        Helper 
+      <Button style={{color:"white"}} aria-describedby={id}  color="default" onClick={handleClick} >
+        Helper Mode
       </Button>
       <Popover
-        className={classes.pop}
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -72,6 +68,7 @@ export default function SimplePopover(props) {
           vertical: 'top',
           horizontal: 'center',
         }}
+        TransitionComponent={Grow}
       >
         <FormGroup className={classes.group}>
             <FormControlLabel
@@ -109,7 +106,6 @@ export default function SimplePopover(props) {
               }
               label="Unpack Variable"
             />
-
           </FormGroup>
       </Popover>
     </div>
