@@ -55,8 +55,8 @@ export default function SimplePopover(props) {
 
   return (
     <div >
-      <Button style={{color:"white"}} startIcon={<HelpOutlineIcon/>} aria-describedby={id}  color="default" onClick={handleClick} >
-        Helper 
+      <Button style={{color:"white"}} aria-describedby={id}  color="default" onClick={handleClick} >
+        Helper Mode
       </Button>
       <Popover
         // className={classes.pop}
