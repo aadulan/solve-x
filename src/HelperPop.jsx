@@ -6,7 +6,7 @@ import "./index.css";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-import Fade from '@material-ui/core/Fade';
+import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles(theme => ({
   group:{
@@ -68,7 +68,7 @@ export default function SimplePopover(props) {
           vertical: 'top',
           horizontal: 'center',
         }}
-        TransitionComponent={Fade}
+        TransitionComponent={Grow}
       >
         <FormGroup className={classes.group}>
             <FormControlLabel
