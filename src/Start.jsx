@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from "@material-ui/core";
+import { Grid, Typography, Divider } from "@material-ui/core";
 import LevelButton from './LevelButton'
 import { Link } from "react-router-dom";
 import {withRouter} from 'react-router';
@@ -48,7 +48,14 @@ function Start(props){
             <Grid direction='column' container item alignItems='center'>
                 <img src="logo.svg" alt="logo" style={{width:250}} ></img>
             </Grid>
-            <hr/>
+            <Grid container item alignItems='center' justify="center">
+            <Typography style={{fontStyle:"italic"}} variant="h5">
+                <q>
+                   The app to help you with algebra
+                </q>
+            </Typography>
+            </Grid>
+            <hr style={{width:"75%"}}/>
             <Grid style={{marginTop:5}} direction='row' container item justify='center' alignItems='center' spacing={8}> 
                 {levels.map((e, index) => (
                     <Grid  key={index}  item>
