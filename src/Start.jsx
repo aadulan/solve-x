@@ -3,7 +3,6 @@ import { Grid } from "@material-ui/core";
 import LevelButton from './LevelButton'
 import { Link } from "react-router-dom";
 import {withRouter} from 'react-router';
-// import EqDisplay from "./EqDisplay"
 
 const levels = [{
         title: "Positive", 
@@ -60,7 +59,6 @@ function Start(props){
                                 level: e.level,
                                 freeStyle:e.freeStyle,
                                 name: e.name,
-                                
                             }
                           }}
                     >

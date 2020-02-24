@@ -59,7 +59,7 @@ export default function SimplePopover(props) {
         Helper 
       </Button>
       <Popover
-        className={classes.pop}
+        // className={classes.pop}
         id={id}
         open={open}
         anchorEl={anchorEl}

@@ -21,27 +21,25 @@ export default function EqCard(props) {
             isDragDisabled={props.isDragDisabled}
         >
             {(provided, snapshot) => (
+                    <Card
+                        className={classes.card}
+                        innerRef={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        // isDragging={snapshot.isDragging}
+                    >
+                        <CardContent>
+                            <Typography 
+                            style={{color:"#424242"}}
+                                className={classes.userSelect} 
+                                align='center' 
+                                variant='h3'>
+                                    <TeX math={`${props.task.content}`}/>
+                            </Typography>
 
+                        </CardContent>
+                    </Card>
 
-                <Card
-                    className={classes.card}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    innerRef={provided.innerRef}
-                    // isDragging={snapshot.isDragging}
-                >
-                    <CardContent>
-                        <Typography 
-                        style={{color:"#424242"}}
-                            className={classes.userSelect} 
-                            // color='primary' 
-                            align='center' 
-                            variant='h3'>
-                                <TeX math={`${props.task.content}`}/>
-                        </Typography>
-
-                    </CardContent>
-                </Card>
 
             )}
 

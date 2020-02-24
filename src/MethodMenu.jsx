@@ -5,21 +5,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 150,
-    // backgroundColor: theme.palette.background.paper,
   },
 }));
 
 const options = [
   ['Change side, change sign','change'],
   ['Balance','balance'],
-//   'Hide sensitive notification content',
-//   'Hide all notification content',
 ];
 
 export default function SimpleListMenu(props) {
@@ -32,7 +28,6 @@ export default function SimpleListMenu(props) {
   };
 
   const handleMenuItemClick = (event, index) => {
-    // console.log(event)
     props.onChangeMethod(options[index][1])
     setSelectedIndex(index);
     setAnchorEl(null);
@@ -48,8 +43,6 @@ export default function SimpleListMenu(props) {
         <ListItem
           button
           aria-haspopup="true"
-        //   aria-controls="lock-menu"
-        //   aria-label="when device is locked"
           onClick={handleClickListItem}
         >
           <ListItemText align="center" style={{textOverflow:"ellipsis", overflow: "hidden", whiteSpace: "nowrap"}} 
@@ -66,7 +59,6 @@ export default function SimpleListMenu(props) {
         {options.map((option, index) => (
           <MenuItem
             key={option}
-            // disabled={index === 0}
             selected={index === selectedIndex}
             onClick={event => handleMenuItemClick(event, index)}
           >

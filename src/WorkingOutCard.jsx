@@ -11,24 +11,13 @@ export default function WorkingOutCard(props) {
             <Card  style={{width:"100%"}} variant="outlined" >
                 <CardActionArea >
                     <CardContent>
-                        {/* <Grid container direction="row" justify="space-between">
-                            <Grid  item>
-                            <Typography variant="h5" align='left'>
-                                <TeX math={`${props.i}`} />.
-                            </Typography> */}
-                        {/* </Grid>
-                        <Grid item  > */}
                             <Typography variant="h5" align='center'>
                                 <TeX math={`${props.step}`} />
                             </Typography>
-                        {/* </Grid>  
-                        </Grid> */}
                     </CardContent>
                 </CardActionArea>
             </Card>
-
         </ListItem>
-
     )
 }
 
