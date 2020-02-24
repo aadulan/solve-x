@@ -4,12 +4,44 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
-import { IconButton, Card, CardActionArea, CardHeader, CardContent } from '@material-ui/core';
+import { IconButton, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
-import DeleteIcon from '@material-ui/icons/Delete';
-import DoneIcon from '@material-ui/icons/Done';
+import ModalSection from './ModalSection';
+import TeX from '@matejmazur/react-katex';
+import Table from './Table'
+
+const info = [
+  {
+    header:"Helper Mode",
+    info: <Typography align="left">
+      Allows you to see hidden operations and signs:
+      <Typography align="center">
+          <TeX  math={"2 \\rightarrow +2"}/>
+        <br/>
+          <TeX math={"3x \\rightarrow 3 \\times x"}/>
+      </Typography>
+    </Typography>
+  },
+  {
+    header:"Methods",
+    info:<Typography align="left">
+      You can use your preferred method to solve equations: balance or change side, change sign
+    </Typography>
+  },
+  {
+    header: "Equation Changer",
+    info: <Typography align="left">
+      Experiment with the equation. Input a number and an operation and see the equation change.
+      <br/>
+      <Typography variant="subtitle2">
+        Controls:
+      </Typography>
+      <Table/>
+    </Typography>
+    
+  }
+
+]
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -86,24 +118,21 @@ export default function SpringModal() {
         }}
       >
         <Fade in={open}>
-            <Card>
-            <CardActionArea>
-            <CardHeader
-            title="Tutorial"
-            />
-            <CardContent>
-                Helper mode 
-                - shows hidden signs 2 -> +2
-                - 3x -> 3 times x 
-                Methods 
-                - pick between balance method and change side,change sign method 
-                Equation Changer 
-                - Experiment with the equation 
-                - <DragIndicatorIcon/> draggable
-                - <ExpandMoreIcon /> expandable 
-                -  <img src="plus-minus.svg" alt="sign" style={{ maxWidth: 20 }} ></img> changes the sign of the number 
-                - <DeleteIcon/> clear output 
-                - <DoneIcon/> enter 
+            <Card style={{maxWidth:400, }}>
+            <CardActionArea >
+              <Typography variant="h4" align="center"  style={{paddingBottom:0, paddingTop:15}}>
+                Tutorial
+              </Typography>
+            <CardContent style={{padding:"2em", paddingTop:0}}>
+             {info.map((e, index) => (
+               <ModalSection 
+               key={index} 
+               title={e.header} 
+               info={e.info}>
+               </ModalSection>
+             )
+
+             )}
             </CardContent>
             </CardActionArea>
             </Card>
