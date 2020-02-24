@@ -20,10 +20,8 @@ export default function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter basename={window.location.pathname || ''}>
-        <div>
-          <Route exact path="/" component={withRouter(Start)} />
-          <Route path="/solve" component={withRouter(EqDisplay)}/>
-        </div>
+        <Route exact path="/" component={withRouter(Start)} />
+        <Route path="/solve" component={withRouter(EqDisplay)}/>
      </BrowserRouter>
     </ThemeProvider>
   )
