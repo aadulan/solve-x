@@ -4,7 +4,7 @@ import { equationGen } from "./inital-data";
 import EquationSpace from "./EqSpace";
 import { DragDropContext } from "react-beautiful-dnd";
 import Grid from "@material-ui/core/Grid";
-import algebra, { Fraction } from "algebra.js";
+import algebra from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
 import { Button } from "@material-ui/core";
@@ -81,7 +81,7 @@ function EqDisplay(props) {
       }
     }
 
-  }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length]);
+  }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length, equation]);
 
   function clickNext() {
     setEquation(algebra.parse(equationGen(props.location.state.name)))

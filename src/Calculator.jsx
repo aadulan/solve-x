@@ -94,6 +94,7 @@ export default function Calculator(props) {
             props.onEnterChange(true);
             setNumber("")
             setSign("")
+            setPositive("+")
 
         }
     }
@@ -158,8 +159,8 @@ export default function Calculator(props) {
                                 </Card>
                             </Grid>
                             <Grid style={{marginTop:4}} container direction='row'>
-                                {buttons.map((val) => (
-                                    <CalculatorButton val={val} cb={buttonToFunc(val)} />
+                                {buttons.map((val, index) => (
+                                    <CalculatorButton key={index} val={val} cb={buttonToFunc(val)} />
                                 ))}
                                 </Grid>
                         </Grid>
