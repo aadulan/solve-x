@@ -46,13 +46,12 @@ code {
   box-shadow: 5px 25px 25px -20px rgba(0, 0, 0, 0.6);
 }
 
-.MuiTypography-h3, .MuiTypography-h5, .MuiTypography-body2 {
+/* .MuiTypography-h3, .MuiTypography-h5, .MuiTypography-body2 {
   font-family: 'Fira Sans', sans-serif !important;
-}
+} */
 
 
 
 hr{
   background-color: #888;
-  width: 75%
 }
