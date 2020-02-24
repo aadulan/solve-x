@@ -4,7 +4,7 @@ import { equationGen } from "./inital-data";
 import EquationSpace from "./EqSpace";
 import { DragDropContext } from "react-beautiful-dnd";
 import Grid from "@material-ui/core/Grid";
-import algebra from "algebra.js";
+import algebra, { Fraction } from "algebra.js";
 import { displayExpression } from "./DisplayExpression";
 import Equal from "./Equal";
 import { Button } from "@material-ui/core";
@@ -64,14 +64,17 @@ function EqDisplay(props) {
 
   useEffect(() => {
     if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
-      if (equation.rhs.terms[0].coefficients[0].numer === 1) {
-        setMessage("You solved the equation!")
-        setVariant("success")
-        setOpen(true)
+      if (equation.rhs.terms[0].coefficients[0].numer === 1 && equation.lhs.constants[0].numer ===  equation.solveFor("x").numer) {
+        // console.log(equation.lhs.constants[0].numer ===  equation.solveFor("x").numer)
+        // if(equation.lhs.constants[0].subtract(equation.solveFor("x")).numer === 0){
+          setMessage("You solved the equation!")
+          setVariant("success")
+          setOpen(true)
+        // }
       }
 
     } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
-      if (equation.lhs.terms[0].coefficients[0].numer === 1) {
+      if (equation.lhs.terms[0].coefficients[0].numer === 1 && equation.rhs.constants[0].numer ===  equation.solveFor("x").numer) {
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
