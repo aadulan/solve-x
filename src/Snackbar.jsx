@@ -27,7 +27,8 @@ const useStyles1 = makeStyles(theme => ({
     backgroundColor: theme.palette.error.dark,
   },
   info: {
-    backgroundColor: theme.palette.primary.main,
+    // backgroundColor: theme.palette.primary.main,
+    backgroundColor: "#fafafa",
   },
   warning: {
     backgroundColor: amber[700],
@@ -42,6 +43,7 @@ const useStyles1 = makeStyles(theme => ({
   message: {
     display: 'flex',
     alignItems: 'center',
+    
   },
 }));
 
@@ -55,8 +57,8 @@ function MySnackbarContentWrapper(props) {
       className={clsx(classes[variant], className)}
       aria-describedby="client-snackbar"
       message={
-        <span id="client-snackbar" className={classes.message}>
-          <Icon className={clsx(classes.icon, classes.iconVariant)} />
+        <span style={{color: variant === "info" ? "#000000" : ""}} id="client-snackbar" className={classes.message}>
+          <Icon  className={clsx(classes.icon, classes.iconVariant)} />
           {message}
         </span>
       }
