@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { Grid, CardContent, Card, Fab } from '@material-ui/core';
+import { Grid, CardContent, Card, Fab, Divider } from '@material-ui/core';
 import Draggable from 'react-draggable';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -64,7 +64,13 @@ export default function Calculator(props) {
     }
 
     const addNumber = (e) => {
-        setNumber(number.concat(e));
+        if (number.length >= 5){
+            props.onMessage("Maximum number of digits reached")
+            props.onVariant("error")
+            props.onOpen(true)
+        } else{
+            setNumber(number.concat(e));
+        }
     }
 
 
@@ -90,7 +96,8 @@ export default function Calculator(props) {
             props.onMessage("Number or sign empty!")
             props.onVariant("error")
             props.onOpen(true)
-        } else {
+        }
+         else {
             props.onEnterChange(true);
             setNumber("")
             setSign("")
@@ -144,14 +151,19 @@ export default function Calculator(props) {
                                 <Card style={{ width: '100%' }}>
                                     <CardContent>
                                         <Grid container direction='row' justify='flex-start' align='center'>
+    
                                             <Fab style={{ marginRight: 20 }} onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
                                                 <img src="plus-minus.svg" alt="sign" style={{ maxWidth: 20 }} ></img>
                                             </Fab>
                                             <Typography style={{ marginRight: "auto" }} align="left" variant="h6">
-                                                {isPositive}
+                                                {isPositive === "+" ? "" : "-"}
                                                 {number}
                                             </Typography>
-                                            <Typography align="right" variant="h6">
+                                            <Grid item>
+                                            <Divider orientation="vertical" />
+
+                                            </Grid>
+                                            <Typography style={{width:30}} align="center" variant="h6">
                                                 {sign}
                                             </Typography>
                                         </Grid>
