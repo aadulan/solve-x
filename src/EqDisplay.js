@@ -64,7 +64,7 @@ function EqDisplay(props) {
 
   useEffect(() => {
     if (equation.lhs.constants.length === 1 && equation.lhs.terms.length === 0 && equation.rhs.terms.length === 1 && equation.rhs.constants.length === 0) {
-      if (equation.rhs.terms[0].coefficients[0].numer === 1 && equation.lhs.constants[0].numer ===  equation.solveFor("x").numer) {
+      if (equation.rhs.terms[0].coefficients[0].numer === 1 && equation.lhs.constants[0].numer ===  equation.solveFor("x").numer && equation.lhs.constants[0].denom ===  equation.solveFor("x").denom) {
         // console.log(equation.lhs.constants[0].numer ===  equation.solveFor("x").numer)
         // if(equation.lhs.constants[0].subtract(equation.solveFor("x")).numer === 0){
           setMessage("You solved the equation!")
@@ -74,7 +74,7 @@ function EqDisplay(props) {
       }
 
     } else if (equation.lhs.constants.length === 0 && equation.lhs.terms.length === 1 && equation.rhs.terms.length === 0 && equation.rhs.constants.length === 1) {
-      if (equation.lhs.terms[0].coefficients[0].numer === 1 && equation.rhs.constants[0].numer ===  equation.solveFor("x").numer) {
+      if (equation.lhs.terms[0].coefficients[0].numer === 1 && equation.rhs.constants[0].numer ===  equation.solveFor("x").numer && equation.rhs.constants[0].denom ===  equation.solveFor("x").denom) {
         setMessage("You solved the equation!")
         setVariant("success")
         setOpen(true)
@@ -87,6 +87,7 @@ function EqDisplay(props) {
     setEquation(algebra.parse(equationGen(props.location.state.name)))
     setWorkingOut([])
     setOpen(false)
+    // console.log(equation.lhs.terms[0].coefficients)
 
   }
 
@@ -134,9 +135,11 @@ function EqDisplay(props) {
       setEquation(newExp);
       setDivideLeft(true)
       setDivideRight(true)
-
     }
-
+    
+    // console.log(equation.rhs.constants[0].numer)
+    // console.log(equation.rhs.constants[0].denom)
+    // console.log(equation.lhs.terms[0].coefficients)
     setCalculator([])
     setEnter(false);
   }
@@ -161,7 +164,13 @@ function EqDisplay(props) {
 const canCombine = (equation, divide) => 
   !(
     equation.constants.length > 1 
-    || equation.terms.length > 1 ||(equation.constants.length === 1 && divide) || (equation.terms.length === 1 && divide) 
+    || equation.terms.length > 1 ||
+    (equation.constants.length === 1 
+      && divide 
+      && (equation.constants[0].numer % equation.constants[0].denom  === 0  && equation.constants[0].denom !== 1 )) || 
+    (equation.terms.length === 1 
+      && divide 
+      && (equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom  === 0 && equation.terms[0].coefficients[0].denom  !== 1)) 
     )
 
   const handleSignChange = event => {
