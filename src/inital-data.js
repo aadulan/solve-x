@@ -16,7 +16,7 @@ const randRange = (min, max) => (
 
 export const equationGen = name => {
     const answer = Math.ceil(Math.random() * 10);
-    // const randomNumber = Math.ceil(Math.random() * 10) + 1 // between 2 and 11
+    const randomFrac = Math.ceil(Math.random() * 10) + 1 // between 2 and 11
     const randomNumber = randRange(2, 11);
     const constant = answer * randomNumber;
     const splitConstant = randRange(2,constant);
@@ -28,13 +28,25 @@ export const equationGen = name => {
         }else{
             return `${randomNumber} * x +${splitConstant} = ${constant+splitConstant}`
         }
-    } else{
+    } else if (name === "negative"){
         if (Math.random() >= 0.5){
             return `-${randomNumber + splitTerm} * x +${splitConstant} = -${splitTerm} * x + ${constant+splitConstant}`
         }else{
             return `${-randomNumber} * x -${splitConstant} = ${constant-splitConstant}`
         }
 
+    } else if ( name === "fractions"){
+        if (Math.random() >= 0.5){
+            return `${randomNumber + splitTerm} * x /${randomFrac} +${splitConstant} = ${splitTerm} * x + ${constant+splitConstant}`
+        }else{
+            return `${randomNumber} * x/${randomFrac} +${splitConstant} = ${constant+splitConstant}`
+        }
+    } else if (name === "negative-fractions"){
+        if (Math.random() >= 0.5){
+            return `-${randomNumber + splitTerm} * x/${randomFrac} = -${splitTerm} * x + ${constant}`
+        }else{
+            return `${-randomNumber} * x/${randomFrac} -${splitConstant} = ${constant-splitConstant}`
+        }
     }
         
     // const square = randomNumber * randomNumber

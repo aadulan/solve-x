@@ -22,14 +22,14 @@ const levels = [{
         image: "level-2.jpg", 
         level:"hard", 
         freeStyle:"false",
-        name: "positive"
+        name: "fractions"
 
     },{
         title: "Negative and Fractions", 
         image: "level-4.jpg", 
         level:"hard", 
         freeStyle:"false",
-        name: "negative"
+        name: "negative-fractions"
 
     },
     {
@@ -37,7 +37,7 @@ const levels = [{
         image: "level-5.jpg", 
         level:"hard", 
         freeStyle:"true",
-        name: "negative"
+        name: "negative-fractions"
 
     }
 ]
