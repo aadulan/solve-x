@@ -16,7 +16,7 @@ export default function TextBox(props){
                 throw new Error("Not an Equation")
             }
             var term = ""
-            if (!(e.lhs.terms.length < 1 || e.rhs.terms.length < 1)){
+            if (e.lhs.terms.length < 1 || e.rhs.terms.length < 1){
                 throw new Error("No terms")
             }
 
@@ -47,11 +47,12 @@ export default function TextBox(props){
 
             props.onChangeEquation(e)
             setEq("")
-            console.log(e)
+            // console.log(e)
             props.onChangeMessage("Equation Changed")
             props.onChangeVariant("success")
             props.onChangeOpen(true)
           } catch(err) {
+            //   console.log(err)
               props.onChangeMessage("Wrong input")
             props.onChangeVariant("error")
             props.onChangeOpen(true)
