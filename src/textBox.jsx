@@ -16,7 +16,7 @@ export default function TextBox(props){
                 throw new Error("Not an Equation")
             }
             var term = ""
-            if (e.lhs.terms.length < 1 || e.rhs.terms.length < 1){
+            if (e.lhs.terms.length < 1 && e.rhs.terms.length < 1){
                 throw new Error("No terms")
             }
 
