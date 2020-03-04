@@ -38,7 +38,7 @@ describe('<TextBox />', () => {
     const handleStateChange = () => {
     };
 
-const goodInput = [ 'x = 1', '2x+ 3 = 5', '3x+ 5 = 2x+ 9', '']
+const goodInput = [ 'x = 1', '2x+ 3 = 5', '3x+ 5 = 2x+ 9', 'x+ 1 = 3', "1/2x+ 3 = 5"]
 
 it('should empty on correct input', () => {
     goodInput.forEach((t) =>{
