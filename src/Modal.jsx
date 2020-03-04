@@ -29,6 +29,12 @@ const info = [
     </Typography>
   },
   {
+    header: "Free Style",
+    info: <Typography align="left">
+      Try out your own Equation. Only <TeX  math={"x"}/> can be used a variable!
+    </Typography>
+  },
+  {
     header: "Equation Changer",
     info: <Typography align="left">
       Experiment with the equation. Input a number and an operation and see the equation change.

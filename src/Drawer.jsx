@@ -7,6 +7,7 @@ import HelperPop from './HelperPop'
 import { Link } from "react-router-dom";
 import Modal from "./Modal"
 import { Divider } from '@material-ui/core';
+import Dialog from './Dialog'
 
 
 const useStyles = makeStyles({
@@ -57,7 +58,8 @@ export default function TemporaryDrawer(props) {
              <div style={{height:"auto", width:20, alignSelf:"stretch", display:"flex"}}>
               <Divider style={{height:"60%", margin:"auto", backgroundColor:"white"}}  orientation="vertical"/>
              </div>
-            <Modal/>
+            {/* <Modal/> */}
+            <Dialog/>
         </Toolbar>
         </AppBar>
     </div>

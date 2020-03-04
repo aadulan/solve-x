@@ -97,6 +97,7 @@ export default function CustomizedSnackbars(props) {
       return;
     }
     props.onOpenChange(false);
+
     // setOpen(false);
   };
 

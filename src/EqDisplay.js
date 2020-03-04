@@ -195,6 +195,7 @@ const canCombine = (equation, divide) =>
       onChangeMessage={changeMessage}
       onChangeVariant={changeVariant}
       onChangeOpen={changeOpen}
+      // variant={variant}
 
     />
 )
