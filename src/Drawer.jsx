@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import MethodMenu from './MethodMenu'
 import HelperPop from './HelperPop'
 import { Link } from "react-router-dom";
-import Modal from "./Modal"
+// import Modal from "./Modal"
 import { Divider } from '@material-ui/core';
 import Dialog from './Dialog'
 

@@ -47,7 +47,7 @@ export default function TextBox(props){
 
             props.onChangeEquation(e)
             setEq("")
-            console.log(e)
+            // console.log(e)
             props.onChangeMessage("Equation Changed")
             props.onChangeVariant("success")
             props.onChangeOpen(true)
