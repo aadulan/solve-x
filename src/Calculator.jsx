@@ -155,7 +155,7 @@ export default function Calculator(props) {
                                             <Fab style={{ marginRight: 20 }} onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
                                                 <img src="plus-minus.svg" alt="sign" style={{ maxWidth: 20 }} ></img>
                                             </Fab>
-                                            <Typography style={{ marginRight: "auto" }} align="left" variant="h6">
+                                            <Typography className="number" style={{ marginRight: "auto" }} align="left" variant="h6">
                                                 {isPositive === "+" ? "" : "-"}
                                                 {number}
                                             </Typography>
@@ -163,7 +163,7 @@ export default function Calculator(props) {
                                             <Divider orientation="vertical" />
 
                                             </Grid>
-                                            <Typography style={{width:30}} align="center" variant="h6">
+                                            <Typography className="sign" style={{width:30}} align="center" variant="h6">
                                                 {sign}
                                             </Typography>
                                         </Grid>
