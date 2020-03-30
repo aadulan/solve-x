@@ -29,9 +29,11 @@ export default function CalculatorButton(props) {
         }
     }
 
+    const name = `cal-button-${props.val}`
+
     return (
         <Grid item xs={3}>
-            <Button onClick={() => props.cb(props.val)} style={{
+            <Button id={name} onClick={() => props.cb(props.val)} style={{
                 width: 45,
                 height: 45,
                 minWidth: 30,
