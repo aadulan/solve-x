@@ -20,7 +20,9 @@ export const equationGen = name => {
     const randomNumber = randRange(2, 11);
     const constant = answer * randomNumber;
     const splitConstant = randRange(2,constant);
-    const splitTerm = randRange(2,randomNumber);
+    const splitTerm = randRange(2,randomNumber-1);
+
+  
 
     if( name === "positive" ){
         if (Math.random() >= 0.5){

@@ -166,10 +166,10 @@ const canCombine = (equation, divide) =>
     equation.constants.length > 1 
     || equation.terms.length > 1 ||
     (equation.constants.length === 1 
-      && divide 
+      // && divide 
       && (equation.constants[0].numer % equation.constants[0].denom  === 0  && equation.constants[0].denom !== 1 )) || 
     (equation.terms.length === 1 
-      && divide 
+      // && divide 
       && (equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom  === 0 && equation.terms[0].coefficients[0].denom  !== 1)) 
     )
 
