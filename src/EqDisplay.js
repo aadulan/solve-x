@@ -17,6 +17,8 @@ import {withRouter} from 'react-router';
 import WorkingOut from './WorkingOut'
 
 var abs = require('math-abs');
+var floor = require( 'math-floor' );
+// var abs = require( 'math-abs' );
 
 function EqDisplay(props) {
   const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
@@ -156,6 +158,37 @@ function EqDisplay(props) {
   //     document.body.style.backgroundColor = `rgba(153, 141, 217, 1)`;
   // }
 
+  function calculateFactors(integer) {
+    var inte = abs(integer)
+    var factors = [],
+    quotient = 0;
+  
+    for(var i = 1; i <= inte; i++){
+      quotient = inte/i;
+  
+      if(quotient === floor(quotient)){
+        factors.push(i); 
+      }
+    }
+    // console.log(integer)
+    // console.log(factors)
+    return factors;
+    
+}
+
+function getIntersections(one, two){
+   var constants = calculateFactors(one).filter(e => calculateFactors(two).indexOf(e) !== -1)
+  const valueToRemove = 1
+  const filteredItems = constants.filter(item => item !== valueToRemove)
+  // console.log(one, two)
+  // console.log(filteredItems)
+
+   return filteredItems === [];
+} 
+  
+
+
+
 
   const changeMethod = s => {
     setValue(s);
@@ -165,13 +198,15 @@ const canCombine = (equation, divide) =>
   !(
     equation.constants.length > 1 
     || equation.terms.length > 1 ||
+
     (equation.constants.length === 1 
-      // && divide 
-      && (equation.constants[0].numer % equation.constants[0].denom  === 0  && equation.constants[0].denom !== 1 )) || 
+      && ((equation.constants[0].numer % equation.constants[0].denom  === 0 || getIntersections(equation.constants[0].numer, equation.constants[0].denom ))  && equation.constants[0].denom !== 1 ))  || 
     (equation.terms.length === 1 
-      // && divide 
-      && (equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom  === 0 && equation.terms[0].coefficients[0].denom  !== 1)) 
-    )
+      && ((equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom === 0 || getIntersections(equation.terms[0].coefficients[0].numer, equation.terms[0].coefficients[0].denom))  && equation.terms[0].coefficients[0].denom  !== 1)) 
+      )
+      
+
+    
 
   const handleSignChange = event => {
     setSigns(event.target.checked);
