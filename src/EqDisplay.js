@@ -181,9 +181,10 @@ function getIntersections(one, two){
   const valueToRemove = 1
   const filteredItems = constants.filter(item => item !== valueToRemove)
   // console.log(one, two)
+  // console.log(constants)
   // console.log(filteredItems)
-
-   return filteredItems === [];
+  // console.log(filteredItems.length !== 0)
+   return filteredItems.length !== 0;
 } 
   
 
@@ -191,6 +192,7 @@ function getIntersections(one, two){
 
 
   const changeMethod = s => {
+    // console.log(getIntersections(equation.constants[0].numer, equation.constants[0].denom) )
     setValue(s);
   };
 
@@ -199,10 +201,24 @@ const canCombine = (equation, divide) =>
     equation.constants.length > 1 
     || equation.terms.length > 1 ||
 
-    (equation.constants.length === 1 
-      && ((equation.constants[0].numer % equation.constants[0].denom  === 0 || getIntersections(equation.constants[0].numer, equation.constants[0].denom ))  && equation.constants[0].denom !== 1 ))  || 
-    (equation.terms.length === 1 
-      && ((equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom === 0 || getIntersections(equation.terms[0].coefficients[0].numer, equation.terms[0].coefficients[0].denom))  && equation.terms[0].coefficients[0].denom  !== 1)) 
+    (equation.constants.length === 1 && (
+      equation.constants[0].numer % equation.constants[0].denom  === 0 
+      ||
+      getIntersections(equation.constants[0].numer, equation.constants[0].denom) 
+    ) 
+      && 
+      equation.constants[0].denom !== 1 )  
+      
+        || 
+    (equation.terms.length === 1 && (
+      equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom === 0 
+      ||
+      getIntersections(equation.terms[0].coefficients[0].numer, equation.terms[0].coefficients[0].denom)
+    )
+    &&
+    // (((equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom === 0 || 
+    //     getIntersections(equation.terms[0].coefficients[0].numer, equation.terms[0].coefficients[0].denom) !== [] )) && 
+        equation.terms[0].coefficients[0].denom  !== 1)
       )
       
 
