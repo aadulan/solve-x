@@ -3,30 +3,31 @@ import { Grid, Divider } from "@material-ui/core";
 import LevelButton from './LevelButton'
 import { Link } from "react-router-dom";
 import {withRouter} from 'react-router';
+// import preval from 'preval.macro'
 
 const levels = [{
         title: "Positive", 
-        image: "level-1.jpg", 
+        image: "level-1.webp", 
         level:"easy", 
         freeStyle:"false",
         name: "positive"
     }, {
         title: "Negative", 
-        image: "level-3.jpg", 
+        image: "level-3.webp", 
         level:"easy", 
         freeStyle:"false",
         name: "negative"
 
     },{
         title: "Fractions", 
-        image: "level-2.jpg", 
+        image: "level-2.webp", 
         level:"hard", 
         freeStyle:"false",
         name: "fractions"
 
     },{
         title: "Negative and Fractions", 
-        image: "level-4.jpg", 
+        image: "level-4.webp", 
         level:"hard", 
         freeStyle:"false",
         name: "negative-fractions"
@@ -34,7 +35,7 @@ const levels = [{
     },
     {
         title: "Free Style", 
-        image: "level-5.jpg", 
+        image: "level-5.webp", 
         level:"hard", 
         freeStyle:"true",
         name: "negative-fractions"
@@ -68,7 +69,8 @@ function Start(props){
                     </Link>
                 </Grid>
                 ))}
-                </Grid>        
+                </Grid>     
+                {/* Build Date: {preval`module.exports = new Date().toLocaleString();`}    */}
         </Grid>
     )
 }
