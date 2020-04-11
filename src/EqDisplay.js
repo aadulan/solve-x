@@ -12,8 +12,6 @@ import Snackbar from './Snackbar'
 import AppBar from './Drawer'
 import Calculator from './Calculator'
 import TextBox from './textBox'
-import {withRouter} from 'react-router';
-import { useParams } from 'react-router-dom'
 
 import WorkingOut from './WorkingOut'
 
@@ -22,9 +20,7 @@ var floor = require( 'math-floor' );
 // var abs = require( 'math-abs' );
 
 function EqDisplay(props) {
-  let {id} = useParams()
-  // const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
-  const [equation, setEquation] = useState(algebra.parse(equationGen(id)));
+  const [equation, setEquation] = useState(algebra.parse(equationGen(window.location.pathname)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
@@ -237,7 +233,7 @@ const canCombine = (equation, divide) =>
   }
 
   const handleHelperChange = event => {
-    console.log(props.match.params.id)
+    // console.log(props.match.params.id)
     setHelper(event.target.checked);
 
   }

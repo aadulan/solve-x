@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Divider } from "@material-ui/core";
 import LevelButton from './LevelButton'
 import { Link } from "react-router-dom";
-import {withRouter} from 'react-router';
 // import preval from 'preval.macro'
 
 const levels = [{
