@@ -19,7 +19,7 @@ export default function App(props) {
   // var basename= window.location.pathname || ''
   return (
     <ThemeProvider theme={theme}>
-        <Switch basename= {window.location.pathname || ''}>
+        <Switch >
         <Route exact path="/" component={Start} />
         <Route exact path='/:id' component={EqDisplay}/>
         </Switch>
