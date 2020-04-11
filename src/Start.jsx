@@ -62,11 +62,11 @@ function Start(props){
                     <Link 
                         to={{
                             pathname: `/${e.url}`,
-                            state: { 
-                                level: e.level,
-                                freeStyle:e.freeStyle,
-                                name: e.name,
-                            }
+                            // state: { 
+                            //     level: e.level,
+                            //     freeStyle:e.freeStyle,
+                            //     // name: e.name,
+                            // }
                           }}
                     >
                         <LevelButton image={e.image}   title={e.title} />

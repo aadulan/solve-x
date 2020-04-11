@@ -12,7 +12,7 @@ import Snackbar from './Snackbar'
 import AppBar from './Drawer'
 import Calculator from './Calculator'
 import TextBox from './textBox'
-
+import { useParams } from 'react-router-dom'
 import WorkingOut from './WorkingOut'
 
 var abs = require('math-abs');
@@ -20,7 +20,8 @@ var floor = require( 'math-floor' );
 // var abs = require( 'math-abs' );
 
 function EqDisplay(props) {
-  const [equation, setEquation] = useState(algebra.parse(equationGen(window.location.pathname)));
+  let { id } = useParams()
+  const [equation, setEquation] = useState(algebra.parse(equationGen(id)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
@@ -29,8 +30,8 @@ function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  const [level] = useState(props.location.state.level);
-  const [freeStyle] = useState(props.location.state.freeStyle)
+  const level = (window.location.pathname === "/level1" || window.location.pathname ==="/level2") ? "easy" : "hard" ;
+  const [freeStyle] = useState(window.location.pathname)
   const [value, setValue] = useState('change')
   const [divideLeft, setDivideLeft] = useState(false);
   const [divideRight, setDivideRight] = useState(false);
@@ -249,7 +250,7 @@ const canCombine = (equation, divide) =>
     />
 )
 
-const canCreate = freeStyle === 'true'
+const canCreate = freeStyle === '/level5'
 const createEquation = canCreate ? textBox() : ''
 
 

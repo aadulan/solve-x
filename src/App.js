@@ -19,12 +19,10 @@ export default function App(props) {
   // var basename= window.location.pathname || ''
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter basename= {window.location.pathname || ''}>
-        <Switch>
+        <Switch basename= {window.location.pathname || ''}>
         <Route exact path="/" component={Start} />
         <Route exact path='/:id' component={EqDisplay}/>
         </Switch>
-     </BrowserRouter>
     </ThemeProvider>
   )
 
