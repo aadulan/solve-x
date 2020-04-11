@@ -24,7 +24,7 @@ var floor = require( 'math-floor' );
 function EqDisplay(props) {
   let {id} = useParams()
   // const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
-  const [equation, setEquation] = useState(algebra.parse(equationGen(props.match.params.id)));
+  const [equation, setEquation] = useState(algebra.parse(equationGen(id)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
