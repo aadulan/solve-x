@@ -22,7 +22,7 @@ export default function App(props) {
       <BrowserRouter basename= {window.location.pathname || ''}>
         <Switch>
         <Route exact path="/" component={Start} />
-        <Route exact path='/:id' component={EqDisplay}/>
+        <Route path='/:id' children={EqDisplay}/>
         </Switch>
      </BrowserRouter>
     </ThemeProvider>
