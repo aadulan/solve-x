@@ -86,7 +86,7 @@ function EqDisplay(props) {
   }, [equation.lhs.constants.length, equation.lhs.terms, equation.rhs.terms, equation.rhs.constants.length, equation]);
 
   function clickNext() {
-    setEquation(algebra.parse(equationGen(props.location.state.name)))
+    setEquation(algebra.parse(equationGen(id)))
     setWorkingOut([])
     setOpen(false)
     // console.log(equation.lhs.terms[0].coefficients)
