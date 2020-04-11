@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import './index.css';
 import EqDisplay from './EqDisplay';
 import Start from './Start';
@@ -18,12 +18,15 @@ const theme = createMuiTheme({
 export default function App(props) {
   // var basename= window.location.pathname || ''
   return (
+    <HashRouter basename= {window.location.pathname || ''}>
+
     <ThemeProvider theme={theme}>
         <Switch >
         <Route exact path="/" component={Start} />
         <Route exact path='/:id' component={EqDisplay}/>
         </Switch>
     </ThemeProvider>
+    </HashRouter>
   )
 
 }
