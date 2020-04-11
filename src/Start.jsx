@@ -62,7 +62,7 @@ function Start(props){
                     <Grid  key={index} item xs={12} sm={6} md={4} style={{padding:8, paddingTop:0}}>
                     <Link 
                         to={{
-                            pathname: `${e.url}`,
+                            pathname: `/${e.url}`,
                             state: { 
                                 level: e.level,
                                 freeStyle:e.freeStyle,
