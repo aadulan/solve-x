@@ -21,8 +21,8 @@ export default function App(props) {
     <ThemeProvider theme={theme}>
       <BrowserRouter basename= {window.location.pathname || ''}>
         <Switch>
-        <Route exact path="/" component={withRouter(Start)} />
-        <Route exact path='/:id' component={withRouter(EqDisplay)}/>
+        <Route exact path="/" component={Start} />
+        <Route exact path='/:id' component={EqDisplay}/>
         </Switch>
      </BrowserRouter>
     </ThemeProvider>

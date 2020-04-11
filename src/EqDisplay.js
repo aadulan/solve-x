@@ -409,4 +409,4 @@ const createEquation = canCreate ? textBox() : ''
     </React.Fragment>
   );
 }
-export default withRouter(EqDisplay)
+export default EqDisplay

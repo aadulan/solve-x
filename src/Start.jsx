@@ -80,4 +80,4 @@ function Start(props){
     )
 }
 
-export default withRouter(Start)
+export default Start
