@@ -16,12 +16,12 @@ const theme = createMuiTheme({
 
 
 export default function App(props) {
-
+  var basename= window.location.pathname || ''
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter basename={window.location.pathname || ''}>
-        <Route exact path="/" component={withRouter(Start)} />
-        <Route path="/solve" component={withRouter(EqDisplay)}/>
+        <Route exact path={basename} component={withRouter(Start)} />
+        <Route path={`${basename}?:id`} component={withRouter(EqDisplay)}/>
      </BrowserRouter>
     </ThemeProvider>
   )

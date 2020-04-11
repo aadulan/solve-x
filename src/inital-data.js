@@ -23,27 +23,34 @@ export const equationGen = name => {
     const splitTerm = randRange(2,randomNumber-1);
 
   
-
-    if( name === "positive" ){
+    
+     if( name === "level1" ){
         if (Math.random() >= 0.5){
             return `${randomNumber + splitTerm} * x +${splitConstant} = ${splitTerm} * x + ${constant+splitConstant}`
         }else{
             return `${randomNumber} * x +${splitConstant} = ${constant+splitConstant}`
         }
-    } else if (name === "negative"){
+    } else if (name === "level2"){
         if (Math.random() >= 0.5){
             return `-${randomNumber + splitTerm} * x +${splitConstant} = -${splitTerm} * x + ${constant+splitConstant}`
         }else{
             return `${-randomNumber} * x -${splitConstant} = ${constant-splitConstant}`
         }
 
-    } else if ( name === "fractions"){
+    } else if ( name === "level3"){
         if (Math.random() >= 0.5){
             return `${randomNumber + splitTerm} * x /${randomFrac} +${splitConstant} = ${splitTerm} * x + ${constant+splitConstant}`
         }else{
             return `${randomNumber} * x/${randomFrac} +${splitConstant} = ${constant+splitConstant}`
         }
-    } else if (name === "negative-fractions"){
+    } else if (name === "level4"){
+        if (Math.random() >= 0.5){
+            return `-${randomNumber + splitTerm} * x/${randomFrac} = -${splitTerm} * x + ${constant}`
+        }else{
+            return `${-randomNumber} * x/${randomFrac} -${splitConstant} = ${constant-splitConstant}`
+        }
+    }
+    else if (name === "level5"){
         if (Math.random() >= 0.5){
             return `-${randomNumber + splitTerm} * x/${randomFrac} = -${splitTerm} * x + ${constant}`
         }else{

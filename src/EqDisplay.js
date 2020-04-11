@@ -13,6 +13,7 @@ import AppBar from './Drawer'
 import Calculator from './Calculator'
 import TextBox from './textBox'
 import {withRouter} from 'react-router';
+import { useParams } from 'react-router-dom'
 
 import WorkingOut from './WorkingOut'
 
@@ -21,7 +22,9 @@ var floor = require( 'math-floor' );
 // var abs = require( 'math-abs' );
 
 function EqDisplay(props) {
-  const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
+  let {id} = useParams()
+  // const [equation, setEquation] = useState(algebra.parse(equationGen(props.location.state.name)));
+  const [equation, setEquation] = useState(algebra.parse(equationGen(id)));
   const [helper, setHelper] = useState(false);
   const [signs, setSigns] = useState(false);
   const [unpack, setUnpack] = useState(false);
@@ -216,8 +219,6 @@ const canCombine = (equation, divide) =>
       getIntersections(equation.terms[0].coefficients[0].numer, equation.terms[0].coefficients[0].denom)
     )
     &&
-    // (((equation.terms[0].coefficients[0].numer % equation.terms[0].coefficients[0].denom === 0 || 
-    //     getIntersections(equation.terms[0].coefficients[0].numer, equation.terms[0].coefficients[0].denom) !== [] )) && 
         equation.terms[0].coefficients[0].denom  !== 1)
       )
       
@@ -373,7 +374,6 @@ const createEquation = canCreate ? textBox() : ''
                 level={level}
               />
             </DragDropContext>
-
           </Grid>
           <Grid style={{ margin:20}} container item direction="row" justify="space-evenly" alignItems="center" >
             <Grid item>

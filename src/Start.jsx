@@ -10,27 +10,31 @@ const levels = [{
         image: "level-1.webp", 
         level:"easy", 
         freeStyle:"false",
-        name: "positive"
+        name: "positive",
+        url: "level1"
     }, {
         title: "Negative", 
         image: "level-3.webp", 
         level:"easy", 
         freeStyle:"false",
-        name: "negative"
+        name: "negative",
+        url: "level2"
 
     },{
         title: "Fractions", 
         image: "level-2.webp", 
         level:"hard", 
         freeStyle:"false",
-        name: "fractions"
+        name: "fractions",
+        url: "level3"
 
     },{
         title: "Negative and Fractions", 
         image: "level-4.webp", 
         level:"hard", 
         freeStyle:"false",
-        name: "negative-fractions"
+        name: "negative-fractions",
+        url: "level4"
 
     },
     {
@@ -38,7 +42,8 @@ const levels = [{
         image: "level-5.webp", 
         level:"hard", 
         freeStyle:"true",
-        name: "negative-fractions"
+        name: "negative-fractions",
+        url: "level5"
 
     }
 ]
@@ -57,7 +62,7 @@ function Start(props){
                     <Grid  key={index} item xs={12} sm={6} md={4} style={{padding:8, paddingTop:0}}>
                     <Link 
                         to={{
-                            pathname: "/solve",
+                            pathname: `?${e.url}`,
                             state: { 
                                 level: e.level,
                                 freeStyle:e.freeStyle,
