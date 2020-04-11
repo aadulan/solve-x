@@ -18,7 +18,7 @@ const theme = createMuiTheme({
 export default function App(props) {
   // var basename= window.location.pathname || ''
   return (
-    <HashRouter basename= {window.location.pathname || ''}>
+    <HashRouter basename={''}>
 
     <ThemeProvider theme={theme}>
         <Switch >

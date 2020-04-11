@@ -192,6 +192,7 @@ function getIntersections(one, two){
 
 
   const changeMethod = s => {
+    console.log(window.location.hash)
     // console.log(getIntersections(equation.constants[0].numer, equation.constants[0].denom) )
     setValue(s);
   };
