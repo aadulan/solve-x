@@ -72,8 +72,10 @@ export default function SimplePopover(props) {
       >
         <FormGroup className={classes.group}>
             <FormControlLabel
+            className="helper"
               control={
                 <Switch
+                className="helper"
                   checked={helper}
                   onChange={handleHelperChange()}
                   value="helper"
@@ -83,6 +85,7 @@ export default function SimplePopover(props) {
               label="Helper Mode"
             />
             <FormControlLabel
+                className="signs"
               control={
                 <Switch
                   checked={signs}
@@ -95,6 +98,7 @@ export default function SimplePopover(props) {
               label="Show Signs"
             />
             <FormControlLabel
+                className="unpack"
               control={
                 <Switch
                   checked={unpack}

@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import InfoIcon from '@material-ui/icons/Info';
-import ModalSection from './ModalSection'
+import ModalSection from './InfoSection'
 import TeX from '@matejmazur/react-katex';
 import Table from './Table'
 

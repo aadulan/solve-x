@@ -7,7 +7,7 @@ import HelperPop from './HelperPop'
 import { Link } from "react-router-dom";
 // import Modal from "./Modal"
 import { Divider } from '@material-ui/core';
-import Dialog from './Dialog'
+import Dialog from './Info'
 
 
 const useStyles = makeStyles({
