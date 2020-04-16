@@ -30,7 +30,7 @@ function EqDisplay(props) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [variant, setVariant] = useState("info");
-  const level = (window.location.hash === "#/level1" || window.location.pathname ==="#/level2") ? "easy" : "hard" ;
+  const level = (window.location.hash === "#/level1" || window.location.hash ==="#/level2") ? "easy" : "hard" ;
   const [freeStyle] = useState(window.location.hash)
   const [value, setValue] = useState('change')
   const [divideLeft, setDivideLeft] = useState(false);
@@ -325,7 +325,7 @@ const createEquation = canCreate ? textBox() : ''
 
   return (
     <React.Fragment>
-      <Grid style={{ height: '100%' }} container direction="column" justify="flex-start">
+      <Grid id={id} style={{ height: '100%' }} container direction="column" justify="flex-start">
         <Grid item container>
           <AppBar
             onCalMessage={changeMessage}

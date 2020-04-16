@@ -49,7 +49,7 @@ const levels = [{
 
 function Start(props){
     return (
-        <Grid style={{maxWidth: 800, margin:"auto"}} direction='column' container justify='center'>
+        <Grid id='start' style={{maxWidth: 800, margin:"auto"}} direction='column' container justify='center'>
             <Grid direction='column' container item alignItems='center'>
                 <img src="logo.svg" alt="logo" style={{width:250}} ></img>
             </Grid>
