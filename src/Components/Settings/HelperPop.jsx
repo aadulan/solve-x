@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
 import React, { useState } from "react";
-import "./index.css";
+import "../../Styles/index.css";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';

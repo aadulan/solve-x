@@ -1,8 +1,8 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from "react-router-dom";
-import './index.css';
-import EqDisplay from './EqDisplay';
-import Start from './Start';
+import './Styles/index.css';
+import EqDisplay from './Components/Display/EqDisplay';
+import Start from './Components/Start/Start';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 

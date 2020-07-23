@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "./index.css";
-import { equationGen } from "./inital-data";
+import "../../Styles/index.css";
+import { equationGen } from "../Utils/inital-data";
 import EquationSpace from "./EqSpace";
 import { DragDropContext } from "react-beautiful-dnd";
 import Grid from "@material-ui/core/Grid";
 import algebra from "algebra.js";
-import { displayExpression } from "./DisplayExpression";
+import { displayExpression } from "../Utils/DisplayExpression";
 import Equal from "./Equal";
 import { Button } from "@material-ui/core";
-import Snackbar from './Snackbar'
+import Snackbar from '../Utils/Snackbar'
 import AppBar from './AppBar'
-import Calculator from './Calculator'
-import TextBox from './textBox'
+import Calculator from '../Calculator/Calculator'
+import TextBox from '../TextBox/textBox'
 import { useParams } from 'react-router-dom'
-import WorkingOut from './WorkingOut'
+import WorkingOut from '../WorkingOut/WorkingOut'
 
 var abs = require('math-abs');
 var floor = require( 'math-floor' );

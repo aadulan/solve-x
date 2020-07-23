@@ -3,8 +3,8 @@ import Card from '@material-ui/core/Card';
 import { Grid } from '@material-ui/core';
 import EqCard from './EqCard'
 import { Droppable } from 'react-beautiful-dnd';
-import { displayExpression } from './DisplayExpression'
-import { useStyles } from './Styles'
+import { displayExpression } from '../Utils/DisplayExpression'
+import { useStyles } from '../../Styles/Styles'
 //list of components transition : background colour 0.2 sease
 // props.isDragging ? 'lightgreen : 'white'
 

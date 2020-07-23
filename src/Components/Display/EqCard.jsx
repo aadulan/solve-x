@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent'
 import { Typography } from '@material-ui/core';
 import { Draggable } from 'react-beautiful-dnd';
-import { useStyles } from './Styles'
+import { useStyles } from '../../Styles/Styles'
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
 
