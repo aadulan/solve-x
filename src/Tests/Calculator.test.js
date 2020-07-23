@@ -1,11 +1,11 @@
 import React from 'react';
-import Calculator from './Calculator'
+import Calculator from '../Calculator'
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { TextField, Button, Typography, Grid, Card, CardContent } from '@material-ui/core';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import { act } from 'react-dom/test-utils';
-import CalculatorButton from './CalculatorButton'
+import CalculatorButton from '../CalculatorButton'
 
 
 Enzyme.configure({ adapter: new Adapter() });
