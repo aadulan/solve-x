@@ -1,11 +1,11 @@
 import React from 'react';
-import TextBox from '../textBox'
+import TextBox from '../Components/TextBox/textBox'
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { TextField, Button } from '@material-ui/core';
 import {createShallow} from '@material-ui/core/test-utils';
 import {act} from 'react-dom/test-utils';
-import SnackBar from '../Snackbar'
+import SnackBar from '../Components/Utils/Snackbar'
 
     
 Enzyme.configure({ adapter: new Adapter() });

@@ -1,5 +1,5 @@
 import React from 'react';
-import Calculator from '../Calculator'
+import Calculator from '../Components/Calculator/Calculator'
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { TextField, Button, Typography, Grid, Card, CardContent } from '@material-ui/core';
