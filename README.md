@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://jmaio.github.io/mandelbrot-maps">
-        <img src="./public/logo.svg" width="100" />
+        <img src="./public/logo.svg" width="130" />
     </a>
 <p>
 
