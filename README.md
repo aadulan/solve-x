@@ -1,4 +1,23 @@
+<p align="center">
+    <a href="https://jmaio.github.io/mandelbrot-maps">
+        <img src="./public/logo.svg" width="100" />
+    </a>
+<p>
+
+# Solve-X 
+
+
 [![CircleCI](https://circleci.com/gh/aadulan/solve-x/tree/master.svg?style=shield&circle-token=4e80ab99d5ef737896f6d840388b166f954dc6f1)](https://circleci.com/gh/aadulan/solve-x/tree/master)
+
+Solve-X is an Equation Solving App designed for Secondary School Teachers and their Pupils.
+
+It features a drag and drop system, a helper mode (to see hidden signs etc) and two different methods to help solve linear equations.
+
+![Mandelbrot Maps on a phone and tablet](./public/photo.png "Mandelbrot Maps on a phone and tablet")
+
+Created as an Honours Project at The University of Edinburgh, supervised by Heather Yorston.
+
+___
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
