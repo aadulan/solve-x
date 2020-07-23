@@ -15,7 +15,7 @@ It features a drag and drop system, a helper mode (to see hidden signs and opera
 
 ![Mandelbrot Maps on a phone and tablet](./public/photo.png "Mandelbrot Maps on a phone and tablet")
 
-Created as an Honours Project at The University of Edinburgh, supervised by Heather Yorston.
+Created as an Honours Project in 2019-2020 at The University of Edinburgh, supervised by Heather Yorston.
 
 ___
 
