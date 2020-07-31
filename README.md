@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://jmaio.github.io/mandelbrot-maps">
+    <a href="https://aadulan.github.io/solve-x">
         <img src="./public/logo.svg" width="130" />
     </a>
 <p>
@@ -13,7 +13,7 @@ Solve X is an Equation Solving App designed for Secondary School Teachers and th
 
 It features a drag and drop system, a helper mode (to see hidden signs and operations) and two different methods.
 
-![Mandelbrot Maps on a phone and tablet](./public/photo.png "Mandelbrot Maps on a phone and tablet")
+![Solve X on a computer and tablet](./public/photo.png "Solve X on a computer and tablet")
 
 Created as an Honours Project in 2019-2020 at The University of Edinburgh, supervised by Heather Yorston.
 
