@@ -17,7 +17,7 @@
     "katex": "^0.11.1",
     "math-abs": "^1.0.2",
     "math-floor": "^1.0.1",
-    "mathjs": "^6.2.5",
+    "mathjs": "^7.5.1",
     "preval.macro": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
