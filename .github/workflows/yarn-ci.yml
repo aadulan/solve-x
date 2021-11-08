@@ -10,7 +10,7 @@ on:
     branches: [ master ]
       
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs
     steps:
@@ -29,9 +29,5 @@ jobs:
       - name: Build
         run: yarn build
 
-  test: 
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
       - name: Test
         run: yarn test
