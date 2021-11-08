@@ -3,10 +3,10 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import './Styles/index.css';
 import EqDisplay from './Components/Display/EqDisplay';
 import Start from './Components/Start/Start';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#1e88e5",

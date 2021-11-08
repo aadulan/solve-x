@@ -43,7 +43,7 @@ export default function SimpleListMenu(props) {
       <Button 
         endIcon={<ExpandMoreIcon/>} 
         onClick={handleClickListItem} 
-        style={{justifyContent:"left",maxWidth:150, textOverflow:"ellipsis", overflow: "hidden", whiteSpace: "nowrap", color:"white"}}>
+        style={{justifyContent:"left", maxWidth:150, textOverflow:"ellipsis", overflow: "hidden", whiteSpace: "nowrap", color:"white"}}>
           Method
       </Button>
       <Menu

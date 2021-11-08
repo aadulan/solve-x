@@ -33,7 +33,7 @@ export default function EquationSpace(props) {
                         direction="row"
                         container
                         item
-                        justify="center"
+                        justifyContent="center"
                         alignItems="center"
                         innerRef={provided.innerRef}
                         {...provided.droppableProps}

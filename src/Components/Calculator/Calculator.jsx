@@ -146,11 +146,11 @@ export default function Calculator(props) {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Grid container direction='column' justify='center' align='center'>
+                        <Grid container direction='column' justifyContent='center' align='center'>
                             <Grid container direction='row'>
                                 <Card style={{ width: '100%' }}>
                                     <CardContent>
-                                        <Grid container direction='row' justify='flex-start' align='center'>
+                                        <Grid container direction='row' justifyContent='flex-start' align='center'>
     
                                             <Fab style={{ marginRight: 20 }} onClick={() => addNumberSign()} size="small" color="primary" aria-label="add">
                                                 <img src="plus-minus.svg" alt="sign" style={{ maxWidth: 20 }} ></img>

@@ -325,7 +325,7 @@ const createEquation = canCreate ? textBox() : ''
 
   return (
     <React.Fragment>
-      <Grid id={id} style={{ height: '100%' }} container direction="column" justify="flex-start">
+      <Grid id={id} style={{ height: '100%' }} container direction="column" justifyContent="flex-start">
         <Grid item container>
           <AppBar
             onCalMessage={changeMessage}
@@ -341,15 +341,15 @@ const createEquation = canCreate ? textBox() : ''
           />
           <Snackbar message={message} variant={variant} open={open} onOpenChange={changeOpen} />
         </Grid>
-        <Grid item container justify="flex-start" alignItems="flex-start" style={{marginTop:10, marginLeft:10}}>
+        <Grid item container justifyContent="flex-start" alignItems="flex-start" style={{marginTop:10, marginLeft:10}}>
           {createEquation}
         </Grid>
      
-        <Grid item container justify="center"  alignItems="center" style={{marginTop:20, marginBottom:20}} >
+        <Grid item container justifyContent="center"  alignItems="center" style={{marginTop:20, marginBottom:20}} >
               <WorkingOut workingOut={workingOut}/>
         </Grid>
-        {/* <Grid item container xs direction="column" justify="flex-start" alignItems="center" spacing={6} > */}
-          <Grid item container direction="row" justify="center" alignItems="center" style={{overflow:'hidden'}}>
+        {/* <Grid item container xs direction="column" justifyContent="flex-start" alignItems="center" spacing={6} > */}
+          <Grid item container direction="row" justifyContent="center" alignItems="center" style={{overflow:'hidden'}}>
             <DragDropContext
               onDragEnd={onDragEnd}
             // onDragStart={onDragStart}
@@ -376,7 +376,7 @@ const createEquation = canCreate ? textBox() : ''
               />
             </DragDropContext>
           </Grid>
-          <Grid style={{ margin:20}} container item direction="row" justify="space-evenly" alignItems="center" >
+          <Grid style={{ margin:20}} container item direction="row" justifyContent="space-evenly" alignItems="center" >
             <Grid item>
               <Button disabled={canCombine(equation.lhs, divideLeft)}  onClick={() => combineEquation('lhs')} variant="contained" color="primary">
                 Simplify Left
@@ -388,7 +388,7 @@ const createEquation = canCreate ? textBox() : ''
             </Button>
             </Grid>
           </Grid>
-          <Grid style={{ margin:20}} direction="row" container item justify="center" alignItems="center" >
+          <Grid style={{ margin:20}} direction="row" container item justifyContent="center" alignItems="center" >
             <Button onClick={() => clickNext()} variant="contained" color="primary">
               Next
           </Button>

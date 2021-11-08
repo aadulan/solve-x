@@ -49,14 +49,14 @@ const levels = [{
 
 function Start(props){
     return (
-        <Grid id='start' style={{maxWidth: 800, margin:"auto"}} direction='column' container justify='center'>
+        <Grid id='start' style={{maxWidth: 800, margin:"auto"}} direction='column' container justifyContent='center'>
             <Grid direction='column' container item alignItems='center'>
                 <img src="logo.svg" alt="logo" style={{width:250}} ></img>
             </Grid>
             <Grid item>
                 <Divider />
             </Grid>
-            <Grid item container style={{marginTop:20}} direction='row' justify='center' alignItems='center' > 
+            <Grid item container style={{marginTop:20}} direction='row' justifyContent='center' alignItems='center' > 
                 {levels.map((e, index) => (
                     <Grid  key={index} item xs={12} sm={6} md={4} style={{padding:8, paddingTop:0}}>
                     <Link 

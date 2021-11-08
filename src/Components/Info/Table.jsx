@@ -41,7 +41,7 @@ export default function SimpleTable() {
                         </Grid>
                     <Grid key={index} item xs={12}
                         direction="row" container
-                        justify="space-between"
+                        justifyContent="space-between"
                         style={{margin:5,
                         }}
                     >
