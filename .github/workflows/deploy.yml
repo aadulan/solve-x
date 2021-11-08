@@ -32,5 +32,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
+        # https://github.com/marketplace/actions/github-pages-action#%EF%B8%8F-first-deployment-with-github_token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages 
           FOLDER: build 
