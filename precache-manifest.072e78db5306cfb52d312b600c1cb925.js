@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d76046bd282c169a2ab3047625606ca9",
+    "revision": "175d1093173ff0fa7cb9734fce4845fd",
     "url": "/solve-x/index.html"
   },
   {
-    "revision": "ec003bed0abef1e83339",
+    "revision": "3dc598bdd1515eb0b159",
     "url": "/solve-x/static/css/2.5f31276d.chunk.css"
   },
   {
-    "revision": "a6ea7b879355d3aaa43a",
-    "url": "/solve-x/static/css/main.6a58f695.chunk.css"
+    "revision": "334fd4203e694278f2d0",
+    "url": "/solve-x/static/css/main.aa5e8193.chunk.css"
   },
   {
-    "revision": "ec003bed0abef1e83339",
-    "url": "/solve-x/static/js/2.32fa296c.chunk.js"
+    "revision": "3dc598bdd1515eb0b159",
+    "url": "/solve-x/static/js/2.ef1ec8d2.chunk.js"
   },
   {
-    "revision": "a6ea7b879355d3aaa43a",
-    "url": "/solve-x/static/js/main.886f16ed.chunk.js"
+    "revision": "334fd4203e694278f2d0",
+    "url": "/solve-x/static/js/main.d52651c2.chunk.js"
   },
   {
-    "revision": "313dee28ed29abfd56ae",
-    "url": "/solve-x/static/js/runtime~main.fc4529e8.js"
+    "revision": "bb5c061bfabf39102d69",
+    "url": "/solve-x/static/js/runtime~main.55726e8d.js"
   },
   {
     "revision": "7f06b4e30317f784d61d26686aed0ab2",
