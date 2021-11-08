@@ -32,7 +32,6 @@ jobs:
   test: 
     needs: [build]
     runs-on: ubuntu-latest
-     steps:
-     
+    steps:
       - name: Test
         run: yarn test
