@@ -19,7 +19,7 @@ const variantIcon = {
   info: InfoIcon,
 };
 
-const useStyles1 = makeStyles(theme => ({
+const useStyles1 = makeStyles((theme) => ({
   success: {
     backgroundColor: green[600],
   },
@@ -28,7 +28,7 @@ const useStyles1 = makeStyles(theme => ({
   },
   info: {
     // backgroundColor: theme.palette.primary.main,
-    backgroundColor: "#fafafa",
+    backgroundColor: '#fafafa',
   },
   warning: {
     backgroundColor: amber[700],
@@ -43,7 +43,6 @@ const useStyles1 = makeStyles(theme => ({
   message: {
     display: 'flex',
     alignItems: 'center',
-    
   },
 }));
 
@@ -57,8 +56,12 @@ function MySnackbarContentWrapper(props) {
       className={clsx(classes[variant], className)}
       aria-describedby="client-snackbar"
       message={
-        <span style={{color: variant === "info" ? "#000000" : ""}} id="client-snackbar" className={classes.message}>
-          <Icon  className={clsx(classes.icon, classes.iconVariant)} />
+        <span
+          style={{ color: variant === 'info' ? '#000000' : '' }}
+          id="client-snackbar"
+          className={classes.message}
+        >
+          <Icon className={clsx(classes.icon, classes.iconVariant)} />
           {message}
         </span>
       }
@@ -86,11 +89,11 @@ MySnackbarContentWrapper.propTypes = {
 // }));
 
 export default function CustomizedSnackbars(props) {
-//   const [open, setOpen] = React.useState(false);
+  //   const [open, setOpen] = React.useState(false);
 
-//   const handleClick = () => {
-//     setOpen(true);
-//   };
+  //   const handleClick = () => {
+  //     setOpen(true);
+  //   };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
