@@ -1,111 +1,80 @@
-import React from "react";
-import { render, waitFor, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-import { createHashHistory } from "history";
-import App from "../App";
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { createHashHistory } from 'history';
+import App from '../App';
 
-describe("AppRouter component", () => {
+describe('AppRouter component', () => {
   afterEach(jest.resetAllMocks);
 
-  it("navigates correctly", async () => {
-    const history = createHashHistory({ initialEntries: ["/"] });
+  it('navigates correctly', async () => {
+    // const history = createHashHistory({ initialEntries: ['/'] });
     // history.push("/level1");
     const { container } = render(<App />);
     // screen.debug()
-    const boo = container.querySelector("start")
+    expect(container.querySelector('start')).toBeDefined();
   });
 });
 
-
-describe("AppRouter component", () => {
+describe('AppRouter component', () => {
   afterEach(jest.resetAllMocks);
 
-  it("navigates correctly", async () => {
-    const history = createHashHistory({ initialEntries: ["/"] });
-    history.push("/level1");
+  it('navigates correctly', async () => {
+    const history = createHashHistory({ initialEntries: ['/'] });
+    history.push('/level1');
     const { container } = render(<App />);
     // screen.debug()
-    const boo = container.querySelector("level1")
+    expect(container.querySelector('level1')).toBeDefined();
   });
 });
 
-describe("Going to Level 2", () => {
+describe('Going to Level 2', () => {
   afterEach(jest.resetAllMocks);
 
-  it("navigates correctly", async () => {
-    const history = createHashHistory({ initialEntries: ["/"] });
-    history.push("/level2");
-    const { container, getByText, debug } = render(<App />);
+  it('navigates correctly', async () => {
+    const history = createHashHistory({ initialEntries: ['/'] });
+    history.push('/level2');
+    const { container } = render(<App />);
     // screen.debug()
-    const id = container.querySelector('level2')
+    expect(container.querySelector('level2')).toBeDefined();
   });
 });
 
-describe("Going to Level 3", () => {
+describe('Going to Level 3', () => {
   afterEach(jest.resetAllMocks);
 
-  it("navigates correctly", async () => {
-    const history = createHashHistory({ initialEntries: ["/"] });
-    history.push("/level3");
-    const { container, getByText, debug } = render(<App />);
+  it('navigates correctly', async () => {
+    const history = createHashHistory({ initialEntries: ['/'] });
+    history.push('/level3');
+    const { container } = render(<App />);
     // screen.debug()
-    const id = container.querySelector('level3')
+    expect(container.querySelector('level3')).toBeDefined();
   });
 });
 
-
-describe("Going to Level 4", () => {
+describe('Going to Level 4', () => {
   afterEach(jest.resetAllMocks);
 
-  it("navigates correctly", async () => {
-    const history = createHashHistory({ initialEntries: ["/"] });
-    history.push("/level4");
-    const { container, getByText, debug } = render(<App />);
+  it('navigates correctly', async () => {
+    const history = createHashHistory({ initialEntries: ['/'] });
+    history.push('/level4');
+    const { container } = render(<App />);
     // screen.debug()
-    const id = container.querySelector('level4')
+    expect(container.querySelector('level4')).toBeDefined();
   });
 });
 
-
-describe("Going to Level 5", () => {
+describe('Going to Level 5', () => {
   afterEach(jest.resetAllMocks);
 
-  it("navigates correctly", async () => {
-    const history = createHashHistory({ initialEntries: ["/"] });
-    history.push("/level5");
-    const { container, getByText, debug } = render(<App />);
+  it('navigates correctly', async () => {
+    const history = createHashHistory({ initialEntries: ['/'] });
+    history.push('/level5');
+    const { container } = render(<App />);
     // screen.debug()
-    const id = container.querySelector('level5')
+    expect(container.querySelector('level5')).toBeDefined();
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';
@@ -117,9 +86,8 @@ describe("Going to Level 5", () => {
 
 // import Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
-    
-// Enzyme.configure({ adapter: new Adapter() });
 
+// Enzyme.configure({ adapter: new Adapter() });
 
 // test('valid path should redirect to start', () => {
 //   const wrapper = mount(
@@ -131,7 +99,7 @@ describe("Going to Level 5", () => {
 //   expect(wrapper.find(EqDisplay)).toHaveLength(0);
 // });
 
-// // can't go to 
+// // can't go to
 // test('valid path should direct to level', () => {
 //   const wrapper = mount(
 //     <MemoryRouter initialEntries={[ '/', '/#/level1', {hash: '/level1'} ]}>

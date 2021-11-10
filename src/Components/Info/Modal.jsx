@@ -4,52 +4,64 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
-import { IconButton, Card, CardActionArea, CardContent, Typography } from '@material-ui/core';
+import {
+  IconButton,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+} from '@material-ui/core';
 import ModalSection from './ModalSection';
 import TeX from '@matejmazur/react-katex';
-import Table from './Table'
+import Table from './Table';
 import InfoIcon from '@material-ui/icons/Info';
 
 const info = [
   {
-    header:"Helper Mode",
-    info: <Typography align="left">
-      Allows you to see hidden operations and signs:
-      <Typography align="center">
-          <TeX  math={"2 \\rightarrow +2"}/>
-        <br/>
-          <TeX math={"3x \\rightarrow 3 \\times x"}/>
+    header: 'Helper Mode',
+    info: (
+      <Typography align="left">
+        Allows you to see hidden operations and signs:
+        <Typography align="center">
+          <TeX math={'2 \\rightarrow +2'} />
+          <br />
+          <TeX math={'3x \\rightarrow 3 \\times x'} />
+        </Typography>
       </Typography>
-    </Typography>
+    ),
   },
   {
-    header:"Methods",
-    info:<Typography align="left">
-      You can use your preferred method to solve equations: balance or change side, change sign
-    </Typography>
-  },
-  {
-    header: "Free Style",
-    info: <Typography align="left">
-      Try out your own Equation. Only <TeX  math={"x"}/> can be used a variable!
-    </Typography>
-  },
-  {
-    header: "Equation Changer",
-    info: <Typography align="left">
-      Experiment with the equation. Input a number and an operation and see the equation change.
-      <br/>
-      <Typography variant="subtitle2">
-        Controls:
+    header: 'Methods',
+    info: (
+      <Typography align="left">
+        You can use your preferred method to solve equations: balance or change side,
+        change sign
       </Typography>
-      <Table/>
-    </Typography>
-    
-  }
+    ),
+  },
+  {
+    header: 'Free Style',
+    info: (
+      <Typography align="left">
+        Try out your own Equation. Only <TeX math={'x'} /> can be used a variable!
+      </Typography>
+    ),
+  },
+  {
+    header: 'Equation Changer',
+    info: (
+      <Typography align="left">
+        Experiment with the equation. Input a number and an operation and see the equation
+        change.
+        <br />
+        <Typography variant="subtitle2">Controls:</Typography>
+        <Table />
+      </Typography>
+    ),
+  },
+];
 
-]
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -108,8 +120,8 @@ export default function SpringModal() {
 
   return (
     <div>
-      <IconButton style={{color:"white"}} onClick={handleOpen}>
-        <InfoIcon/>
+      <IconButton style={{ color: 'white' }} onClick={handleOpen}>
+        <InfoIcon />
       </IconButton>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -124,27 +136,25 @@ export default function SpringModal() {
         }}
       >
         <Fade in={open}>
-            <Card style={{maxWidth:400, }}>
-            <CardActionArea >
-              <Typography variant="h4" align="center"  style={{paddingBottom:0, paddingTop:15}}>
+          <Card style={{ maxWidth: 400 }}>
+            <CardActionArea>
+              <Typography
+                variant="h4"
+                align="center"
+                style={{ paddingBottom: 0, paddingTop: 15 }}
+              >
                 Info
               </Typography>
               {/* <IconButton onClick={handleClose}>
                 <CloseIcon/>
               </IconButton> */}
-            <CardContent style={{padding:"2em", paddingTop:0}}>
-             {info.map((e, index) => (
-               <ModalSection 
-               key={index} 
-               title={e.header} 
-               info={e.info}>
-               </ModalSection>
-             )
-
-             )}
-            </CardContent>
+              <CardContent style={{ padding: '2em', paddingTop: 0 }}>
+                {info.map((e, index) => (
+                  <ModalSection key={index} title={e.header} info={e.info}></ModalSection>
+                ))}
+              </CardContent>
             </CardActionArea>
-            </Card>
+          </Card>
         </Fade>
       </Modal>
     </div>

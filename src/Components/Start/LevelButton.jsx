@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -81,35 +81,34 @@ export default function LevelButton(props) {
 
   return (
     <div className={classes.root}>
-        <ButtonBase
-          focusRipple
-          key={props.title}
-          className={classes.image}
-          focusVisibleClassName={classes.focusVisible}
+      <ButtonBase
+        focusRipple
+        key={props.title}
+        className={classes.image}
+        focusVisibleClassName={classes.focusVisible}
+        style={{
+          width: '100%',
+        }}
+      >
+        <span
+          className={classes.imageSrc}
           style={{
-            width: '100%',
+            backgroundImage: `url(${props.image})`,
           }}
-        >
-          <span
-            className={classes.imageSrc}
-            style={{
-              backgroundImage: `url(${props.image})`,
-
-            }}
-          />
-          <span className={classes.imageBackdrop} />
-          <span className={classes.imageButton}>
-            <Typography
-              component="span"
-              variant="h5"
-              color="inherit"
-              className={classes.imageTitle}
-            >
-              {props.title}
-              <span className={classes.imageMarked} />
-            </Typography>
-          </span>
-        </ButtonBase>
+        />
+        <span className={classes.imageBackdrop} />
+        <span className={classes.imageButton}>
+          <Typography
+            component="span"
+            variant="h5"
+            color="inherit"
+            className={classes.imageTitle}
+          >
+            {props.title}
+            <span className={classes.imageMarked} />
+          </Typography>
+        </span>
+      </ButtonBase>
     </div>
   );
 }

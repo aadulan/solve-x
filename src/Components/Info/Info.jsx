@@ -9,51 +9,57 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import InfoIcon from '@material-ui/icons/Info';
-import ModalSection from './InfoSection'
+import ModalSection from './InfoSection';
 import TeX from '@matejmazur/react-katex';
-import Table from './Table'
+import Table from './Table';
 
 const info = [
-    {
-      header:"Helper Mode",
-      info: <Typography align="left">
+  {
+    header: 'Helper Mode',
+    info: (
+      <Typography align="left">
         Allows you to see hidden operations and signs:
         <Typography align="center">
-            <TeX  math={"2 \\rightarrow +2"}/>
-          <br/>
-            <TeX math={"3x \\rightarrow 3 \\times x"}/>
+          <TeX math={'2 \\rightarrow +2'} />
+          <br />
+          <TeX math={'3x \\rightarrow 3 \\times x'} />
         </Typography>
       </Typography>
-    },
-    {
-      header:"Methods",
-      info:<Typography align="left">
-        You can use your preferred method to solve equations: balance or change side, change sign
+    ),
+  },
+  {
+    header: 'Methods',
+    info: (
+      <Typography align="left">
+        You can use your preferred method to solve equations: balance or change side,
+        change sign
       </Typography>
-    },
-    {
-      header: "Free Style",
-      info: <Typography align="left">
-        Try out your own Equation. Only <TeX  math={"x"}/> can be used a variable!
+    ),
+  },
+  {
+    header: 'Free Style',
+    info: (
+      <Typography align="left">
+        Try out your own Equation. Only <TeX math={'x'} /> can be used a variable!
       </Typography>
-    },
-    {
-      header: "Equation Changer",
-      margin: false ,
-      info: <Typography align="left">
-        Experiment with the equation. Input a number and an operation and see the equation change.
-        <br/>
-        <Typography variant="subtitle2">
-          Controls:
-        </Typography>
-        <Table/>
+    ),
+  },
+  {
+    header: 'Equation Changer',
+    margin: false,
+    info: (
+      <Typography align="left">
+        Experiment with the equation. Input a number and an operation and see the equation
+        change.
+        <br />
+        <Typography variant="subtitle2">Controls:</Typography>
+        <Table />
       </Typography>
-      
-    }
-  
-  ]
+    ),
+  },
+];
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
@@ -66,7 +72,7 @@ const styles = theme => ({
   },
 });
 
-const DialogTitle = withStyles(styles)(props => {
+const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -80,13 +86,13 @@ const DialogTitle = withStyles(styles)(props => {
   );
 });
 
-const DialogContent = withStyles(theme => ({
+const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles(theme => ({
+const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(1),
@@ -105,25 +111,27 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-        <IconButton style={{color:"white"}} onClick={handleClickOpen}>
-        <InfoIcon/>
+      <IconButton style={{ color: 'white' }} onClick={handleClickOpen}>
+        <InfoIcon />
       </IconButton>
-      <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog
+        maxWidth="md"
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Info
+          Info
         </DialogTitle>
         <DialogContent dividers>
-        {info.map((e, index) => (
-               <ModalSection 
-               key={index} 
-               title={e.header} 
-               info={e.info}
-               margin={e.margin}
-               >
-               </ModalSection>
-             )
-
-             )}
+          {info.map((e, index) => (
+            <ModalSection
+              key={index}
+              title={e.header}
+              info={e.info}
+              margin={e.margin}
+            ></ModalSection>
+          ))}
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
