@@ -4,8 +4,7 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - master
+    branches: [ $default-branch ]
 
 jobs:
   build-and-deploy:
