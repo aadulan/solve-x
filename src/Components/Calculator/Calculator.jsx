@@ -63,7 +63,7 @@ export default function Calculator(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setExpanded((exp) => !exp);
   };
 
   const emptyText = () => {
@@ -138,12 +138,13 @@ export default function Calculator(props) {
   };
 
   return (
-    <Draggable>
+    <Draggable cancel="#cal-button-expand">
       <Card className={classes.root}>
         <CardActions disableSpacing>
           <DragIndicatorIcon />
           <Typography variant="subtitle1">Equation Changer</Typography>
           <IconButton
+            id="cal-button-expand"
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
             })}
