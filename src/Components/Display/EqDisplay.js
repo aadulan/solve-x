@@ -160,7 +160,7 @@ function EqDisplay() {
       setVariant('info');
       setOpen(true);
       var newExp = new algebra.Equation(lhs, rhs);
-      setWorkingOut([...workingOut, equation.toString()]);
+      setWorkingOut([...workingOut, equation.toTex()]);
       setEquation(newExp);
       setDivideLeft(true);
       setDivideRight(true);
@@ -302,7 +302,7 @@ function EqDisplay() {
       const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
       const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
       var newExp = new algebra.Equation(newLhs, newRhs);
-      setWorkingOut([...workingOut, equation.toString()]);
+      setWorkingOut([...workingOut, equation.toTex()]);
       setEquation(newExp);
     }
   };
@@ -328,7 +328,7 @@ function EqDisplay() {
     }
 
     var newExp = new algebra.Equation(lhs, rhs);
-    setWorkingOut([...workingOut, equation.toString()]);
+    setWorkingOut([...workingOut, equation.toTex()]);
     setEquation(newExp);
   };
 
