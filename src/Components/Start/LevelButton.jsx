@@ -7,8 +7,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    // minWidth: 250,
-    // width: '100%',
   },
   image: {
     position: 'relative',

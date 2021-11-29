@@ -7,8 +7,6 @@ import { useStyles } from '../../Styles/Styles';
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
 
-// props.isDragging ? 'lightgreen : 'white'
-
 //isDragDisabled to allow to conditionally move items
 
 export default function EqCard(props) {
