@@ -34,6 +34,8 @@ export default function CalculatorButton(props) {
       <Button
         id={name}
         onClick={() => props.cb(props.val)}
+        // https://github.com/react-grid-layout/react-draggable/issues/550
+        onTouchStart={() => props.cb(props.val)}
         style={{
           width: 45,
           height: 45,
