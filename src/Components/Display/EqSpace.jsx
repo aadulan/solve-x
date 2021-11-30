@@ -5,8 +5,6 @@ import EqCard from './EqCard';
 import { Droppable } from 'react-beautiful-dnd';
 import { displayExpression } from '../Utils/DisplayExpression';
 import { useStyles } from '../../Styles/Styles';
-//list of components transition : background colour 0.2 sease
-// props.isDragging ? 'lightgreen : 'white'
 
 export default function EquationSpace(props) {
   const [dragDisabled, setDragDisabled] = useState(false);
@@ -30,7 +28,6 @@ export default function EquationSpace(props) {
             alignItems="center"
             innerRef={provided.innerRef}
             {...provided.droppableProps}
-            // isDraggingOver={snapshot.isDraggingOver}
           >
             {displayExpression(
               props.expression,

@@ -17,7 +17,6 @@ import WorkingOut from '../WorkingOut/WorkingOut';
 
 var abs = require('math-abs');
 var floor = require('math-floor');
-// var abs = require( 'math-abs' );
 
 function EqDisplay() {
   let { id } = useParams();
@@ -77,12 +76,9 @@ function EqDisplay() {
         equation.lhs.constants[0].numer === equation.solveFor('x').numer &&
         equation.lhs.constants[0].denom === equation.solveFor('x').denom
       ) {
-        // console.log(equation.lhs.constants[0].numer ===  equation.solveFor("x").numer)
-        // if(equation.lhs.constants[0].subtract(equation.solveFor("x")).numer === 0){
         setMessage('You solved the equation!');
         setVariant('success');
         setOpen(true);
-        // }
       }
     } else if (
       equation.lhs.constants.length === 0 &&
@@ -112,7 +108,6 @@ function EqDisplay() {
     setEquation(algebra.parse(equationGen(id)));
     setWorkingOut([]);
     setOpen(false);
-    // console.log(equation.lhs.terms[0].coefficients)
   }
 
   if (enter) {
@@ -160,30 +155,14 @@ function EqDisplay() {
       setVariant('info');
       setOpen(true);
       var newExp = new algebra.Equation(lhs, rhs);
-      setWorkingOut([...workingOut, equation.toString()]);
+      setWorkingOut([...workingOut, equation.toTex()]);
       setEquation(newExp);
       setDivideLeft(true);
       setDivideRight(true);
     }
-
-    // console.log(equation.rhs.constants[0].numer)
-    // console.log(equation.rhs.constants[0].denom)
-    // console.log(equation.lhs.terms[0].coefficients)
     setCalculator([]);
     setEnter(false);
   }
-
-  // const onDragStart = event => {
-  //   event.preventDefault()
-  //     // document.body.style.color = 'blue';
-  //     // document.body.style.transition = 'background-color 0.2s ease'
-  // }
-
-  // const onDragUpdate = update => {
-  //     // const { destination } = update;
-  //     // const opacity = destination ? destination.index / Object.keys(this.state.tasks).length : 0 ;
-  //     document.body.style.backgroundColor = `rgba(153, 141, 217, 1)`;
-  // }
 
   function calculateFactors(integer) {
     var inte = abs(integer);
@@ -197,8 +176,6 @@ function EqDisplay() {
         factors.push(i);
       }
     }
-    // console.log(integer)
-    // console.log(factors)
     return factors;
   }
 
@@ -208,16 +185,10 @@ function EqDisplay() {
     );
     const valueToRemove = 1;
     const filteredItems = constants.filter((item) => item !== valueToRemove);
-    // console.log(one, two)
-    // console.log(constants)
-    // console.log(filteredItems)
-    // console.log(filteredItems.length !== 0)
     return filteredItems.length !== 0;
   }
 
   const changeMethod = (s) => {
-    console.log(window.location.hash);
-    // console.log(getIntersections(equation.constants[0].numer, equation.constants[0].denom) )
     setValue(s);
   };
 
@@ -242,7 +213,6 @@ function EqDisplay() {
 
   const handleSignChange = (event) => {
     setSigns(event.target.checked);
-    // console.log(signs)
   };
 
   const handleUnpackChange = (event) => {
@@ -250,9 +220,6 @@ function EqDisplay() {
   };
 
   const handleHelperChange = (event) => {
-    // console.log(window.location.hash)
-    // console.log(id)
-    // console.log(props.match.params.id)
     setHelper(event.target.checked);
   };
 
@@ -262,7 +229,6 @@ function EqDisplay() {
       onChangeMessage={changeMessage}
       onChangeVariant={changeVariant}
       onChangeOpen={changeOpen}
-      // variant={variant}
     />
   );
 
@@ -302,7 +268,7 @@ function EqDisplay() {
       const newLhs = equation.lhs.subtract(movedTask.exp, lhsOrigin);
       const newRhs = equation.rhs.subtract(movedTask.exp, rhsOrigin);
       var newExp = new algebra.Equation(newLhs, newRhs);
-      setWorkingOut([...workingOut, equation.toString()]);
+      setWorkingOut([...workingOut, equation.toTex()]);
       setEquation(newExp);
     }
   };
@@ -328,7 +294,7 @@ function EqDisplay() {
     }
 
     var newExp = new algebra.Equation(lhs, rhs);
-    setWorkingOut([...workingOut, equation.toString()]);
+    setWorkingOut([...workingOut, equation.toTex()]);
     setEquation(newExp);
   };
 
@@ -379,7 +345,6 @@ function EqDisplay() {
         >
           <WorkingOut workingOut={workingOut} />
         </Grid>
-        {/* <Grid item container xs direction="column" justifyContent="flex-start" alignItems="center" spacing={6} > */}
         <Grid
           item
           container
@@ -390,8 +355,6 @@ function EqDisplay() {
         >
           <DragDropContext
             onDragEnd={onDragEnd}
-            // onDragStart={onDragStart}
-            // onDragUpdate={onDragUpdate}
           >
             <EquationSpace
               dropId={'eqspace-lhs'}
@@ -456,7 +419,6 @@ function EqDisplay() {
           </Button>
         </Grid>
       </Grid>
-      {/* </Grid> */}
       <div
         style={{
           display: 'block',

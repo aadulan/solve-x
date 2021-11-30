@@ -9,7 +9,6 @@ export default function ModalSection(props) {
           {props.title}
         </Typography>
         {props.info}
-        {/* {props.margin} */}
       </Grid>
       <Grid item>
         <Divider
