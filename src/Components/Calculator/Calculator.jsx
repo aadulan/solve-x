@@ -170,6 +170,7 @@ export default function Calculator(props) {
                       <Fab
                         style={{ marginRight: 20 }}
                         onClick={() => addNumberSign()}
+                        onTouchStart={() => addNumberSign()}
                         size="small"
                         color="primary"
                         aria-label="add"
