@@ -18,7 +18,7 @@ export default function EquationSpace(props) {
   return (
     <Card className={classes.eqSpaceCard}>
       <Droppable droppableId={props.dropId} direction="horizontal">
-        {(provided, snapshot) => (
+        {(provided) => (
           <Grid
             className={classes.drop}
             direction="row"

@@ -18,7 +18,7 @@ export default function EqCard(props) {
       index={props.index}
       isDragDisabled={props.isDragDisabled}
     >
-      {(provided, snapshot) => (
+      {(provided) => (
         <Card
           className={classes.card}
           innerRef={provided.innerRef}

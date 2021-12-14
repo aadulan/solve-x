@@ -20,7 +20,7 @@ export default function TextBox(props) {
         throw new Error('No terms');
       }
 
-      e.lhs.terms.forEach((t, index) => {
+      e.lhs.terms.forEach((t) => {
         if (t.variables[0].degree > 1) {
           throw new Error('Not a Linear Equation');
         }
@@ -32,7 +32,7 @@ export default function TextBox(props) {
         }
       });
 
-      e.rhs.terms.forEach((t, index) => {
+      e.rhs.terms.forEach((t) => {
         if (t.variables[0].degree > 1) {
           throw new Error('Not a Linear Equation');
         }

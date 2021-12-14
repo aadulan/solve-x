@@ -47,7 +47,7 @@ const levels = [
   },
 ];
 
-function Start(props) {
+function Start() {
   return (
     <Grid
       id="start"
