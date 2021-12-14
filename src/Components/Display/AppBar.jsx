@@ -40,7 +40,7 @@ export default function TemporaryDrawer(props) {
             style={{ marginRight: 'auto' }}
           >
             <img
-              src="operations.svg"
+              src={process.env.PUBLIC_URL + '/operations.svg'}
               alt="logo"
               style={{ width: 50, height: 50, marginRight: 'auto' }}
             ></img>
