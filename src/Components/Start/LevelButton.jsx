@@ -91,7 +91,7 @@ export default function LevelButton(props) {
         <span
           className={classes.imageSrc}
           style={{
-            backgroundImage: `url(${props.image})`,
+            backgroundImage: `url(${process.env.PUBLIC_URL + '/' + props.image})`,
           }}
         />
         <span className={classes.imageBackdrop} />

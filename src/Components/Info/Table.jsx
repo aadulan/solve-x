@@ -33,7 +33,7 @@ export default function SimpleTable() {
   return (
     <Grid container>
       {symbols.map((row, index) => (
-        <React.Fragment>
+        <React.Fragment key={index}>
           <Grid item xs>
             <Divider />
           </Grid>

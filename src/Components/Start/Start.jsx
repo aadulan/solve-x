@@ -47,7 +47,7 @@ const levels = [
   },
 ];
 
-function Start(props) {
+function Start() {
   return (
     <Grid
       id="start"
@@ -57,7 +57,11 @@ function Start(props) {
       justifyContent="center"
     >
       <Grid direction="column" container item alignItems="center">
-        <img src="logo.svg" alt="logo" style={{ width: 250 }}></img>
+        <img
+          src={process.env.PUBLIC_URL + '/logo.svg'}
+          alt="logo"
+          style={{ width: 250 }}
+        ></img>
       </Grid>
       <Grid item>
         <Divider />

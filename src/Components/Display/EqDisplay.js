@@ -353,9 +353,7 @@ function EqDisplay() {
           alignItems="center"
           style={{ overflow: 'hidden' }}
         >
-          <DragDropContext
-            onDragEnd={onDragEnd}
-          >
+          <DragDropContext onDragEnd={onDragEnd}>
             <EquationSpace
               dropId={'eqspace-lhs'}
               expression={equation.lhs}

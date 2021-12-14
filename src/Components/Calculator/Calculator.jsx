@@ -176,7 +176,7 @@ export default function Calculator(props) {
                         aria-label="add"
                       >
                         <img
-                          src="plus-minus.svg"
+                          src={process.env.PUBLIC_URL + '/plus-minus.svg'}
                           alt="sign"
                           style={{ maxWidth: 20 }}
                         ></img>
