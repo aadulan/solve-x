@@ -1,7 +1,8 @@
 import React from 'react';
-import { Grid, Divider } from '@material-ui/core';
+// import { Grid, Divider } from '@material-ui/core';
 import LevelButton from './LevelButton';
 import { Link } from 'react-router-dom';
+import { Divider, Grid } from '@mui/material';
 // import preval from 'preval.macro'
 
 const levels = [
@@ -86,11 +87,6 @@ function Start() {
             <Link
               to={{
                 pathname: `/${e.url}`,
-                // state: {
-                //     level: e.level,
-                //     freeStyle:e.freeStyle,
-                //     // name: e.name,
-                // }
               }}
             >
               <LevelButton image={e.image} title={e.title} />

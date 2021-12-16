@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
 import './Styles/index.css';
 import EqDisplay from './Components/Display/EqDisplay';
 import Start from './Components/Start/Start';
-import { createTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -15,15 +15,16 @@ const theme = createTheme({
 });
 
 export default function App() {
-  // var basename= window.location.pathname || ''
   return (
-    <HashRouter basename={''}>
-      <ThemeProvider theme={theme}>
-        <Switch>
-          <Route exact path="/" component={Start} />
-          <Route exact path="/:id" component={EqDisplay} />
-        </Switch>
-      </ThemeProvider>
-    </HashRouter>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider maxSnack={1}>
+        <HashRouter basename={''}>
+          <Switch>
+            <Route exact path="/" component={Start} />
+            <Route exact path="/:id" component={EqDisplay} />
+          </Switch>
+        </HashRouter>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }

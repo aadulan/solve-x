@@ -1,11 +1,9 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { Typography } from '@material-ui/core';
 import { Draggable } from 'react-beautiful-dnd';
 import { useStyles } from '../../Styles/Styles';
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
+import { Card, CardContent, Typography } from '@mui/material';
 
 //isDragDisabled to allow to conditionally move items
 
@@ -21,7 +19,7 @@ export default function EqCard(props) {
       {(provided) => (
         <Card
           className={classes.card}
-          innerRef={provided.innerRef}
+          ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           // isDragging={snapshot.isDragging}

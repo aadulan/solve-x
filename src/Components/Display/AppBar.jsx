@@ -1,12 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import MethodMenu from '../Settings/MethodMenu';
 import HelperPop from '../Settings/HelperPop';
 import { Link } from 'react-router-dom';
-import { Divider } from '@material-ui/core';
 import Dialog from '../Info/Info';
+import { makeStyles } from '@mui/styles';
+import { AppBar, Divider, Toolbar } from '@mui/material';
 
 const useStyles = makeStyles({
   root: {

@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import Typography from '@material-ui/core/Typography';
-import { Grid, CardContent, Card, Fab, Divider } from '@material-ui/core';
 import Draggable from 'react-draggable';
-import { makeStyles } from '@material-ui/core/styles';
+import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import CalculatorButton from './CalculatorButton';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Collapse,
+  Divider,
+  Fab,
+  Grid,
+  IconButton,
+  Typography,
+} from '@mui/material';
+import { red } from '@mui/material/colors';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
-    // maxWidth: 300,
   },
   media: {
     height: 0,
@@ -60,7 +66,8 @@ export default function Calculator(props) {
   const [number, setNumber] = useState('');
   const [sign, setSign] = useState('');
   const [isPositive, setPositive] = useState('+');
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleExpandClick = () => {
     setExpanded((exp) => !exp);
@@ -81,9 +88,7 @@ export default function Calculator(props) {
 
   const addNumber = (e) => {
     if (number.length >= 5) {
-      props.onMessage('Maximum number of digits reached');
-      props.onVariant('error');
-      props.onOpen(true);
+      enqueueSnackbar('Maximum number of digits reached', { variant: 'error' });
     } else {
       setNumber(number.concat(e));
     }
@@ -107,9 +112,7 @@ export default function Calculator(props) {
 
     props.onCalChange(newSign, isPositive.concat(number));
     if (newSign === '' || number === '') {
-      props.onMessage('Number or sign empty!');
-      props.onVariant('error');
-      props.onOpen(true);
+      enqueueSnackbar('Number or sign empty!', { variant: 'error' });
     } else {
       props.onEnterChange(true);
       setNumber('');

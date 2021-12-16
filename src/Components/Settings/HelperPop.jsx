@@ -1,12 +1,14 @@
-import { makeStyles } from '@material-ui/core/styles';
-import Popover from '@material-ui/core/Popover';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@mui/styles';
+import {
+  Button,
+  FormControlLabel,
+  FormGroup,
+  Grow,
+  Popover,
+  Switch,
+} from '@mui/material';
 import React, { useState } from 'react';
 import '../../Styles/index.css';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
-import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles((theme) => ({
   group: {
@@ -49,12 +51,7 @@ export default function SimplePopover(props) {
 
   return (
     <div>
-      <Button
-        style={{ color: 'white' }}
-        aria-describedby={id}
-        color="default"
-        onClick={handleClick}
-      >
+      <Button style={{ color: 'white' }} aria-describedby={id} onClick={handleClick}>
         Helper Mode
       </Button>
       <Popover
