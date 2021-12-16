@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/solve-x/static/css/main.416554b8.chunk.css",
-    "main.js": "/solve-x/static/js/main.2cb337f3.chunk.js",
-    "main.js.map": "/solve-x/static/js/main.2cb337f3.chunk.js.map",
+    "main.js": "/solve-x/static/js/main.b9fc8dbc.chunk.js",
+    "main.js.map": "/solve-x/static/js/main.b9fc8dbc.chunk.js.map",
     "runtime-main.js": "/solve-x/static/js/runtime-main.3e940217.js",
     "runtime-main.js.map": "/solve-x/static/js/runtime-main.3e940217.js.map",
     "static/css/2.511ebac2.chunk.css": "/solve-x/static/css/2.511ebac2.chunk.css",
-    "static/js/2.86ae820d.chunk.js": "/solve-x/static/js/2.86ae820d.chunk.js",
-    "static/js/2.86ae820d.chunk.js.map": "/solve-x/static/js/2.86ae820d.chunk.js.map",
+    "static/js/2.12fa66bf.chunk.js": "/solve-x/static/js/2.12fa66bf.chunk.js",
+    "static/js/2.12fa66bf.chunk.js.map": "/solve-x/static/js/2.12fa66bf.chunk.js.map",
     "index.html": "/solve-x/index.html",
     "static/css/2.511ebac2.chunk.css.map": "/solve-x/static/css/2.511ebac2.chunk.css.map",
     "static/css/main.416554b8.chunk.css.map": "/solve-x/static/css/main.416554b8.chunk.css.map",
-    "static/js/2.86ae820d.chunk.js.LICENSE.txt": "/solve-x/static/js/2.86ae820d.chunk.js.LICENSE.txt",
+    "static/js/2.12fa66bf.chunk.js.LICENSE.txt": "/solve-x/static/js/2.12fa66bf.chunk.js.LICENSE.txt",
     "static/media/katex.min.css": "/solve-x/static/media/KaTeX_Typewriter-Regular.d3c8e68f.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.3e940217.js",
     "static/css/2.511ebac2.chunk.css",
-    "static/js/2.86ae820d.chunk.js",
+    "static/js/2.12fa66bf.chunk.js",
     "static/css/main.416554b8.chunk.css",
-    "static/js/main.2cb337f3.chunk.js"
+    "static/js/main.b9fc8dbc.chunk.js"
   ]
 }
