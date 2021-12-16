@@ -17,13 +17,7 @@ const theme = createTheme({
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        maxSnack={1}
-      >
+      <SnackbarProvider maxSnack={1}>
         <HashRouter basename={''}>
           <Switch>
             <Route exact path="/" component={Start} />
