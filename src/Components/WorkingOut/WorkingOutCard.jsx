@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, Typography, CardContent, CardActionArea } from '@material-ui/core';
 import TeX from '@matejmazur/react-katex';
-import ListItem from '@material-ui/core/ListItem';
+import { Card, CardActionArea, CardContent, ListItem, Typography } from '@mui/material';
 
 export default function WorkingOutCard(props) {
   return (

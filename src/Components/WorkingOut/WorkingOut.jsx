@@ -1,9 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
+import { makeStyles } from '@mui/styles';
 import WorkingOutCard from './WorkingOutCard';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { List } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   root: {

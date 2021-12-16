@@ -1,9 +1,9 @@
 import React from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
-import DeleteIcon from '@material-ui/icons/Delete';
-import DoneIcon from '@material-ui/icons/Done';
-import { Grid, Divider, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoneIcon from '@mui/icons-material/Done';
+import { Divider, Grid, Typography } from '@mui/material';
 
 const symbols = [
   {

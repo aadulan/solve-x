@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Card from '@material-ui/core/Card';
-import { Grid } from '@material-ui/core';
 import EqCard from './EqCard';
 import { Droppable } from 'react-beautiful-dnd';
 import { displayExpression } from '../Utils/DisplayExpression';
 import { useStyles } from '../../Styles/Styles';
+import { Card, Grid } from '@mui/material';
 
 export default function EquationSpace(props) {
   const [dragDisabled, setDragDisabled] = useState(false);
@@ -26,7 +25,7 @@ export default function EquationSpace(props) {
             item
             justifyContent="center"
             alignItems="center"
-            innerRef={provided.innerRef}
+            ref={provided.innerRef}
             {...provided.droppableProps}
           >
             {displayExpression(

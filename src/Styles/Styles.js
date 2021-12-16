@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
   card: {
@@ -6,7 +6,6 @@ export const useStyles = makeStyles({
     borderStyle: 'solid',
     padding: 10,
     margin: 10,
-    // minwidth: 400,
     '&:hover': {
       boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.25)',
     },

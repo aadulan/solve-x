@@ -1,5 +1,5 @@
+import { Divider, Grid, Typography } from '@mui/material';
 import React from 'react';
-import { Grid, Typography, Divider } from '@material-ui/core';
 
 export default function ModalSection(props) {
   return (

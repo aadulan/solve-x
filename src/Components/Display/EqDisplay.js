@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useSnackbar } from 'notistack';
 import '../../Styles/index.css';
 import { equationGen } from '../Utils/inital-data';
 import EquationSpace from './EqSpace';
 import { DragDropContext } from 'react-beautiful-dnd';
-import Grid from '@material-ui/core/Grid';
 import algebra from 'algebra.js';
 import { displayExpression } from '../Utils/DisplayExpression';
 import Equal from './Equal';
-import { Button } from '@material-ui/core';
-import Snackbar from '../Utils/Snackbar';
 import AppBar from './AppBar';
 import Calculator from '../Calculator/Calculator';
 import TextBox from '../TextBox/textBox';
 import { useParams } from 'react-router-dom';
 import WorkingOut from '../WorkingOut/WorkingOut';
+import { Button, Grid } from '@mui/material';
 
 var abs = require('math-abs');
 var floor = require('math-floor');
@@ -26,9 +25,6 @@ function EqDisplay() {
   const [unpack, setUnpack] = useState(false);
   const [calculator, setCalculator] = useState([]);
   const [enter, setEnter] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [variant, setVariant] = useState('info');
   const level =
     window.location.hash === '#/level1' || window.location.hash === '#/level2'
       ? 'easy'
@@ -38,6 +34,7 @@ function EqDisplay() {
   const [divideLeft, setDivideLeft] = useState(false);
   const [divideRight, setDivideRight] = useState(false);
   const [workingOut, setWorkingOut] = useState([]);
+  const { enqueueSnackbar } = useSnackbar();
 
   function changeAnswer(a, b) {
     setCalculator([a, b]);
@@ -45,18 +42,6 @@ function EqDisplay() {
 
   function changeEnter() {
     setEnter(!enter);
-  }
-
-  function changeOpen() {
-    setOpen(!open);
-  }
-
-  function changeMessage(a) {
-    setMessage(a);
-  }
-
-  function changeVariant(a) {
-    setVariant(a);
   }
 
   function changeEquation(a) {
@@ -76,9 +61,7 @@ function EqDisplay() {
         equation.lhs.constants[0].numer === equation.solveFor('x').numer &&
         equation.lhs.constants[0].denom === equation.solveFor('x').denom
       ) {
-        setMessage('You solved the equation!');
-        setVariant('success');
-        setOpen(true);
+        enqueueSnackbar('You solved the equation!', { variant: 'success' });
       }
     } else if (
       equation.lhs.constants.length === 0 &&
@@ -91,9 +74,7 @@ function EqDisplay() {
         equation.rhs.constants[0].numer === equation.solveFor('x').numer &&
         equation.rhs.constants[0].denom === equation.solveFor('x').denom
       ) {
-        setMessage('You solved the equation!');
-        setVariant('success');
-        setOpen(true);
+        enqueueSnackbar('You solved the equation!', { variant: 'success' });
       }
     }
   }, [
@@ -107,7 +88,6 @@ function EqDisplay() {
   function clickNext() {
     setEquation(algebra.parse(equationGen(id)));
     setWorkingOut([]);
-    setOpen(false);
   }
 
   if (enter) {
@@ -118,42 +98,41 @@ function EqDisplay() {
     var factors = Array.from(
       new Set([...factors_left].filter((x) => factors_right.has(x))),
     );
+    let msg = '';
 
     if (
       (calculator[0] === 'divide' || calculator[0] === 'multiply') &&
       Number(calculator[1]) === 0
     ) {
-      setMessage('Cannot '.concat(calculator[0], ' by ', '0'));
-      setVariant('error');
-      setOpen(true);
+      enqueueSnackbar('Cannot '.concat(calculator[0], ' by ', '0'), { variant: 'error' });
     } else if (
       level === 'easy' &&
       calculator[0] === 'divide' &&
       !factors.includes(abs(Number(calculator[1])))
     ) {
-      setMessage('Cannot '.concat(calculator[0], ' by ', calculator[1]));
-      setVariant('warning');
-      setOpen(true);
+      enqueueSnackbar('Cannot '.concat(calculator[0], ' by ', calculator[1]), {
+        variant: 'warning',
+      });
     } else {
       if (calculator[0] === 'multiply') {
         lhs = equation.lhs.multiply(Number(calculator[1]));
         rhs = equation.rhs.multiply(Number(calculator[1]));
-        setMessage(''.concat(calculator[0], ' by ', calculator[1]));
+        msg = ''.concat(calculator[0], ' by ', calculator[1]);
       } else if (calculator[0] === 'add') {
         lhs = equation.lhs.add(Number(calculator[1]), false);
         rhs = equation.rhs.add(Number(calculator[1]), false);
-        setMessage(''.concat(calculator[0], ' ', calculator[1]));
+        msg = ''.concat(calculator[0], ' ', calculator[1]);
       } else if (calculator[0] === 'subtract') {
         lhs = equation.lhs.subtract(Number(calculator[1]), false);
         rhs = equation.rhs.subtract(Number(calculator[1]), false);
-        setMessage(''.concat(calculator[0], ' ', calculator[1]));
+        msg = ''.concat(calculator[0], ' ', calculator[1]);
       } else if (calculator[0] === 'divide') {
         lhs = equation.lhs.divide(Number(calculator[1]), false);
         rhs = equation.rhs.divide(Number(calculator[1]), false);
-        setMessage(''.concat(calculator[0], ' by ', calculator[1]));
+        msg = ''.concat(calculator[0], ' by ', calculator[1]);
       }
-      setVariant('info');
-      setOpen(true);
+
+      enqueueSnackbar(msg, { variant: 'info' });
       var newExp = new algebra.Equation(lhs, rhs);
       setWorkingOut([...workingOut, equation.toTex()]);
       setEquation(newExp);
@@ -223,14 +202,7 @@ function EqDisplay() {
     setHelper(event.target.checked);
   };
 
-  const textBox = () => (
-    <TextBox
-      onChangeEquation={changeEquation}
-      onChangeMessage={changeMessage}
-      onChangeVariant={changeVariant}
-      onChangeOpen={changeOpen}
-    />
-  );
+  const textBox = () => <TextBox onChangeEquation={changeEquation} />;
 
   const canCreate = freeStyle === '#/level5';
   const createEquation = canCreate ? textBox() : '';
@@ -309,21 +281,12 @@ function EqDisplay() {
       >
         <Grid item container>
           <AppBar
-            onCalMessage={changeMessage}
-            onCalVariant={changeVariant}
-            onCalOpen={changeOpen}
             onCalChange={changeAnswer}
             onCalEnterChange={changeEnter}
             onChangeUnpack={handleUnpackChange}
             onChangeSigns={handleSignChange}
             onChangeHelper={handleHelperChange}
             onChangeMethod={changeMethod}
-          />
-          <Snackbar
-            message={message}
-            variant={variant}
-            open={open}
-            onOpenChange={changeOpen}
           />
         </Grid>
         <Grid
@@ -388,7 +351,6 @@ function EqDisplay() {
               disabled={canCombine(equation.lhs, divideLeft)}
               onClick={() => combineEquation('lhs')}
               variant="contained"
-              color="primary"
             >
               Simplify Left
             </Button>
@@ -398,7 +360,6 @@ function EqDisplay() {
               disabled={canCombine(equation.rhs, divideRight)}
               onClick={() => combineEquation('rhs')}
               variant="contained"
-              color="primary"
             >
               Simplify Right
             </Button>
@@ -412,7 +373,7 @@ function EqDisplay() {
           justifyContent="center"
           alignItems="center"
         >
-          <Button onClick={() => clickNext()} variant="contained" color="primary">
+          <Button onClick={() => clickNext()} variant="contained">
             Next
           </Button>
         </Grid>
@@ -427,13 +388,7 @@ function EqDisplay() {
           cursor: 'move',
         }}
       >
-        <Calculator
-          onMessage={changeMessage}
-          onVariant={changeVariant}
-          onOpen={changeOpen}
-          onCalChange={changeAnswer}
-          onEnterChange={changeEnter}
-        />
+        <Calculator onCalChange={changeAnswer} onEnterChange={changeEnter} />
       </div>
     </React.Fragment>
   );

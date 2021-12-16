@@ -2,10 +2,11 @@ import React from 'react';
 import Calculator from '../Components/Calculator/Calculator';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Button, Typography } from '@material-ui/core';
+// import { Button, Typography } from '@material-ui/core';
 import { createShallow } from '@material-ui/core/test-utils';
 import { act } from 'react-dom/test-utils';
 import CalculatorButton from '../Components/Calculator/CalculatorButton';
+import { Button, Typography } from '@mui/material';
 
 Enzyme.configure({ adapter: new Adapter() });
 

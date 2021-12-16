@@ -1,8 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
-
+import { makeStyles } from '@mui/styles';
+import { ButtonBase, Typography } from '@mui/material';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -12,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     height: 150,
     [theme.breakpoints.down('xs')]: {
-      // width: '100% !important', // Overrides inline-style
       height: 100,
     },
     '&:hover, &$focusVisible': {

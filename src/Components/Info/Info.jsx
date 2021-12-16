@@ -1,17 +1,20 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import InfoIcon from '@material-ui/icons/Info';
+import { PropTypes } from 'prop-types';
+import InfoIcon from '@mui/icons-material/Info';
+import { styled } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
 import ModalSection from './InfoSection';
 import TeX from '@matejmazur/react-katex';
 import Table from './Table';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Typography,
+  Button,
+} from '@mui/material';
 
 const info = [
   {
@@ -59,45 +62,43 @@ const info = [
   },
 ];
 
-const styles = (theme) => ({
-  root: {
-    margin: 0,
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
   },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
   },
-});
+}));
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
+const BootstrapDialogTitle = (props) => {
+  const { children, onClose, ...other } = props;
+
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
-    </MuiDialogTitle>
+    </DialogTitle>
   );
-});
+};
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
@@ -114,15 +115,15 @@ export default function CustomizedDialogs() {
       <IconButton style={{ color: 'white' }} onClick={handleClickOpen}>
         <InfoIcon />
       </IconButton>
-      <Dialog
+      <BootstrapDialog
         maxWidth="md"
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Info
-        </DialogTitle>
+        </BootstrapDialogTitle>
         <DialogContent dividers>
           {info.map((e, index) => (
             <ModalSection
@@ -138,7 +139,7 @@ export default function CustomizedDialogs() {
             Close
           </Button>
         </DialogActions>
-      </Dialog>
+      </BootstrapDialog>
     </div>
   );
 }

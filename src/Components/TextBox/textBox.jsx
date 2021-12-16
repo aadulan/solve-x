@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { TextField, Button, Grid } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 import algebra from 'algebra.js';
+import { Button, Grid, TextField } from '@mui/material';
 
 export default function TextBox(props) {
   const [eq, setEq] = useState('');
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (event) => {
     setEq(event.target.value);
@@ -24,9 +26,6 @@ export default function TextBox(props) {
         if (t.variables[0].degree > 1) {
           throw new Error('Not a Linear Equation');
         }
-        // if (term === ""){
-        //     term = t.variables[0].variable
-        // }
         if (t.variables[0].variable !== term) {
           throw new Error('Cannot have more than one Variable');
         }
@@ -46,15 +45,10 @@ export default function TextBox(props) {
 
       props.onChangeEquation(e);
       setEq('');
-      // console.log(e)
-      props.onChangeMessage('Equation Changed');
-      props.onChangeVariant('success');
-      props.onChangeOpen(true);
+
+      enqueueSnackbar('Equation Changed', { variant: 'success' });
     } catch (err) {
-      //   console.log(err)
-      props.onChangeVariant('error');
-      props.onChangeMessage('Wrong input');
-      props.onChangeOpen(true);
+      enqueueSnackbar('Wrong input', { variant: 'error' });
     }
   };
 

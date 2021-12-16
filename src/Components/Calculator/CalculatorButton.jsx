@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Grid, Typography } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import DoneIcon from '@material-ui/icons/Done';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoneIcon from '@mui/icons-material/Done';
+import { Button, Grid, Typography } from '@mui/material';
 
 export default function CalculatorButton(props) {
   // callback cb
@@ -44,6 +44,7 @@ export default function CalculatorButton(props) {
           background: backgroundColour(props.val),
           marginTop: 2,
           marginBottom: 2,
+          color: 'black',
         }}
       >
         {val}
