@@ -5,6 +5,7 @@ import './Styles/index.css';
 import EqDisplay from './Components/Display/EqDisplay';
 import Start from './Components/Start/Start';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+// import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 
 const theme = createTheme({
   palette: {
@@ -17,6 +18,7 @@ const theme = createTheme({
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
+      {/* <ServiceWorkerWrapper> */}
       <SnackbarProvider maxSnack={1}>
         <HashRouter basename={''}>
           <Switch>
@@ -25,6 +27,7 @@ export default function App() {
           </Switch>
         </HashRouter>
       </SnackbarProvider>
+      {/* </ServiceWorkerWrapper> */}
     </ThemeProvider>
   );
 }
