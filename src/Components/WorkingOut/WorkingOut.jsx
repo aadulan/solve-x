@@ -5,16 +5,17 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { List } from '@mui/material';
 
+// 432 = 1.2 * 360
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    maxWidth: 432,
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     bottom: 0,
     overflow: 'auto',
-    maxHeight: 150,
-    minHeight: 150,
+    maxHeight: 250,
+    minHeight: 250,
     overflowY: 'scroll',
   },
   listSection: {
@@ -23,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
   ul: {
     backgroundColor: 'inherit',
     padding: 0,
+  },
+  '&::-webkit-scrollbar': {
+    '-webkit-appearance': 'none',
+    width: '7px',
+    height: '7px',
+    '-webkit-overflow-scrolling': 'auto',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    borderRadius: '4px',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    '-webkit-box-shadow': '0 0 1px rgba(255, 255, 255, 0.5)',
   },
 }));
 
