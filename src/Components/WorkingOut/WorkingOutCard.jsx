@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import TeX from '@matejmazur/react-katex';
 import { Card, CardActionArea, CardContent, ListItem, Typography } from '@mui/material';
 
-export default function WorkingOutCard(props) {
+function WorkingOutCard(props, ref) {
   return (
-    <ListItem>
+    <ListItem ref={ref}>
       <Card style={{ width: '100%' }} variant="outlined">
         <CardActionArea>
           <CardContent>
@@ -17,3 +17,5 @@ export default function WorkingOutCard(props) {
     </ListItem>
   );
 }
+
+export default forwardRef(WorkingOutCard);

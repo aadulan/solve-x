@@ -41,15 +41,26 @@ const useStyles = makeStyles((theme) => ({
 export default function PinnedSubheaderList(props) {
   const classes = useStyles();
   const list = useRef(null);
+  const lastCard = useRef(null);
 
   useEffect(() => {
-    list.current.scrollTop = list.current.scrollHeight;
-  });
+    // // list.current.scrollTop = list.current.scrollHeight;
+    // update scroll position - set a timeout to allow enough time for scroll height to be calculated
+    setTimeout(
+      () => lastCard.current && lastCard.current.scrollIntoView({ behavior: 'smooth' }),
+      100,
+    );
+  }, [lastCard.current]);
 
   return (
     <List dense={true} className={classes.root} ref={list}>
       {props.workingOut.map((step, index) => (
-        <WorkingOutCard key={index} step={step} i={index + 1} />
+        <WorkingOutCard
+          ref={index === props.workingOut.length - 1 ? lastCard : null}
+          key={index}
+          step={step}
+          i={index + 1}
+        />
       ))}
     </List>
   );
